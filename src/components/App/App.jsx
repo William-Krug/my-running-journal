@@ -1,3 +1,4 @@
+/* Import Libraries */
 import React, { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -8,19 +9,25 @@ import {
 
 import { useDispatch } from 'react-redux';
 
+/* Import Components */
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import HomePage from '../HomePage/HomePage';
 
+/* Import CSS */
 import './App.css';
+
+/*
+  Global value used for testing during app build
+*/
+const verbose = true;
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +43,11 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
+
+          {/* Home Page */}
+          <Route exact path="/homePage">
+            <HomePage verbose={verbose} />
+          </Route>
 
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
