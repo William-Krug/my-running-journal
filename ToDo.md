@@ -35,6 +35,8 @@
   - [ ] add `city` input
   - [ ] add `state` input
   - [ ] add `country` input
+- [ ] `FETCH_GENDERS`
+- [ ] `FETCH_STATES`
 - [ ] verify all data makes it to saga
 - [ ] verify all data makes it to router
 - [ ] verify all data makes it to db

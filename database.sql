@@ -18,6 +18,9 @@ CREATE TABLE "user" (
 --- Drop "genders" table
 DROP TABLE IF EXISTS "genders";
 
+--- Drop "countries" table
+DROP TABLE IF EXISTS "countries";
+
 --- Drop "states" table
 DROP TABLE IF EXISTS "states";
 
@@ -44,10 +47,17 @@ CREATE TABLE "genders" (
   "gender" VARCHAR(32)
 );
 
+--- Create "countries" table
+CREATE TABLE "countries" (
+  "id" SERIAL PRIMARY KEY,
+  "country" VARCHAR(64);
+);
+
 --- Create "states" table
 CREATE TABLE "states" (
   "id" SERIAL PRIMARY KEY,
-  "state" VARCHAR(32)
+  "state" VARCHAR(32),
+  "country_id" INT REFERENCES "countries"
 );
 
 --- Create "users" table

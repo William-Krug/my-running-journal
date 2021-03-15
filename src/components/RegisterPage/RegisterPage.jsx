@@ -24,7 +24,7 @@ function RegisterPage({ verbose }) {
   return (
     <div>
       {/* Display registration from */}
-      <RegisterForm />
+      <RegisterForm verbose={verbose} />
 
       {/* Allow user to go to login page */}
       <center>

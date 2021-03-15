@@ -1,5 +1,22 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
+import swal from 'sweetalert';
+
+function* fetchAllGenders(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ registration.saga -> fetchAllGenders() @@@');
+
+  try {
+    const allGenders = yield axios.get('/api/user/allGenders');
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/user/allGenders', error);
+  }
+}
 
 // worker Saga: will be fired on "REGISTER" actions
 function* registerUser(action) {
@@ -24,6 +41,7 @@ function* registerUser(action) {
 
 function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
+  yield takeLatest('FETCH_ALL_GENDERS', fetchAllGenders);
 }
 
 export default registrationSaga;
