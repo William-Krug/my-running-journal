@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 // ToDo - edit/update/remove for material-ui
 import './LandingPage.css';
 
-/* Import Comoponents */
+/* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
 
 /**
@@ -56,7 +56,7 @@ function LandingPage({ verbose }) {
       {/* Toggle between home page image and login form */}
       <div>
         {loginButtonClicked ? (
-          <LoginForm />
+          <LoginForm verbose={verbose} />
         ) : (
           <img
             // src="../../../images/runners3.jpg"

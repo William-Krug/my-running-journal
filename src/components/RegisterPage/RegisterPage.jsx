@@ -1,15 +1,32 @@
+/* Import Libraries */
 import React from 'react';
-
 import { useHistory } from 'react-router-dom';
+
+/* Import Components */
 import RegisterForm from '../RegisterForm/RegisterForm';
 
-function RegisterPage() {
+/**
+ * Component renders the app's registration page
+ *
+ * User has option to switch to the login page
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @returns renders the app's registration page
+ */
+function RegisterPage({ verbose }) {
+  // Breadcrumbs for testing and debugging
+  if (verbose) {
+    console.log('*** in <RegisterPage /> ***');
+  }
+
   const history = useHistory();
 
   return (
     <div>
+      {/* Display registration from */}
       <RegisterForm />
 
+      {/* Allow user to go to login page */}
       <center>
         <button
           type="button"

@@ -26,6 +26,18 @@
 
 ## Registration Page
 
+- [ ] update db to look for all inputs
+- [ ] update `<RegisterForm />`
+  - [ ] add `first_name` input
+  - [ ] add `last_name` input
+  - [ ] add `birthdate` input
+  - [ ] add `gender` input
+  - [ ] add `city` input
+  - [ ] add `state` input
+  - [ ] add `country` input
+- [ ] verify all data makes it to saga
+- [ ] verify all data makes it to router
+- [ ] verify all data makes it to db
 - [ ] documentation
 
 ## User's Personal Page
