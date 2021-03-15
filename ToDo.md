@@ -28,12 +28,12 @@
 
 - [ ] update db to look for all inputs
 - [ ] update `<RegisterForm />`
-  - [ ] add `first_name` input
-  - [ ] add `last_name` input
-  - [ ] add `birthdate` input
-  - [ ] add `gender` input
-  - [ ] add `city` input
-  - [ ] add `state` input
+  - [x] add `first_name` input
+  - [x] add `last_name` input
+  - [x] add `birthdate` input
+  - [x] add `gender` input
+  - [x] add `city` input
+  - [x] add `state` input
   - [ ] add `country` input
 - [ ] `FETCH_GENDERS`
 - [ ] `FETCH_STATES`

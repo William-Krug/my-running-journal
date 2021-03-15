@@ -7,14 +7,40 @@ function* fetchAllGenders(action) {
   console.log('@@@ registration.saga -> fetchAllGenders() @@@');
 
   try {
-    const allGenders = yield axios.get('/api/user/allGenders');
+    const allGenders = yield axios.get('/api/registration/allGenders');
+
+    yield put({
+      type: 'SET_ALL_GENDERS',
+      payload: allGenders.data,
+    });
   } catch (error) {
     swal(
       'My Running Journal',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/user/allGenders', error);
+    console.log('ERROR in GET /api/registration/allGenders', error);
+  }
+}
+
+function* fetchAllStates(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ registration.saga -> fetchAllStates() @@@');
+
+  try {
+    const allStates = yield axios.get('/api/registration/allStates');
+
+    yield put({
+      type: 'SET_ALL_STATES',
+      payload: allStates.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/user/allStates', error);
   }
 }
 
@@ -42,6 +68,7 @@ function* registerUser(action) {
 function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
   yield takeLatest('FETCH_ALL_GENDERS', fetchAllGenders);
+  yield takeLatest('FETCH_ALL_STATES', fetchAllStates);
 }
 
 export default registrationSaga;
