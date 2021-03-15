@@ -26,7 +26,6 @@
 
 ## Registration Page
 
-- [ ] update db to look for all inputs
 - [ ] update `<RegisterForm />`
   - [x] add `first_name` input
   - [x] add `last_name` input
@@ -34,9 +33,9 @@
   - [x] add `gender` input
   - [x] add `city` input
   - [x] add `state` input
-  - [ ] add `country` input
-- [ ] `FETCH_GENDERS`
-- [ ] `FETCH_STATES`
+  - [x] add `country` input
+- [x] `FETCH_GENDERS`
+- [x] `FETCH_STATES`
 - [ ] verify all data makes it to saga
 - [ ] verify all data makes it to router
 - [ ] verify all data makes it to db

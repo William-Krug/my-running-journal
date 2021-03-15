@@ -1,3 +1,4 @@
+/* Import Libraries */
 import { combineReducers } from 'redux';
 
 const allGenders = (state = [], action) => {

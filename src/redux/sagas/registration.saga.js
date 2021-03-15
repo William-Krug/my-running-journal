@@ -1,14 +1,21 @@
+/* Import Libraries */
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 import swal from 'sweetalert';
 
+/**
+ *
+ * @param {*} action
+ */
 function* fetchAllGenders(action) {
   // Breadcrumbs for testing and debugging
   console.log('@@@ registration.saga -> fetchAllGenders() @@@');
 
+  // GET all gender options from "genders" table
   try {
     const allGenders = yield axios.get('/api/registration/allGenders');
 
+    // save gender options in Redux store
     yield put({
       type: 'SET_ALL_GENDERS',
       payload: allGenders.data,
@@ -23,13 +30,19 @@ function* fetchAllGenders(action) {
   }
 }
 
+/**
+ *
+ * @param {*} action
+ */
 function* fetchAllStates(action) {
   // Breadcrumbs for testing and debugging
   console.log('@@@ registration.saga -> fetchAllStates() @@@');
 
+  // GET all state options from the "states" table
   try {
     const allStates = yield axios.get('/api/registration/allStates');
 
+    // save state options in Redux store
     yield put({
       type: 'SET_ALL_STATES',
       payload: allStates.data,
