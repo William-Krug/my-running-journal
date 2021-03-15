@@ -44,11 +44,6 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Home Page */}
-          <Route exact path="/homePage" authRedirect="/user">
-            <HomePage verbose={verbose} />
-          </Route>
-
           {/* Visiting localhost:3000/about will show the about page. */}
           <Route
             // shows AboutPage at all times (logged in or not)
@@ -111,7 +106,7 @@ function App() {
             path="/home"
             authRedirect="/user"
           >
-            <LandingPage />
+            <LandingPage verbose={verbose} />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
