@@ -45,7 +45,7 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Home Page */}
-          <Route exact path="/homePage">
+          <Route exact path="/homePage" authRedirect="/user">
             <HomePage verbose={verbose} />
           </Route>
 
