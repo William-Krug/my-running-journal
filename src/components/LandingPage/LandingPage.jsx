@@ -8,6 +8,14 @@ import './LandingPage.css';
 /* Import Comoponents */
 import LoginForm from '../LoginForm/LoginForm';
 
+/**
+ * Component renders the app's home page.
+ *
+ * Buttons take user to the respective login and registration page
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @returns {jsx} renders the app's home page
+ */
 function LandingPage({ verbose }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
@@ -23,10 +31,10 @@ function LandingPage({ verbose }) {
     Function sets local state variable to allow the <LoginForm />
     display to be toggled
   */
-  function loginForm() {
+  function loginFormToggle() {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <HomePage /> -> loginForm() ***');
+      console.log('*** <HomePage /> -> loginFormToggle() ***');
     }
 
     // Set value to opposite state to allow toggling
@@ -36,24 +44,31 @@ function LandingPage({ verbose }) {
   return (
     <section>
       <h2>Welcome</h2>
+
+      {/* About MRJ */}
       <div>
         <p>
           At MRJ, we believe that everyone can achieve anything they put their
           mind to. We simply quantify your dreams.
         </p>
       </div>
+
+      {/* Toggle between home page image and login form */}
       <div>
         {loginButtonClicked ? (
           <LoginForm />
         ) : (
           <img
+            // src="../../../images/runners3.jpg"
             src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
             alt="silhouette of two runners"
           />
         )}
       </div>
+
+      {/* Buttons to login / register */}
       <div>
-        <button onClick={loginForm}>Login</button>
+        <button onClick={loginFormToggle}>Login</button>
         <button onClick={() => history.push('/registration')}>Register</button>
       </div>
     </section>

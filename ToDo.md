@@ -14,15 +14,15 @@
   - [x] use protected routes
 - [x] `<p>` for app description
 - [x] `<img>` for app
-- [ ] `<button>Login</button>`
+- [x] `<button>Login</button>`
   - [x] recognize button click
   - [x] toggle on login form
   - [x] user logged in
-  - [ ] takes user to user's page
+  - [x] takes user to user's page
 - [x] `<button>Register</button>`
   - [x] recognize button click
   - [x] rerouted to `<Registration />` form
-- [ ] documentation
+- [x] documentation
 
 ## Registration Page
 

@@ -19,7 +19,6 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import HomePage from '../HomePage/HomePage';
 
 /* Import CSS */
 import './App.css';
