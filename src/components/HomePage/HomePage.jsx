@@ -1,5 +1,6 @@
 /* Import Libraries */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 /* Import Components */
@@ -11,6 +12,8 @@ function HomePage({ verbose }) {
     console.log('*** in <HomePage /> ***');
   }
 
+  const history = useHistory();
+
   const [loginButtonClicked, setLoginButtonClicked] = useState(false);
 
   function loginForm() {
@@ -18,13 +21,17 @@ function HomePage({ verbose }) {
     if (verbose) {
       console.log('*** <HomePage /> -> loginForm() ***');
     }
+
+    setLoginButtonClicked(!loginButtonClicked);
   }
 
-  function registerForm() {
+  function goToRegistrationForm() {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <HomePage /> -> registerForm() ***');
+      console.log('*** <HomePage /> -> goToRegistrationForm() ***');
     }
+
+    history.push('/registration');
   }
 
   return (
@@ -37,14 +44,18 @@ function HomePage({ verbose }) {
         </p>
       </div>
       <div>
-        <img
-          src="../../../images/runners2.jpg"
-          alt="silhouette of two runners"
-        />
+        {loginButtonClicked ? (
+          <LoginForm />
+        ) : (
+          <img
+            src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
+            alt="silhouette of two runners"
+          />
+        )}
       </div>
       <div>
         <button onClick={loginForm}>Login</button>
-        <button onClick={registerForm}>Register</button>
+        <button onClick={goToRegistrationForm}>Register</button>
       </div>
     </section>
   );
