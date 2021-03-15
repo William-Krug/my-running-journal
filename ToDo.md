@@ -9,21 +9,20 @@
 
 ## Home Page / Login Page
 
-- [ ] Create `<HomePage />` component
-- [ ] Import `<HomePage />` into `App.js`
-  - [ ] use protected routes
-- [ ] `<p>` for app description
-- [ ] `<img>` for app
-- [ ] `<button>Login</button>`
-  - [ ] recognize button click
-  - [ ] toggle on login form
-  - [ ] saga recognizes button click
-  - [ ] router recognizes button click
-  - [ ] user logged in
-- [ ] `<button>Register</button>`
-  - [ ] recognize button click
-  - [ ] rerouted to `<Registration />` form
-- [ ] documentation
+- [x] Create `<HomePage />` component
+- [x] Import `<HomePage />` into `App.js`
+  - [x] use protected routes
+- [x] `<p>` for app description
+- [x] `<img>` for app
+- [x] `<button>Login</button>`
+  - [x] recognize button click
+  - [x] toggle on login form
+  - [x] user logged in
+  - [x] takes user to user's page
+- [x] `<button>Register</button>`
+  - [x] recognize button click
+  - [x] rerouted to `<Registration />` form
+- [x] documentation
 
 ## Registration Page
 

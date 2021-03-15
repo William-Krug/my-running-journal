@@ -1,3 +1,4 @@
+/* Import Libraries */
 import React, { useEffect } from 'react';
 import {
   HashRouter as Router,
@@ -8,11 +9,10 @@ import {
 
 import { useDispatch } from 'react-redux';
 
+/* Import Components */
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
@@ -20,7 +20,13 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
+/* Import CSS */
 import './App.css';
+
+/*
+  Global value used for testing during app build
+*/
+const verbose = true;
 
 function App() {
   const dispatch = useDispatch();
@@ -99,7 +105,7 @@ function App() {
             path="/home"
             authRedirect="/user"
           >
-            <LandingPage />
+            <LandingPage verbose={verbose} />
           </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
