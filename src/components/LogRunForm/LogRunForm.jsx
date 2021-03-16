@@ -15,9 +15,7 @@ function LogRunForm({ verbose }) {
     console.log('*** in <LogRunForm /> ***');
   }
 
-  // Local variables used for calculations
-  // let totalMinutes = 0;
-  // let totalSeconds = 0;
+  const dispatch = useDispatch();
 
   // Local state variables used for form capture
   const [newDate, setNewDate] = useState('');
@@ -33,53 +31,45 @@ function LogRunForm({ verbose }) {
     event.preventDefault();
 
     let totalSeconds = 0;
+    let mph = 0;
+    let pace = 0;
 
     // Breadcrumbs for testing and debugging
     if (verbose) {
       console.log('*** <LogRunForm /> -> logRun() ***');
+      console.log('\tnewDistance:', newDistance);
       console.log('\tnewHour:', newHour);
       console.log('\tnewMinute:', newMinute);
       console.log('\tnewSecond:', newSecond);
     }
 
-    totalSeconds += newHour * 3600;
-    totalSeconds += newMinute * 60;
-    totalSeconds += newSecond;
+    // totalSeconds += Number(newHour) * 3600;
+    // totalSeconds += Number(newMinute) * 60;
+    // totalSeconds += Number(newSecond);
+
+    totalSeconds =
+      Number(newHour) * 3600 + Number(newMinute) * 60 + Number(newSecond);
+
+    mph = (Number(newDistance) / (totalSeconds / 3600)).toFixed(2);
+    pace = (totalSeconds / 60 / Number(newDistance)).toFixed(2);
 
     console.log('\ttotalSeconds:', totalSeconds);
+    console.log('\tmph:', mph);
+    console.log('\tpace:', pace);
+
+    dispatch({
+      type: 'LOG_NEW_RUN',
+      payload: {
+        date: newDate,
+        route: newRoute,
+        distance: newDistance,
+        time: totalSeconds,
+        mph: mph,
+        pace: pace,
+        notes: newNotes,
+      },
+    });
   }
-
-  // function convertHoursToMinutes(hours) {
-  //   // Breadcrumbs for testing and debugging
-  //   if (verbose) {
-  //     console.log('*** <LogRunForm /> -> convertHoursToSeconds() ***');
-  //     console.log('\thours:', hours);
-  //     console.log('\ttotalMinutes:', totalMinutes);
-  //   }
-
-  //   totalMinutes += hours * 60;
-
-  //   // Breadcrumbs for testing and debugging
-  //   if (verbose) {
-  //     console.log('\ttotalMinutes:', totalMinutes);
-  //   }
-  // }
-
-  // function convertMinutesToSeconds(minutes) {
-  //   // Breadcrumbs for testing and debugging
-  //   if (verbose) {
-  //     console.log('*** <LogRunForm /> -> convertMinutesToSeconds() ***');
-  //     console.log('\tminutes:', minutes);
-  //     console.log('\ttotalSeconds:', totalSeconds);
-  //   }
-
-  //   totalSeconds += minutes * 60;
-
-  //   // Breadcrumbs for testing and debugging
-  //   if (verbose) {
-  //     console.log('\ttotalSeconds:', totalSeconds);
-  //   }
-  // }
 
   return (
     <div>
@@ -122,6 +112,7 @@ function LogRunForm({ verbose }) {
               name="newDistance"
               value={newDistance}
               placeholder="5.34"
+              step="0.01"
               min="0"
               // required
               onChange={(event) => setNewDistance(event.target.value)}
