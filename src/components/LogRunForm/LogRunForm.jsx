@@ -15,24 +15,71 @@ function LogRunForm({ verbose }) {
     console.log('*** in <LogRunForm /> ***');
   }
 
+  // Local variables used for calculations
+  // let totalMinutes = 0;
+  // let totalSeconds = 0;
+
   // Local state variables used for form capture
   const [newDate, setNewDate] = useState('');
   const [newRoute, setNewRoute] = useState('');
   const [newDistance, setNewDistance] = useState(0);
-  const [newHour, setNewHour] = useState('');
-  const [newMinute, setNewMinute] = useState('');
-  const [newSecond, setNewSecond] = useState('');
+  const [newHour, setNewHour] = useState(0);
+  const [newMinute, setNewMinute] = useState(0);
+  const [newSecond, setNewSecond] = useState(0);
   const [newNotes, setNewNotes] = useState('');
 
   function logRun(event) {
     // Keep page from refreshing
     event.preventDefault();
 
+    let totalSeconds = 0;
+
     // Breadcrumbs for testing and debugging
     if (verbose) {
       console.log('*** <LogRunForm /> -> logRun() ***');
+      console.log('\tnewHour:', newHour);
+      console.log('\tnewMinute:', newMinute);
+      console.log('\tnewSecond:', newSecond);
     }
+
+    totalSeconds += newHour * 3600;
+    totalSeconds += newMinute * 60;
+    totalSeconds += newSecond;
+
+    console.log('\ttotalSeconds:', totalSeconds);
   }
+
+  // function convertHoursToMinutes(hours) {
+  //   // Breadcrumbs for testing and debugging
+  //   if (verbose) {
+  //     console.log('*** <LogRunForm /> -> convertHoursToSeconds() ***');
+  //     console.log('\thours:', hours);
+  //     console.log('\ttotalMinutes:', totalMinutes);
+  //   }
+
+  //   totalMinutes += hours * 60;
+
+  //   // Breadcrumbs for testing and debugging
+  //   if (verbose) {
+  //     console.log('\ttotalMinutes:', totalMinutes);
+  //   }
+  // }
+
+  // function convertMinutesToSeconds(minutes) {
+  //   // Breadcrumbs for testing and debugging
+  //   if (verbose) {
+  //     console.log('*** <LogRunForm /> -> convertMinutesToSeconds() ***');
+  //     console.log('\tminutes:', minutes);
+  //     console.log('\ttotalSeconds:', totalSeconds);
+  //   }
+
+  //   totalSeconds += minutes * 60;
+
+  //   // Breadcrumbs for testing and debugging
+  //   if (verbose) {
+  //     console.log('\ttotalSeconds:', totalSeconds);
+  //   }
+  // }
 
   return (
     <div>

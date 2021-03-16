@@ -7,7 +7,7 @@ import './LandingPage.css';
 
 /* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
-// import img from './runners3';
+import img from '../images/runners3.jpg';
 
 /**
  * Component renders the app's home page.
@@ -60,8 +60,8 @@ function LandingPage({ verbose }) {
           <LoginForm verbose={verbose} />
         ) : (
           <img
-            // src={img}
-            src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
+            src={img}
+            // src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
             alt="silhouette of two runners"
           />
         )}
