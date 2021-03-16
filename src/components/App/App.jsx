@@ -61,7 +61,7 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <UserPage verbose={verbose} />
           </ProtectedRoute>
 
           <ProtectedRoute

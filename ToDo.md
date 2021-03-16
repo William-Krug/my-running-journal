@@ -45,8 +45,20 @@
 
 ### Log Run
 
-- [ ] documentation
-- [ ] documentation
+- [ ] Create log container
+- [ ] create `<LogRunForm />`
+  - [ ] capture date
+  - [ ] capture route name
+  - [ ] capture distance
+  - [ ] capture time
+  - [ ] capture notes
+- [ ] calculate speed
+- [ ] calculate pace
+- [ ] `<button>Log Run</button>`
+  - [ ] captures all data
+  - [ ] sends data to saga
+  - [ ] data received by router
+  - [ ] run saved to db
 - [ ] documentation
 
 ### Dashboard
