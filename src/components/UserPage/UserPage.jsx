@@ -13,9 +13,18 @@ function UserPage({ verbose }) {
   }
 
   return (
-    <section>
-      <LogRunForm verbose={verbose} />
-    </section>
+    <div>
+      {/* Log a new run */}
+      <section>
+        <LogRunForm verbose={verbose} />
+      </section>
+
+      {/* Dashboard */}
+      <section></section>
+
+      {/* Metrics */}
+      <section></section>
+    </div>
   );
 }
 
