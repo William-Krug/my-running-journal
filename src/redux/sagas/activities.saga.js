@@ -71,6 +71,18 @@ function* logNewRun(action) {
   // Breadcrumbs for testing and debugging
   console.log('@@@ activities.saga -> logNewRun() @@@');
   console.log('action.payload:', action.payload);
+
+  // POST new run to "activities" table
+  try {
+    yield axios.post('/api/activities', action.payload);
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in POST /api/activities', error);
+  }
 }
 
 function* activitiesSaga() {
