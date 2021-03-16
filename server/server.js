@@ -1,3 +1,4 @@
+/* Import Libraries */
 const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -7,11 +8,11 @@ const app = express();
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
-// Route includes
+/* Route includes */
 const userRouter = require('./routes/user.router');
 const registrationRouter = require('./routes/registration.router');
 
-// Body parser middleware
+/* Body parser middleware */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

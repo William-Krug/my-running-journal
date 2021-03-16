@@ -1,6 +1,11 @@
 /* Import Libraries */
 import { combineReducers } from 'redux';
 
+/* Redux Store Reducers */
+
+/*
+  Holds gender options from the "genders" table
+*/
 const allGenders = (state = [], action) => {
   switch (action.type) {
     case 'SET_ALL_GENDERS':
@@ -10,6 +15,9 @@ const allGenders = (state = [], action) => {
   }
 };
 
+/*
+  Holds state options from the "states" table
+*/
 const allStates = (state = [], action) => {
   switch (action.type) {
     case 'SET_ALL_STATES':
@@ -19,9 +27,9 @@ const allStates = (state = [], action) => {
   }
 };
 
-// make one object that has keys loginMessage, registrationMessage
+// make one object that has keys allGenders, allStates
 // these will be on the redux state at:
-// state.errors.loginMessage and state.errors.registrationMessage
+// registration.allGenders and registration.allStates
 export default combineReducers({
   allGenders,
   allStates,

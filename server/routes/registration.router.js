@@ -1,7 +1,9 @@
+/* Import Libraries */
 const express = require('express');
 const {} = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 
+/* Create Router */
 const router = express.Router();
 
 /**
@@ -13,8 +15,10 @@ router.get('/allGenders', (req, res) => {
   // Breadcrumbs for testing and debugging
   console.log('### user.router -> GET /api/registration/allGenders ###');
 
+  // SQL query to be sent in pool request
   const sqlQuery = `SELECT * FROM "genders";`;
 
+  // Ping DB
   pool
     .query(sqlQuery)
     .then((dbResponse) => {
@@ -36,8 +40,10 @@ router.get('/allStates', (req, res) => {
   // Breadcrumbs for testing and debugging
   console.log('### registration.router -> GET /api/registration/allStates ###');
 
+  // SQL query to be sent in pool request
   const sqlQuery = `SELECT * FROM "states";`;
 
+  // Ping DB
   pool
     .query(sqlQuery)
     .then((dbResponse) => {

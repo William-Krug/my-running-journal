@@ -4,8 +4,13 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 /**
+ * GET endpoint for /api/registration/allGenders
  *
- * @param {*} action
+ * Sends gender options from "genders" table to
+ * Redux store for use in the registration and edit
+ * profile functions
+ *
+ * @param {object} action
  */
 function* fetchAllGenders(action) {
   // Breadcrumbs for testing and debugging
@@ -31,8 +36,13 @@ function* fetchAllGenders(action) {
 }
 
 /**
+ * GET endpoint for /api/registration/allStates
  *
- * @param {*} action
+ * Sends state options from "states" table to
+ * Redux store for use in the registration and edit
+ * profile functions
+ *
+ * @param {object} action
  */
 function* fetchAllStates(action) {
   // Breadcrumbs for testing and debugging

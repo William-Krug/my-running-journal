@@ -26,7 +26,7 @@
 
 ## Registration Page
 
-- [ ] update `<RegisterForm />`
+- [x] update `<RegisterForm />`
   - [x] add `first_name` input
   - [x] add `last_name` input
   - [x] add `birthdate` input
@@ -36,12 +36,24 @@
   - [x] add `country` input
 - [x] `FETCH_GENDERS`
 - [x] `FETCH_STATES`
-- [ ] verify all data makes it to saga
-- [ ] verify all data makes it to router
-- [ ] verify all data makes it to db
-- [ ] documentation
+- [x] verify all data makes it to saga
+- [x] verify all data makes it to router
+- [x] verify all data makes it to db
+- [x] documentation
 
 ## User's Personal Page
+
+### Log Run
+
+- [ ] documentation
+- [ ] documentation
+- [ ] documentation
+
+### Dashboard
+
+- [ ] documentation
+
+### Metrics
 
 - [ ] documentation
 

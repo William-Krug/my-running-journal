@@ -77,6 +77,7 @@ function RegisterForm({ verbose }) {
   const registerUser = (event) => {
     event.preventDefault();
 
+    // Store new user information in DB
     dispatch({
       type: 'REGISTER',
       payload: {
