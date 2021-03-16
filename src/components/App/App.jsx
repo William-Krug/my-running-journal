@@ -83,7 +83,7 @@ function App() {
             path="/login"
             authRedirect="/user"
           >
-            <LoginPage />
+            <LoginPage verbose={verbose} />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -94,7 +94,7 @@ function App() {
             path="/registration"
             authRedirect="/user"
           >
-            <RegisterPage />
+            <RegisterPage verbose={verbose} />
           </ProtectedRoute>
 
           <ProtectedRoute
