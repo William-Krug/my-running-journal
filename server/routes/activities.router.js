@@ -9,10 +9,30 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 /**
- * GET route template
+ * GET route for /api/activities/user
+ *
+ * Returns all of the user's runs from the "activities" table
  */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/user', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### activities.router -> POST /api/activities');
+
+  const sqlQuery = `
+  SELECT *
+  FROM "activities"
+  WHERE "activities".user_id = $1;
+  `;
+
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user');
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities:', error);
+      res.sendStatus(500);
+    });
 });
 
 /**
@@ -31,7 +51,7 @@ router.get('/', (req, res) => {
  *  notes: Dreadmill  --string
  * }
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
   console.log('### activities.router -> POST /api/activities');
   console.log('req.body', req.body);

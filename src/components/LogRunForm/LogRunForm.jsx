@@ -21,9 +21,9 @@ function LogRunForm({ verbose }) {
   const [newDate, setNewDate] = useState('');
   const [newRoute, setNewRoute] = useState('');
   const [newDistance, setNewDistance] = useState(0);
-  const [newHour, setNewHour] = useState(0);
-  const [newMinute, setNewMinute] = useState(0);
-  const [newSecond, setNewSecond] = useState(0);
+  const [newHour, setNewHour] = useState('');
+  const [newMinute, setNewMinute] = useState('');
+  const [newSecond, setNewSecond] = useState('');
   const [newNotes, setNewNotes] = useState('');
 
   function logRun(event) {

@@ -4,26 +4,24 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 /**
- * GET endpoint for /api/registration/allGenders
+ * GET endpoint for /api/activities/user
  *
- * Sends gender options from "genders" table to
- * Redux store for use in the registration and edit
- * profile functions
+ * Grabs all of a user's runs from the "activities" table
+ * and sends them to the Redux store for use on the User's
+ * page
  *
  * @param {object} action
  */
-function* fetchAllGenders(action) {
+function* fetchUsersRuns(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ registration.saga -> fetchAllGenders() @@@');
+  console.log('@@@ activities.saga -> fetchUsersRuns() @@@');
 
-  // GET all gender options from "genders" table
   try {
-    const allGenders = yield axios.get('/api/registration/allGenders');
+    const usersRuns = yield axios.get('/api/activities/user');
 
-    // save gender options in Redux store
     yield put({
-      type: 'SET_ALL_GENDERS',
-      payload: allGenders.data,
+      type: 'SET_USERS_RUNS',
+      payload: usersRuns.data,
     });
   } catch (error) {
     swal(
@@ -31,42 +29,17 @@ function* fetchAllGenders(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/registration/allGenders', error);
+    console.log('ERROR in GET /api/activities/user', error);
   }
 }
 
 /**
- * GET endpoint for /api/registration/allStates
+ * POST endpoint for /api/activities
  *
- * Sends state options from "states" table to
- * Redux store for use in the registration and edit
- * profile functions
+ * Sends logged run to the "activities" table
  *
  * @param {object} action
  */
-function* fetchAllStates(action) {
-  // Breadcrumbs for testing and debugging
-  console.log('@@@ registration.saga -> fetchAllStates() @@@');
-
-  // GET all state options from the "states" table
-  try {
-    const allStates = yield axios.get('/api/registration/allStates');
-
-    // save state options in Redux store
-    yield put({
-      type: 'SET_ALL_STATES',
-      payload: allStates.data,
-    });
-  } catch (error) {
-    swal(
-      'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
-      'error'
-    );
-    console.log('ERROR in GET /api/user/allStates', error);
-  }
-}
-
 function* logNewRun(action) {
   // Breadcrumbs for testing and debugging
   console.log('@@@ activities.saga -> logNewRun() @@@');
@@ -75,6 +48,10 @@ function* logNewRun(action) {
   // POST new run to "activities" table
   try {
     yield axios.post('/api/activities', action.payload);
+
+    yield put({
+      type: 'FETCH_USERS_RUNS',
+    });
   } catch (error) {
     swal(
       'My Running Journal',
@@ -87,6 +64,7 @@ function* logNewRun(action) {
 
 function* activitiesSaga() {
   yield takeLatest('LOG_NEW_RUN', logNewRun);
+  yield takeLatest('FETCH_USERS_RUNS', fetchUsersRuns);
 }
 
 export default activitiesSaga;
