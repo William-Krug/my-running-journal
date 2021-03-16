@@ -51,7 +51,7 @@ function LogRunForm({ verbose }) {
       Number(newHour) * 3600 + Number(newMinute) * 60 + Number(newSecond);
 
     mph = (Number(newDistance) / (totalSeconds / 3600)).toFixed(2);
-    pace = (totalSeconds / 60 / Number(newDistance)).toFixed(2);
+    pace = (totalSeconds / Number(newDistance)).toFixed(2);
 
     console.log('\ttotalSeconds:', totalSeconds);
     console.log('\tmph:', mph);
