@@ -64,13 +64,13 @@
 ### Dashboard
 
 - [x] Create dashboard container
-- [ ] create `<RunDetails />` (reusable)
-  - [ ] display date
+- [x] create `<RunDetails />` (reusable)
+  - [x] display date
   - [x] display route
   - [x] display distance
-  - [ ] display time
+  - [x] display time
   - [x] display speed
-  - [ ] display pace
+  - [x] display pace
   - [x] display notes
 - [x] show most recent run
   - [x] find most recent run (date)
@@ -81,10 +81,21 @@
 - [x] show fastest run
   - [x] function to find fastest run (speed)
   - [x] send information for `<RunDetails />`
-- [ ] documentation
+- [x] documentation
 
 ### Metrics
 
+- [x] create metrics container
+- [x] create table
+- [ ] sql queries to get daily averages
+- [ ] sql queries to get weekly averages
+- [ ] sql queries to get monthly averages
+- [ ] sql queries to get yearly averages
+- [ ] Saga -> router -> saga -> reducer for ^^
+- [ ] populate table
+- [ ] create `<LineChart />` (reusable)
+- [ ] send `props` to `<LineChart />`
+- [ ] display `<LineChart />`
 - [ ] documentation
 
 ## Profile Page

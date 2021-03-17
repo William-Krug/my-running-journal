@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
 import RunDetails from '../RunDetails/RunDetails';
+import RunMetrics from '../RunMetrics/RunMetrics';
 
 /**
  * Component render's the user's personal page allowing them to:
@@ -148,7 +149,13 @@ function UserPage({ verbose }) {
       </section>
 
       {/* Metrics */}
-      <section></section>
+      <section>
+        <h2>Metrics</h2>
+        <div>
+          <RunMetrics verbose={verbose} />
+        </div>
+        <div></div>
+      </section>
     </div>
   );
 }
