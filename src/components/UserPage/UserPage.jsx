@@ -129,22 +129,22 @@ function UserPage({ verbose }) {
         </div>
 
         {/* Longest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Longest Run'}
             runDetails={longestRun}
           />
-        </div>
+        </div> */}
 
         {/* Fastest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Fastest Run'}
             runDetails={fastestRun}
           />
-        </div>
+        </div> */}
       </section>
 
       {/* Metrics */}

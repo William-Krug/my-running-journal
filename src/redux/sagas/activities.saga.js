@@ -147,8 +147,18 @@ function* logNewRun(action) {
   try {
     yield axios.post('/api/activities', action.payload);
 
+    // Update all reducers for user's page
     yield put({
       type: 'FETCH_USERS_RUNS',
+    });
+    yield put({
+      type: 'FETCH_MOST_RECENT_RUN',
+    });
+    yield put({
+      type: 'FETCH_LONGEST_RUN',
+    });
+    yield put({
+      type: 'FETCH_FASTEST_RUN',
     });
   } catch (error) {
     swal(

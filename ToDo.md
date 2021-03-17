@@ -65,7 +65,7 @@
 
 - [x] Create dashboard container
 - [ ] create `<RunDetails />` (reusable)
-  - [x] display date
+  - [ ] display date
   - [x] display route
   - [x] display distance
   - [ ] display time
