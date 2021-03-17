@@ -59,28 +59,28 @@
   - [x] sends data to saga
   - [x] data received by router
   - [x] run saved to db
-- [ ] documentation
+- [x] documentation
 
 ### Dashboard
 
 - [x] Create dashboard container
 - [ ] create `<RunDetails />` (reusable)
-  - [ ] display date
-  - [ ] display route
-  - [ ] display distance
+  - [x] display date
+  - [x] display route
+  - [x] display distance
   - [ ] display time
-  - [ ] display speed
+  - [x] display speed
   - [ ] display pace
-  - [ ] display notes
-- [ ] show most recent run
+  - [x] display notes
+- [x] show most recent run
   - [x] find most recent run (date)
-  - [ ] send information for `<RunDetails />`
-- [ ] show longest run
+  - [x] send information for `<RunDetails />`
+- [x] show longest run
   - [x] function to find longest run (distance)
-  - [ ] send information for `<RunDetails />`
-- [ ] show fastest run
+  - [x] send information for `<RunDetails />`
+- [x] show fastest run
   - [x] function to find fastest run (speed)
-  - [ ] send information for `<RunDetails />`
+  - [x] send information for `<RunDetails />`
 - [ ] documentation
 
 ### Metrics

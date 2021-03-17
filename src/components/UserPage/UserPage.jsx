@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
+import RunDetails from '../RunDetails/RunDetails';
 
 /**
  * Component render's the user's personal page allowing them to:
@@ -115,7 +116,36 @@ function UserPage({ verbose }) {
       </section>
 
       {/* Dashboard */}
-      <section></section>
+      <section>
+        <h2>Dashboard</h2>
+
+        {/* Most Recent Run */}
+        <div>
+          <RunDetails
+            verbose={verbose}
+            title={'Most Recent Run'}
+            runDetails={mostRecentRun}
+          />
+        </div>
+
+        {/* Longest Run */}
+        <div>
+          <RunDetails
+            verbose={verbose}
+            title={'Longest Run'}
+            runDetails={longestRun}
+          />
+        </div>
+
+        {/* Fastest Run */}
+        <div>
+          <RunDetails
+            verbose={verbose}
+            title={'Fastest Run'}
+            runDetails={fastestRun}
+          />
+        </div>
+      </section>
 
       {/* Metrics */}
       <section></section>

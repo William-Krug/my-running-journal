@@ -97,7 +97,7 @@ function LogRunForm({ verbose }) {
               type="date"
               name="newDate"
               value={newDate}
-              // required
+              required
               onChange={(event) => setNewDate(event.target.value)}
             />
           </label>
@@ -112,7 +112,6 @@ function LogRunForm({ verbose }) {
               name="newRoute"
               value={newRoute}
               placeholder="Secret Path"
-              // required
               onChange={(event) => setNewRoute(event.target.value)}
             />
           </label>
@@ -129,7 +128,7 @@ function LogRunForm({ verbose }) {
               placeholder="5.34"
               step="0.01"
               min="0"
-              // required
+              required
               onChange={(event) => setNewDistance(event.target.value)}
             />
           </label>
