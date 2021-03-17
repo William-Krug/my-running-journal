@@ -37,6 +37,7 @@ function LogRunForm({ verbose }) {
 
     // Local variables used for speed and pace calculations
     let totalSeconds = 0;
+    let totalMilliseconds = 0;
     let mph = 0;
     let pace = 0;
 
@@ -49,11 +50,21 @@ function LogRunForm({ verbose }) {
       console.log('\tnewSecond:', newSecond);
     }
 
-    totalSeconds =
-      Number(newHour) * 3600 + Number(newMinute) * 60 + Number(newSecond);
+    // totalSeconds =
+    // Number(newHour) * 3600 + Number(newMinute) * 60 + Number(newSecond);
 
-    mph = (Number(newDistance) / (totalSeconds / 3600)).toFixed(2);
-    pace = (totalSeconds / Number(newDistance)).toFixed(2);
+    totalMilliseconds =
+      Number(newHour) * 3600000 +
+      Number(newMinute) * 60000 +
+      Number(newSecond) * 1000;
+
+    // mph = (Number(newDistance) / (totalSeconds / 3600)).toFixed(2);
+
+    mph = (Number(newDistance) / (totalMilliseconds / 3600000)).toFixed(2);
+
+    // pace = (totalSeconds / Number(newDistance)).toFixed(2);
+
+    pace = (totalMilliseconds / Number(newDistance)).toFixed(2);
 
     // Breadcrumbs for testing and debugging
     if (verbose) {
@@ -69,7 +80,7 @@ function LogRunForm({ verbose }) {
         date: newDate,
         route: newRoute,
         distance: newDistance,
-        time: totalSeconds,
+        time: totalMilliseconds,
         mph: mph,
         pace: pace,
         notes: newNotes,

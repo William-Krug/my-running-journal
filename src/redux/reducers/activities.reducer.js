@@ -18,7 +18,20 @@ const usersRuns = (state = [], action) => {
 /*
   Holds user's fastest run
 */
-const fastestRun = (state = {}, action) => {
+const fastestRun = (
+  state = {
+    id: '',
+    user_id: '',
+    date: '',
+    route: '',
+    distance: 0,
+    time: 0,
+    mph: 0,
+    pace: 0,
+    notes: '',
+  },
+  action
+) => {
   switch (action.type) {
     case 'SET_FASTEST_RUN':
       return action.payload;
@@ -30,7 +43,20 @@ const fastestRun = (state = {}, action) => {
 /*
   Holds user's longest run
 */
-const longestRun = (state = {}, action) => {
+const longestRun = (
+  state = {
+    id: '',
+    user_id: '',
+    date: '',
+    route: '',
+    distance: 0,
+    time: 0,
+    mph: 0,
+    pace: 0,
+    notes: '',
+  },
+  action
+) => {
   switch (action.type) {
     case 'SET_LONGEST_RUN':
       return action.payload;
@@ -42,7 +68,20 @@ const longestRun = (state = {}, action) => {
 /*
   Holds user's most recent run
 */
-const mostRecentRun = (state = {}, action) => {
+const mostRecentRun = (
+  state = {
+    id: '',
+    user_id: '',
+    date: '',
+    route: '',
+    distance: 0,
+    time: 0,
+    mph: 0,
+    pace: 0,
+    notes: '',
+  },
+  action
+) => {
   switch (action.type) {
     case 'SET_MOST_RECENT_RUN':
       return action.payload;

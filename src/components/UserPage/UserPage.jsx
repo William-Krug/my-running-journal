@@ -120,13 +120,13 @@ function UserPage({ verbose }) {
         <h2>Dashboard</h2>
 
         {/* Most Recent Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Most Recent Run'}
             runDetails={mostRecentRun}
           />
-        </div>
+        </div> */}
 
         {/* Longest Run */}
         {/* <div>

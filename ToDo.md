@@ -89,6 +89,18 @@
 
 ## Profile Page
 
+- [ ] create `<ProfilePage />` component
+- [ ] add link in `<Nav />` to access page
+- [ ] page returns logged in user's information
+- [ ] `<button>Edit</button>`
+  - [ ] switches view to `<RegisterForm />`
+  - [ ] form populates with user's information
+  - [ ] for now says update vs. register
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 - [ ] documentation
 
 ## Admin Page
