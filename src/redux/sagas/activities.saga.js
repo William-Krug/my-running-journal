@@ -82,9 +82,7 @@ function* fetchMostRecentRun(action) {
 
   try {
     const mostRecent = yield axios.get('/api/activities/user/mostRecent');
-    console.log(
-      '**$$** activities.saga -> fetchMostRecentRun GET Success **$$**'
-    );
+
     yield put({
       type: 'SET_MOST_RECENT_RUN',
       // Last row (index) in sql query meets both most
@@ -132,9 +130,42 @@ function* fetchUsersRuns(action) {
 }
 
 /**
+ * GET endpoint for /api/activities/user/dailyAverages
+ *
+ * Grabs all of the calculates averages for distance, time,
+ * speed, and pace, for one user, from the db
+ *
+ * @param {object} action
+ */
+function* fetchUserDailyAverages(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchUserDailyAverages() @@@');
+
+  try {
+    const userDailyAverages = yield axios.get(
+      '/api/activities/user/dailyAverages'
+    );
+    console.log('**&&%% userDailyAverages.data:', userDailyAverages.data);
+    yield put({
+      type: 'SET_USER_DAILY_AVERAGES',
+      payload: userDailyAverages.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/dailyAverages', error);
+  }
+}
+
+/**
  * POST endpoint for /api/activities
  *
  * Sends logged run to the "activities" table
+ *
+ * Updates all metrics after each POST
  *
  * @param {object} action
  */
@@ -160,6 +191,9 @@ function* logNewRun(action) {
     yield put({
       type: 'FETCH_FASTEST_RUN',
     });
+    yield put({
+      type: 'FETCH_USER_DAILY_AVERAGES',
+    });
   } catch (error) {
     swal(
       'My Running Journal',
@@ -176,6 +210,7 @@ function* activitiesSaga() {
   yield takeLatest('FETCH_FASTEST_RUN', fetchFastestRun);
   yield takeLatest('FETCH_LONGEST_RUN', fetchLongestRun);
   yield takeLatest('FETCH_MOST_RECENT_RUN', fetchMostRecentRun);
+  yield takeLatest('FETCH_USER_DAILY_AVERAGES', fetchUserDailyAverages);
 }
 
 export default activitiesSaga;

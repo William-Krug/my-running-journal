@@ -51,14 +51,38 @@ const mostRecentRun = (state = {}, action) => {
   }
 };
 
+/*
+  Holds user's daily averages on distance, time, speed and pace
+*/
+const userDailyAverages = (
+  state = [
+    {
+      averageDistance: 0,
+      averageTime: 0,
+      averageSpeed: 0,
+      averagePace: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_DAILY_AVERAGES':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys usersRuns, fastestRun,
 // longestRun, mostRecentRun
 // these will be on the redux state at:
 // activities.usersRuns, activities.fastestRun,
-// activities.longestRun, and activities.mostRecentRun
+// activities.longestRun, activities.mostRecentRun, and
+// activities.userDailyAverages
 export default combineReducers({
   usersRuns,
   fastestRun,
   longestRun,
   mostRecentRun,
+  userDailyAverages,
 });

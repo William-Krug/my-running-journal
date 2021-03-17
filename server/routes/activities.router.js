@@ -131,6 +131,42 @@ router.get('/user/mostRecent', rejectUnauthenticated, (req, res) => {
 });
 
 /**
+ * GET route for /api/activities/user/dailyAverages
+ *
+ * Returns the user's longest run from the "activities" table
+ */
+router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log(
+    '### activities.router -> POST /api/activities/user/dailyAverages'
+  );
+
+  // SQL query
+  const sqlQuery = `
+  SELECT
+    AVG("distance") as "averageDistance",
+    AVG("time") as "averageTime",
+    AVG("mph") as "averageSpeed",
+    AVG("pace") as "averagePace"
+  FROM "activities"
+  WHERE "activities".user_id = $1;
+  `;
+
+  // Ping DB
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user/dailyAverages');
+      console.log('dailyAverages:', dbResponse);
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities/user/dailyAverages:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
  * POST route for /api/activities
  *
  * Adds new run to the "activities" table

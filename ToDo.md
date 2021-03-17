@@ -87,7 +87,7 @@
 
 - [x] create metrics container
 - [x] create table
-- [ ] sql queries to get daily averages
+- [x] sql queries to get daily averages
 - [ ] sql queries to get weekly averages
 - [ ] sql queries to get monthly averages
 - [ ] sql queries to get yearly averages

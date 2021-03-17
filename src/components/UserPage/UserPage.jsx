@@ -31,6 +31,8 @@ function UserPage({ verbose }) {
     findMostRecentRun();
     findLongestRun();
     findFastestRun();
+    getDailyAverages();
+    getWeeklyAverages();
   }, []);
 
   // List of all user's runs (objects) from "activities" table
@@ -38,6 +40,9 @@ function UserPage({ verbose }) {
   const fastestRun = useSelector((store) => store.activities.fastestRun);
   const longestRun = useSelector((store) => store.activities.longestRun);
   const mostRecentRun = useSelector((store) => store.activities.mostRecentRun);
+  const dailyAverages = useSelector(
+    (store) => store.activities.userDailyAverages
+  );
 
   /*
     Function GETs all of the logged in user's runs from the
@@ -64,7 +69,7 @@ function UserPage({ verbose }) {
   const findFastestRun = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> findFastest ***');
+      console.log('*** <UserPage /> -> findFastest() ***');
     }
 
     // GET fastest run from "activities" table
@@ -82,7 +87,7 @@ function UserPage({ verbose }) {
   const findLongestRun = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> findLongestRun ***');
+      console.log('*** <UserPage /> -> findLongestRun() ***');
     }
 
     // GET longest run from "activities" table
@@ -100,12 +105,50 @@ function UserPage({ verbose }) {
   const findMostRecentRun = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> findMostRecentRun ***');
+      console.log('*** <UserPage /> -> findMostRecentRun() ***');
     }
 
     // GET most recent run from "activities" table
     dispatch({
       type: 'FETCH_MOST_RECENT_RUN',
+    });
+  };
+
+  /*
+    Function GETs user's daily averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
+  */
+  const getDailyAverages = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getDailyAverages() ***');
+    }
+
+    // GET the daily averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_DAILY_AVERAGES',
+    });
+  };
+
+  /*
+    Function GETs user's weekly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
+  */
+  const getWeeklyAverages = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getWeeklyAverages() ***');
+    }
+
+    // GET the weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_WEEKLY_AVERAGES',
     });
   };
 
@@ -152,7 +195,7 @@ function UserPage({ verbose }) {
       <section>
         <h2>Metrics</h2>
         <div>
-          <RunMetrics verbose={verbose} />
+          <RunMetrics verbose={verbose} dailyAverages={dailyAverages} />
         </div>
         <div></div>
       </section>

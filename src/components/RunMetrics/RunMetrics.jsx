@@ -2,10 +2,11 @@
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
 
-function RunMetrics({ verbose }) {
+function RunMetrics({ verbose, dailyAverages }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <RunMetrics /> ***');
+    console.log('dailyAverages:', dailyAverages);
   }
 
   return (
@@ -22,10 +23,18 @@ function RunMetrics({ verbose }) {
       <tbody>
         <tr>
           <th>Daily</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>{Number(dailyAverages[0].averageDistance).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(dailyAverages[0].averageTime, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(dailyAverages[0].averageSpeed).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(dailyAverages[0].averagePace, 'milliseconds')
+              .format()}
+          </td>
         </tr>
         <tr>
           <th>Weekly</th>
