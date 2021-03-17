@@ -26,10 +26,16 @@ function LogRunForm({ verbose }) {
   const [newSecond, setNewSecond] = useState('');
   const [newNotes, setNewNotes] = useState('');
 
+  /*
+    Function captures inputs from the form, makes calculations
+    to determine the speed and pace of the run and sends all
+    data as an object to the "activities" table
+  */
   function logRun(event) {
     // Keep page from refreshing
     event.preventDefault();
 
+    // Local variables used for speed and pace calculations
     let totalSeconds = 0;
     let mph = 0;
     let pace = 0;
@@ -43,20 +49,20 @@ function LogRunForm({ verbose }) {
       console.log('\tnewSecond:', newSecond);
     }
 
-    // totalSeconds += Number(newHour) * 3600;
-    // totalSeconds += Number(newMinute) * 60;
-    // totalSeconds += Number(newSecond);
-
     totalSeconds =
       Number(newHour) * 3600 + Number(newMinute) * 60 + Number(newSecond);
 
     mph = (Number(newDistance) / (totalSeconds / 3600)).toFixed(2);
     pace = (totalSeconds / Number(newDistance)).toFixed(2);
 
-    console.log('\ttotalSeconds:', totalSeconds);
-    console.log('\tmph:', mph);
-    console.log('\tpace:', pace);
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('\ttotalSeconds:', totalSeconds);
+      console.log('\tmph:', mph);
+      console.log('\tpace:', pace);
+    }
 
+    // Send run to "activities" table
     dispatch({
       type: 'LOG_NEW_RUN',
       payload: {
@@ -69,6 +75,15 @@ function LogRunForm({ verbose }) {
         notes: newNotes,
       },
     });
+
+    // Clear inputs
+    setNewDate('');
+    setNewRoute('');
+    setNewDistance(0);
+    setNewHour('');
+    setNewMinute('');
+    setNewSecond('');
+    setNewNotes('');
   }
 
   return (
@@ -165,7 +180,7 @@ function LogRunForm({ verbose }) {
               type="text"
               name="newNotes"
               value={newNotes}
-              placeholder="4 x 400m"
+              placeholder="Watch out for ice"
               onChange={(event) => setNewNotes(event.target.value)}
             />
           </label>

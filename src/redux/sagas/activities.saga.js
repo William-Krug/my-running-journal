@@ -4,6 +4,104 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 /**
+ * GET endpoint for /api/activities/user/fastest
+ *
+ * Grabs the user's fastest run from the "activities" table
+ * and sends them to the Redux store for use on the User's
+ * page
+ *
+ * @param {object} action
+ */
+function* fetchFastestRun(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchFastestRun() @@@');
+
+  try {
+    const fastestRun = yield axios.get('/api/activities/user/fastest');
+
+    yield put({
+      type: 'SET_FASTEST_RUN',
+      // Last row (index) in sql query meets both fastest
+      // and most recent parameters
+      payload: fastestRun.data[fastestRun.data.length - 1],
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/fastest', error);
+  }
+}
+
+/**
+ * GET endpoint for /api/activities/user/longest
+ *
+ * Grabs the user's longest run from the "activities" table
+ * and sends them to the Redux store for use on the User's
+ * page
+ *
+ * @param {object} action
+ */
+function* fetchLongestRun(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchLongestRun() @@@');
+
+  try {
+    const longestRun = yield axios.get('/api/activities/user/longest');
+
+    yield put({
+      type: 'SET_LONGEST_RUN',
+      // Last row (index) in sql query meets both longest
+      // and most recent parameters
+      payload: longestRun.data[longestRun.data.length - 1],
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/longest', error);
+  }
+}
+
+/**
+ * GET endpoint for /api/activities/user/mostRecent
+ *
+ * Grabs the user's most recent run from the "activities"
+ * table and sends them to the Redux store for use on the
+ * User's page
+ *
+ * @param {object} action
+ */
+function* fetchMostRecentRun(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchMostRecentRun() @@@');
+
+  try {
+    const mostRecent = yield axios.get('/api/activities/user/mostRecent');
+    console.log(
+      '**$$** activities.saga -> fetchMostRecentRun GET Success **$$**'
+    );
+    yield put({
+      type: 'SET_MOST_RECENT_RUN',
+      // Last row (index) in sql query meets both most
+      // recent and most recent parameters
+      payload: mostRecent.data[mostRecent.data.length - 1],
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/mostRecent', error);
+  }
+}
+
+/**
  * GET endpoint for /api/activities/user
  *
  * Grabs all of a user's runs from the "activities" table
@@ -65,6 +163,9 @@ function* logNewRun(action) {
 function* activitiesSaga() {
   yield takeLatest('LOG_NEW_RUN', logNewRun);
   yield takeLatest('FETCH_USERS_RUNS', fetchUsersRuns);
+  yield takeLatest('FETCH_FASTEST_RUN', fetchFastestRun);
+  yield takeLatest('FETCH_LONGEST_RUN', fetchLongestRun);
+  yield takeLatest('FETCH_MOST_RECENT_RUN', fetchMostRecentRun);
 }
 
 export default activitiesSaga;

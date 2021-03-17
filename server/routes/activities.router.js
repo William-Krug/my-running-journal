@@ -15,14 +15,16 @@ const router = express.Router();
  */
 router.get('/user', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console.log('### activities.router -> POST /api/activities');
+  console.log('### activities.router -> POST /api/activities/user');
 
+  // SQL query
   const sqlQuery = `
   SELECT *
   FROM "activities"
   WHERE "activities".user_id = $1;
   `;
 
+  // Ping DB
   pool
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
@@ -31,6 +33,99 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       console.log('ERROR in POST /api/activities:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * GET route for /api/activities/user/fastest
+ *
+ * Returns the user's fastest run from the "activities" table
+ */
+router.get('/user/fastest', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### activities.router -> POST /api/activities/user/fastest');
+
+  // SQL query
+  const sqlQuery = `
+  SELECT *, MAX("mph")
+  FROM "activities"
+  WHERE "activities".user_id = $1
+  GROUP BY "activities".id
+  ORDER BY "mph", "date" ASC;
+  `;
+
+  // Ping DB
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user/fastest');
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities/user/fastest:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * GET route for /api/activities/user/longest
+ *
+ * Returns the user's longest run from the "activities" table
+ */
+router.get('/user/longest', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### activities.router -> POST /api/activities/user/longest');
+
+  // SQL query
+  const sqlQuery = `
+  SELECT *, MAX("distance")
+  FROM "activities"
+  WHERE "activities".user_id = $1
+  GROUP BY "activities".id
+  ORDER BY "distance", "date" ASC;
+  `;
+
+  // Ping DB
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user/longest');
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities/user/longest:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * GET route for /api/activities/user/mostRecent
+ *
+ * Returns the user's longest run from the "activities" table
+ */
+router.get('/user/mostRecent', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### activities.router -> POST /api/activities/user/mostRecent');
+
+  // SQL query
+  const sqlQuery = `
+  SELECT *, MAX("date")
+  FROM "activities"
+  WHERE "activities".user_id = $1
+  GROUP BY "activities".id
+  ORDER BY "date" ASC;
+  `;
+
+  // Ping DB
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user/mostRecent');
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities/user/mostRecent:', error);
       res.sendStatus(500);
     });
 });
@@ -68,6 +163,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     req.body.notes,
   ];
 
+  // SQL query
   const sqlQuery = `
   INSERT INTO "activities"
     ("user_id", "date", "route", "distance", "time", "mph", "pace", "notes")
@@ -75,6 +171,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ($1, $2, $3, $4, $5, $6, $7, $8)
   `;
 
+  // Ping DB
   pool
     .query(sqlQuery, queryArguments)
     .then((dbResponse) => {

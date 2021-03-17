@@ -15,9 +15,50 @@ const usersRuns = (state = [], action) => {
   }
 };
 
-// make one object that has keys usersRuns,
+/*
+  Holds user's fastest run
+*/
+const fastestRun = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_FASTEST_RUN':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's longest run
+*/
+const longestRun = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_LONGEST_RUN':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's most recent run
+*/
+const mostRecentRun = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_MOST_RECENT_RUN':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+// make one object that has keys usersRuns, fastestRun,
+// longestRun, mostRecentRun
 // these will be on the redux state at:
-// activities.usersRuns and registration.allStates
+// activities.usersRuns, activities.fastestRun,
+// activities.longestRun, and activities.mostRecentRun
 export default combineReducers({
   usersRuns,
+  fastestRun,
+  longestRun,
+  mostRecentRun,
 });

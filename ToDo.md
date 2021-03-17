@@ -63,6 +63,24 @@
 
 ### Dashboard
 
+- [x] Create dashboard container
+- [ ] create `<RunDetails />` (reusable)
+  - [ ] display date
+  - [ ] display route
+  - [ ] display distance
+  - [ ] display time
+  - [ ] display speed
+  - [ ] display pace
+  - [ ] display notes
+- [ ] show most recent run
+  - [x] find most recent run (date)
+  - [ ] send information for `<RunDetails />`
+- [ ] show longest run
+  - [x] function to find longest run (distance)
+  - [ ] send information for `<RunDetails />`
+- [ ] show fastest run
+  - [x] function to find fastest run (speed)
+  - [ ] send information for `<RunDetails />`
 - [ ] documentation
 
 ### Metrics
