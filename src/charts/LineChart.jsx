@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
-function LineChart({ verbose, allUsersRuns }) {
+function LineChart({ verbose, allUsersRuns, label, title }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <LineChart /> ***');
     console.log('allUsersRuns:', allUsersRuns);
-    console.log(moment(allUsersRuns[0].date).format('MM/DD/YYYY'));
   }
 
   const dispatch = useDispatch();
@@ -41,7 +40,7 @@ function LineChart({ verbose, allUsersRuns }) {
     labels: xValues,
     datasets: [
       {
-        // label: 'Distance',
+        label: label,
         data: yValues,
         fill: false,
         backgroundColor: '#ed2939',
@@ -84,9 +83,13 @@ function LineChart({ verbose, allUsersRuns }) {
   return (
     <section>
       <div className="header">
-        <h3 className="title">{}</h3>
+        <h3 className="title">{title}</h3>
       </div>
-      <Line data={data} options={options} />
+      <Line
+        data={data}
+        options={options}
+        getElementAtEvent={getElementAtEvent}
+      />
     </section>
   );
 }

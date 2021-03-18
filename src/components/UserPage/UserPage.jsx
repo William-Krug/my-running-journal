@@ -199,7 +199,12 @@ function UserPage({ verbose }) {
           <RunMetrics verbose={verbose} dailyAverages={dailyAverages} />
         </div>
         <div>
-          <LineChart verbose={verbose} allUsersRuns={allUsersRuns} />
+          <LineChart
+            verbose={verbose}
+            allUsersRuns={allUsersRuns}
+            label={'Distance'}
+            title={'Run History'}
+          />
         </div>
       </section>
     </div>
