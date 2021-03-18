@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 /**
+ * Component captures new user information to be stored
+ * in the "users" table in DB
  *
  * @param {boolean} param0 global variable used for testing and debugging
  * @returns {jsx} renders app's registration form
@@ -20,7 +22,7 @@ function RegisterForm({ verbose }) {
     fetchAllStates();
   }, []);
 
-  // Local state variable used for form capture
+  // Local state variables used for form capture
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [birthdate, setBirthdate] = useState('');

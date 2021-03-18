@@ -7,6 +7,7 @@ import './LandingPage.css';
 
 /* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
+import img from '../images/runners3.jpg';
 
 /**
  * Component renders the app's home page.
@@ -19,7 +20,7 @@ import LoginForm from '../LoginForm/LoginForm';
 function LandingPage({ verbose }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
-    console.log('*** in <HomePage /> ***');
+    console.log('*** in <LandingPage /> ***');
   }
 
   const history = useHistory();
@@ -34,7 +35,7 @@ function LandingPage({ verbose }) {
   function loginFormToggle() {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <HomePage /> -> loginFormToggle() ***');
+      console.log('*** <LandingPage /> -> loginFormToggle() ***');
     }
 
     // Set value to opposite state to allow toggling
@@ -59,8 +60,8 @@ function LandingPage({ verbose }) {
           <LoginForm verbose={verbose} />
         ) : (
           <img
-            // src="../../../images/runners3.jpg"
-            src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
+            src={img}
+            // src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
             alt="silhouette of two runners"
           />
         )}

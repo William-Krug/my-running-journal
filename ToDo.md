@@ -45,20 +45,74 @@
 
 ### Log Run
 
-- [ ] documentation
-- [ ] documentation
-- [ ] documentation
+- [x] Create log container
+- [x] create `<LogRunForm />`
+  - [x] capture date
+  - [x] capture route name
+  - [x] capture distance
+  - [x] capture time
+  - [x] capture notes
+- [x] calculate speed
+- [x] calculate pace
+- [x] `<button>Log Run</button>`
+  - [x] captures all data
+  - [x] sends data to saga
+  - [x] data received by router
+  - [x] run saved to db
+- [x] documentation
 
 ### Dashboard
 
-- [ ] documentation
+- [x] Create dashboard container
+- [x] create `<RunDetails />` (reusable)
+  - [x] display date
+  - [x] display route
+  - [x] display distance
+  - [x] display time
+  - [x] display speed
+  - [x] display pace
+  - [x] display notes
+- [x] show most recent run
+  - [x] find most recent run (date)
+  - [x] send information for `<RunDetails />`
+- [x] show longest run
+  - [x] function to find longest run (distance)
+  - [x] send information for `<RunDetails />`
+- [x] show fastest run
+  - [x] function to find fastest run (speed)
+  - [x] send information for `<RunDetails />`
+- [x] documentation
 
 ### Metrics
 
+- [x] create metrics container
+- [x] create table
+- [x] sql queries to get daily averages
+- [ ] sql queries to get weekly averages
+- [ ] sql queries to get monthly averages
+- [ ] sql queries to get yearly averages
+- [ ] Saga -> router -> saga -> reducer for ^^
+- [ ] populate table
+- [ ] create `<LineChart />` (reusable)
+- [ ] send `props` to `<LineChart />`
+- [ ] display `<LineChart />`
 - [ ] documentation
 
 ## Profile Page
 
+- [ ] create `<ProfilePage />` component
+- [ ] add link in `<Nav />` to access page
+- [ ] page returns logged in user's information
+- [ ] greeting message
+- [ ] `<button>Edit</button>`
+  - [ ] switches view to `<RegisterForm />`
+  - [ ] form populates with user's information
+  - [ ] for now says update vs. register
+  - [ ] PUT route to update profile
+- [ ] `<button>Delete Profile</button>`
+  - [ ] Sweet alert verification
+  - [ ] DELETE route to remove user from "users" table
+  - [ ] takes user to homepage/landing page
 - [ ] documentation
 
 ## Admin Page

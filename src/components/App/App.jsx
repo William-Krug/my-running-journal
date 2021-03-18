@@ -15,10 +15,11 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+// import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 
 /* Import CSS */
 import './App.css';
@@ -26,7 +27,7 @@ import './App.css';
 /*
   Global value used for testing during app build
 */
-const verbose = true;
+const verbose = false;
 
 function App() {
   const dispatch = useDispatch();
@@ -61,15 +62,15 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <UserPage verbose={verbose} />
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows ProfilePage else shows LoginPage
             exact
-            path="/info"
+            path="/profile"
           >
-            <InfoPage />
+            <ProfilePage />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

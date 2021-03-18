@@ -15,15 +15,6 @@ CREATE TABLE "user" (
 -- database setup and test data creation
 
 -- Drop Tables
---- Drop "genders" table
-DROP TABLE IF EXISTS "genders";
-
---- Drop "countries" table
-DROP TABLE IF EXISTS "countries";
-
---- Drop "states" table
-DROP TABLE IF EXISTS "states";
-
 --- Drop "activities" table
 DROP TABLE IF EXISTS "activities";
 
@@ -32,6 +23,12 @@ DROP TABLE IF EXISTS "users" CASCADE;
 
 --- Drop "permissions" table
 DROP TABLE IF EXISTS "permissions";
+
+--- Drop "genders" table
+DROP TABLE IF EXISTS "genders";
+
+--- Drop "states" table
+DROP TABLE IF EXISTS "states";
 
 
 -- Create Tables
@@ -47,17 +44,10 @@ CREATE TABLE "genders" (
   "gender" VARCHAR(32)
 );
 
---- Create "countries" table
-CREATE TABLE "countries" (
-  "id" SERIAL PRIMARY KEY,
-  "country" VARCHAR(64);
-);
-
 --- Create "states" table
 CREATE TABLE "states" (
   "id" SERIAL PRIMARY KEY,
-  "state" VARCHAR(32),
-  "country_id" INT REFERENCES "countries"
+  "state" VARCHAR(32)
 );
 
 --- Create "users" table
@@ -66,7 +56,7 @@ CREATE TABLE "users" (
   "first_name" VARCHAR(128),
   "last_name" VARCHAR(128),
   "birthdate" DATE,
-  "gender" VARCHAR(64),
+  "gender" INT REFERENCES "genders",
   "city" VARCHAR(128),
   "state" INT REFERENCES "states",
   "country" VARCHAR(128),
