@@ -23,11 +23,18 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   }
 
   const getElementAtEvent = (element) => {
-    console.log('*** <LineChart /> -> getElementAtEvent() ***');
-    console.log('element:', element);
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <LineChart /> -> getElementAtEvent() ***');
+      console.log('element:', element);
+    }
 
-    console.log(communityRuns[element[0]._index].id);
+    // console.log(communityRuns[element[0]._index].id);
+    console.log(allUsersRuns[element[0]]);
+    console.log(allUsersRuns[element[0]._index]);
+    console.log('!!!$$!!! id:', allUsersRuns[element[0]._index].id);
 
+    // GET run details for clicked event
     dispatch({
       type: 'GET_SINGLE_RUN',
       payload: {
