@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
  * @param {boolean} param0 global variable used for testing and debugging
  * @returns {jsx} renders app's registration form
  */
-function RegisterForm({ verbose }) {
+function RegisterForm({ verbose, user }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <RegisterForm /> ***');
@@ -21,6 +21,30 @@ function RegisterForm({ verbose }) {
     fetchAllGenders();
     fetchAllStates();
   }, []);
+
+  // if (user.id === 0) {
+  //   // Local state variables used for form capture
+  //   const [firstName, setFirstName] = useState('');
+  //   const [lastName, setLastName] = useState('');
+  //   const [birthdate, setBirthdate] = useState('');
+  //   const [gender, setGender] = useState(0);
+  //   const [city, setCity] = useState('');
+  //   const [state, setState] = useState(0);
+  //   const [country, setCountry] = useState('');
+  //   const [username, setUsername] = useState('');
+  //   const [password, setPassword] = useState('');
+  // } else {
+  //   // Local state variables used for form capture
+  //   const [firstName, setFirstName] = useState(user.first_name);
+  //   const [lastName, setLastName] = useState(user.last_name);
+  //   const [birthdate, setBirthdate] = useState(user.birthdate);
+  //   const [gender, setGender] = useState(user.state);
+  //   const [city, setCity] = useState(user.city);
+  //   const [state, setState] = useState(user.state);
+  //   const [country, setCountry] = useState(user.country);
+  //   const [username, setUsername] = useState(user.username);
+  //   const [password, setPassword] = useState('');
+  // }
 
   // Local state variables used for form capture
   const [firstName, setFirstName] = useState('');

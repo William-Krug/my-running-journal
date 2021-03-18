@@ -13,7 +13,7 @@ const router = express.Router();
  */
 router.get('/allGenders', (req, res) => {
   // Breadcrumbs for testing and debugging
-  console.log('### user.router -> GET /api/registration/allGenders ###');
+  // console.log('### user.router -> GET /api/registration/allGenders ###');
 
   // SQL query to be sent in pool request
   const sqlQuery = `SELECT * FROM "genders";`;
@@ -22,11 +22,13 @@ router.get('/allGenders', (req, res) => {
   pool
     .query(sqlQuery)
     .then((dbResponse) => {
-      console.log('SUCCESS in GET /api/registration/allGenders');
+      // Breadcrumbs for testing and debugging
+      // console.log('SUCCESS in GET /api/registration/allGenders');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
-      console.log('ERROR in GET /api/registration/allGenders:', error);
+      // Breadcrumbs for testing and debugging
+      // console.log('ERROR in GET /api/registration/allGenders:', error);
       res.sendStatus(500);
     });
 });
@@ -47,11 +49,13 @@ router.get('/allStates', (req, res) => {
   pool
     .query(sqlQuery)
     .then((dbResponse) => {
-      console.log('SUCCESS in GET /api/registration/allStates');
+      // Breadcrumbs for testing and debugging
+      // console.log('SUCCESS in GET /api/registration/allStates');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
-      console.log('ERROR in GET /api/registration/allStates:', error);
+      // Breadcrumbs for testing and debugging
+      // console.log('ERROR in GET /api/registration/allStates:', error);
       res.sendStatus(500);
     });
 });

@@ -1,5 +1,5 @@
 /* Import Libraries */
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 /* Import Components */
@@ -12,13 +12,34 @@ function ProfilePage({ verbose }) {
     console.log('*** in <ProfilePage /> ***');
   }
 
+  // Grab user data from the Redux store
   const user = useSelector((store) => store.user);
+
+  // Local state used for toggling <RegisterForm /> component
+  const [editButtonClicked, setEditButtonClicked] = useState(false);
+
+  /*
+   */
+  function registerFormToggle() {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <ProfilePage /> -> registerFormToggle() ***');
+    }
+
+    // Set value to opposite state to allow toggling
+    setEditButtonClicked(!editButtonClicked);
+  }
 
   return (
     <div>
       <h1>{user.username}'s Profile</h1>
-      <ProfileDetails verbose={verbose} user={user} />
-      <button>Edit</button>
+      {editButtonClicked ? (
+        <ProfileDetails verbose={verbose} user={user} />
+      ) : (
+        <RegisterForm verbose={verbose} user={user} />
+      )}
+
+      <button onClick={registerFormToggle}>Edit</button>
       <button>Delete</button>
     </div>
   );
