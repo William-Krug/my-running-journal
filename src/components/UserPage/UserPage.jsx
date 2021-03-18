@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LogRunForm from '../LogRunForm/LogRunForm';
 import RunDetails from '../RunDetails/RunDetails';
 import RunMetrics from '../RunMetrics/RunMetrics';
+import LineChart from '../../charts/LineChart';
 
 /**
  * Component render's the user's personal page allowing them to:
@@ -197,7 +198,9 @@ function UserPage({ verbose }) {
         <div>
           <RunMetrics verbose={verbose} dailyAverages={dailyAverages} />
         </div>
-        <div></div>
+        <div>
+          <LineChart verbose={verbose} allUsersRuns={allUsersRuns} />
+        </div>
       </section>
     </div>
   );

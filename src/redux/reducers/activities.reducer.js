@@ -6,7 +6,22 @@ import { combineReducers } from 'redux';
 /*
   Holds all of a user's runs (activities)
 */
-const usersRuns = (state = [], action) => {
+const usersRuns = (
+  state = [
+    {
+      id: 0,
+      user_id: 0,
+      date: 0,
+      route: '',
+      distance: 0,
+      time: 0,
+      mph: 0,
+      pace: 0,
+      notes: '',
+    },
+  ],
+  action
+) => {
   switch (action.type) {
     case 'SET_USERS_RUNS':
       return action.payload;
@@ -73,16 +88,39 @@ const userDailyAverages = (
   }
 };
 
+/*
+  Holds user's daily averages on distance, time, speed and pace
+*/
+const userWeeklyAverages = (
+  state = [
+    {
+      averageDistance: 0,
+      averageTime: 0,
+      averageSpeed: 0,
+      averagePace: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_WEEKLY_AVERAGES':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys usersRuns, fastestRun,
 // longestRun, mostRecentRun
 // these will be on the redux state at:
 // activities.usersRuns, activities.fastestRun,
-// activities.longestRun, activities.mostRecentRun, and
-// activities.userDailyAverages
+// activities.longestRun, activities.mostRecentRun,
+// activities.userDailyAverages, and activities.userWeeklyAverages
 export default combineReducers({
   usersRuns,
   fastestRun,
   longestRun,
   mostRecentRun,
   userDailyAverages,
+  userWeeklyAverages,
 });

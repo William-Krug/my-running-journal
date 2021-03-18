@@ -21,7 +21,8 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
   SELECT *
   FROM "activities"
-  WHERE "activities".user_id = $1;
+  WHERE "activities".user_id = $1
+  ORDER BY "activities".date;
   `;
 
   // Ping DB
@@ -157,11 +158,42 @@ router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       console.log('SUCCESS in GET /api/activities/user/dailyAverages');
-      console.log('dailyAverages:', dbResponse);
       res.send(dbResponse.rows);
     })
     .catch((error) => {
       console.log('ERROR in POST /api/activities/user/dailyAverages:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
+ * GET route for /api/activities/user/dailyAverages
+ *
+ * Returns the user's longest run from the "activities" table
+ */
+router.get('/user/weeklyAverages', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log(
+    '### activities.router -> POST /api/activities/user/weeklyAverages'
+  );
+
+  // SQL query
+  const sqlQuery = `
+  SELECT
+    
+  FROM "activities"
+  WHERE "activities".user_id = $1;
+  `;
+
+  // Ping DB
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in GET /api/activities/user/weeklyAverages');
+      res.send(dbResponse.rows);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/activities/user/weeklyAverages:', error);
       res.sendStatus(500);
     });
 });
