@@ -128,21 +128,75 @@ const userDailyAverages = (
 };
 
 /*
-  Holds user's daily averages on distance, time, speed and pace
+  Holds user's weekly distance average
 */
-const userWeeklyAverages = (
+const userWeeklyDistanceAverage = (
   state = [
     {
       averageDistance: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_WEEKLY_DISTANCE_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's weekly time average
+*/
+const userWeeklyTimeAverage = (
+  state = [
+    {
       averageTime: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_WEEKLY_TIME_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's weekly speed average
+*/
+const userWeeklySpeedAverage = (
+  state = [
+    {
       averageSpeed: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_WEEKLY_SPEED_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's weekly pace average
+*/
+const userWeeklyPaceAverage = (
+  state = [
+    {
       averagePace: 0,
     },
   ],
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_WEEKLY_AVERAGES':
+    case 'SET_USER_WEEKLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -154,12 +208,17 @@ const userWeeklyAverages = (
 // these will be on the redux state at:
 // activities.usersRuns, activities.fastestRun,
 // activities.longestRun, activities.mostRecentRun,
-// activities.userDailyAverages, and activities.userWeeklyAverages
+// activities.userDailyAverages, activities.userWeeklyDistanceAverage,
+// activities.userWeeklyTimeAverage, activities.userWeeklySpeedAverage,
+// activities.userWeeklyPaceAverage
 export default combineReducers({
   usersRuns,
   fastestRun,
   longestRun,
   mostRecentRun,
   userDailyAverages,
-  userWeeklyAverages,
+  userWeeklyDistanceAverage,
+  userWeeklyTimeAverage,
+  userWeeklySpeedAverage,
+  userWeeklyPaceAverage,
 });

@@ -145,7 +145,7 @@ function* fetchUserDailyAverages(action) {
     const userDailyAverages = yield axios.get(
       '/api/activities/user/dailyAverages'
     );
-    console.log('**&&%% userDailyAverages.data:', userDailyAverages.data);
+
     yield put({
       type: 'SET_USER_DAILY_AVERAGES',
       payload: userDailyAverages.data,
@@ -161,25 +161,24 @@ function* fetchUserDailyAverages(action) {
 }
 
 /**
- * GET endpoint for /api/activities/user/weeklyAverages
+ * GET endpoint for /api/activities/user/weeklyDistanceAverage
  *
- * Grabs all of the calculated averages for distance, time,
- * speed, and pace, for one user, from the db
+ * Grabs the calculated weekly average for distance from the db
  *
  * @param {object} action
  */
-function* fetchUserWeeklyAverages(action) {
+function* fetchUserWeeklyDistanceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserWeeklyAverages() @@@');
+  console.log('@@@ activities.saga -> fetchUserWeeklyDistanceAverage() @@@');
 
   try {
-    const userWeeklyAverages = yield axios.get(
-      '/api/activities/user/weeklyAverages'
+    const userWeeklyDistanceAverage = yield axios.get(
+      '/api/activities/user/weeklyDistanceAverage'
     );
 
     yield put({
-      type: 'SET_USER_WEEKLY_AVERAGES',
-      payload: userWeeklyAverages.data,
+      type: 'SET_USER_WEEKLY_DISTANCE_AVERAGE',
+      payload: userWeeklyDistanceAverage.data,
     });
   } catch (error) {
     swal(
@@ -187,7 +186,100 @@ function* fetchUserWeeklyAverages(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/weeklyAverages', error);
+    console.log(
+      'ERROR in GET /api/activities/user/weeklyDistanceAverage',
+      error
+    );
+  }
+}
+
+/**
+ * GET endpoint for /api/activities/user/weeklyTimeAverage
+ *
+ * Grabs the calculated weekly average for time from the db
+ *
+ * @param {object} action
+ */
+function* fetchUserWeeklyTimeAverage(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchUserWeeklyTimeAverage() @@@');
+
+  try {
+    const userWeeklyTimeAverage = yield axios.get(
+      '/api/activities/user/weeklyTimeAverage'
+    );
+    console.log('!!@@## userWeeklyTimeAverage:', userWeeklyTimeAverage.data);
+    yield put({
+      type: 'SET_USER_WEEKLY_TIME_AVERAGE',
+      payload: userWeeklyTimeAverage.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/weeklyTimeAverage', error);
+  }
+}
+
+/**
+ * GET endpoint for /api/activities/user/weeklySpeedAverage
+ *
+ * Grabs the calculated weekly average for time from the db
+ *
+ * @param {object} action
+ */
+function* fetchUserWeeklySpeedAverage(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchUserWeeklySpeedAverage() @@@');
+
+  try {
+    const userWeeklySpeedAverage = yield axios.get(
+      '/api/activities/user/weeklySpeedAverage'
+    );
+
+    yield put({
+      type: 'SET_USER_WEEKLY_SPEED_AVERAGE',
+      payload: userWeeklySpeedAverage.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/weeklySpeedAverage', error);
+  }
+}
+
+/**
+ * GET endpoint for /api/activities/user/weeklyPaceAverage
+ *
+ * Grabs the calculated weekly average for time from the db
+ *
+ * @param {object} action
+ */
+function* fetchUserWeeklyPaceAverage(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ activities.saga -> fetchUserWeeklyPaceAverage() @@@');
+
+  try {
+    const userWeeklyPaceAverage = yield axios.get(
+      '/api/activities/user/weeklyPaceAverage'
+    );
+
+    yield put({
+      type: 'SET_USER_WEEKLY_PACE_AVERAGE',
+      payload: userWeeklyPaceAverage.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/weeklyPaceAverage', error);
   }
 }
 
@@ -228,6 +320,18 @@ function* logNewRun(action) {
     yield put({
       type: 'FETCH_USER_WEEKLY_AVERAGES',
     });
+    yield put({
+      type: 'FETCH_USER_WEEKLY_DISTANCE_AVERAGE',
+    });
+    yield put({
+      type: 'FETCH_USER_WEEKLY_TIME_AVERAGE',
+    });
+    yield put({
+      type: 'FETCH_USER_WEEKLY_SPEED_AVERAGE',
+    });
+    yield put({
+      type: 'FETCH_USER_WEEKLY_PACE_AVERAGE',
+    });
   } catch (error) {
     swal(
       'My Running Journal',
@@ -245,7 +349,22 @@ function* activitiesSaga() {
   yield takeLatest('FETCH_LONGEST_RUN', fetchLongestRun);
   yield takeLatest('FETCH_MOST_RECENT_RUN', fetchMostRecentRun);
   yield takeLatest('FETCH_USER_DAILY_AVERAGES', fetchUserDailyAverages);
-  yield takeLatest('FETCH_USER_WEEKLY_AVERAGES', fetchUserWeeklyAverages);
+  yield takeLatest(
+    'FETCH_USER_WEEKLY_DISTANCE_AVERAGE',
+    fetchUserWeeklyDistanceAverage
+  );
+  yield takeLatest(
+    'FETCH_USER_WEEKLY_TIME_AVERAGE',
+    fetchUserWeeklyTimeAverage
+  );
+  yield takeLatest(
+    'FETCH_USER_WEEKLY_SPEED_AVERAGE',
+    fetchUserWeeklySpeedAverage
+  );
+  yield takeLatest(
+    'FETCH_USER_WEEKLY_PACE_AVERAGE',
+    fetchUserWeeklyPaceAverage
+  );
 }
 
 export default activitiesSaga;

@@ -33,10 +33,14 @@ function UserPage({ verbose }) {
     findLongestRun();
     findFastestRun();
     getDailyAverages();
-    getWeeklyAverages();
+    getWeeklyDistanceAverage();
+    getWeeklyTimeAverage();
+    getWeeklySpeedAverage();
+    getWeeklyPaceAverage();
   }, []);
 
   // List of all user's runs (objects) from "activities" table
+  const user = useSelector((store) => store.user);
   const allUsersRuns = useSelector((store) => store.activities.usersRuns);
   const fastestRun = useSelector((store) => store.activities.fastestRun);
   const longestRun = useSelector((store) => store.activities.longestRun);
@@ -44,7 +48,28 @@ function UserPage({ verbose }) {
   const dailyAverages = useSelector(
     (store) => store.activities.userDailyAverages
   );
-  const user = useSelector((store) => store.user);
+  const weeklyDistanceAverage = useSelector(
+    (store) => store.activities.userWeeklyDistanceAverage
+  );
+  const weeklyTimeAverage = useSelector(
+    (store) => store.activities.userWeeklyTimeAverage
+  );
+  const weeklySpeedAverage = useSelector(
+    (store) => store.activities.userWeeklySpeedAverage
+  );
+  const weeklyPaceAverage = useSelector(
+    (store) => store.activities.userWeeklyPaceAverage
+  );
+
+  // Local variables used to pass props
+  const weeklyAverages = [
+    {
+      weeklyDistanceAverage: weeklyDistanceAverage[0].avg,
+      weeklyTimeAverage: weeklyTimeAverage[0].avg,
+      weeklySpeedAverage: weeklySpeedAverage[0].avg,
+      weeklyPaceAverage: weeklyPaceAverage[0].avg,
+    },
+  ];
 
   /*
     Function GETs all of the logged in user's runs from the
@@ -136,21 +161,62 @@ function UserPage({ verbose }) {
   };
 
   /*
-    Function GETs user's weekly averages on
-    - Distance
-    - Time
-    - Speed
-    - Pace
+    Function GETs user's weekly distance average
   */
-  const getWeeklyAverages = () => {
+  const getWeeklyDistanceAverage = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyAverages() ***');
+      console.log('*** <UserPage /> -> getWeeklyDistanceAverage() ***');
     }
 
     // GET the weekly averages from "activities" table
     dispatch({
-      type: 'FETCH_USER_WEEKLY_AVERAGES',
+      type: 'FETCH_USER_WEEKLY_DISTANCE_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's weekly time average
+  */
+  const getWeeklyTimeAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getWeeklyTimeAverage() ***');
+    }
+
+    // GET the weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_WEEKLY_TIME_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's weekly speed average
+  */
+  const getWeeklySpeedAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getWeeklySpeedAverage() ***');
+    }
+
+    // GET the weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_WEEKLY_SPEED_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's weekly pace average
+  */
+  const getWeeklyPaceAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getWeeklyPaceAverage() ***');
+    }
+
+    // GET the weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_WEEKLY_PACE_AVERAGE',
     });
   };
 
@@ -198,7 +264,11 @@ function UserPage({ verbose }) {
       <section>
         <h2>Metrics</h2>
         <div>
-          <RunMetrics verbose={verbose} dailyAverages={dailyAverages} />
+          <RunMetrics
+            verbose={verbose}
+            dailyAverages={dailyAverages}
+            weeklyAverages={weeklyAverages}
+          />
         </div>
         <div>
           <LineChart
