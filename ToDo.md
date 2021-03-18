@@ -103,15 +103,16 @@
 - [ ] create `<ProfilePage />` component
 - [ ] add link in `<Nav />` to access page
 - [ ] page returns logged in user's information
+- [ ] greeting message
 - [ ] `<button>Edit</button>`
   - [ ] switches view to `<RegisterForm />`
   - [ ] form populates with user's information
   - [ ] for now says update vs. register
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+  - [ ] PUT route to update profile
+- [ ] `<button>Delete Profile</button>`
+  - [ ] Sweet alert verification
+  - [ ] DELETE route to remove user from "users" table
+  - [ ] takes user to homepage/landing page
 - [ ] documentation
 
 ## Admin Page

@@ -155,6 +155,7 @@ function UserPage({ verbose }) {
 
   return (
     <div>
+      <h1>{}'s Running Log</h1>
       {/* Log a new run */}
       <section>
         <LogRunForm verbose={verbose} />

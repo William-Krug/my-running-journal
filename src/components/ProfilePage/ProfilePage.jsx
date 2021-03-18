@@ -1,5 +1,12 @@
+/* Import Libraries */
+import React from 'react';
+
 function ProfilePage() {
-  return <h1>This is the Profile Page</h1>
+  return (
+    <div>
+      <h1>This is the Profile Page</h1>
+    </div>
+  );
 }
 
-export default ProfilePage
+export default ProfilePage;
