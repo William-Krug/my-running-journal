@@ -93,17 +93,17 @@
 - [ ] sql queries to get yearly averages
 - [ ] Saga -> router -> saga -> reducer for ^^
 - [ ] populate table
-- [ ] create `<LineChart />` (reusable)
-- [ ] send `props` to `<LineChart />`
-- [ ] display `<LineChart />`
+- [x] create `<LineChart />` (reusable)
+- [x] send `props` to `<LineChart />`
+- [x] display `<LineChart />`
 - [ ] documentation
 
 ## Profile Page
 
-- [ ] create `<ProfilePage />` component
-- [ ] add link in `<Nav />` to access page
+- [x] create `<ProfilePage />` component
+- [x] add link in `<Nav />` to access page
 - [ ] page returns logged in user's information
-- [ ] greeting message
+- [x] greeting message
 - [ ] `<button>Edit</button>`
   - [ ] switches view to `<RegisterForm />`
   - [ ] form populates with user's information

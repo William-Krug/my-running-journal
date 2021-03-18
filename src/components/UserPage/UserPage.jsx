@@ -44,6 +44,7 @@ function UserPage({ verbose }) {
   const dailyAverages = useSelector(
     (store) => store.activities.userDailyAverages
   );
+  const user = useSelector((store) => store.user);
 
   /*
     Function GETs all of the logged in user's runs from the
@@ -155,7 +156,7 @@ function UserPage({ verbose }) {
 
   return (
     <div>
-      <h1>{}'s Running Log</h1>
+      <h1>{user.username}'s Running Log</h1>
       {/* Log a new run */}
       <section>
         <LogRunForm verbose={verbose} />
