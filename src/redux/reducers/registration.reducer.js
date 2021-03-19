@@ -27,10 +27,38 @@ const allStates = (state = [], action) => {
   }
 };
 
+/*
+  Holds user profile information from the "users" table
+*/
+const userProfile = (
+  state = [
+    {
+      first_name: '',
+      last_name: '',
+      birthdate: 0,
+      gender: '',
+      city: '',
+      state: '',
+      country: '',
+      username: '',
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_PROFILE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys allGenders, allStates
 // these will be on the redux state at:
-// registration.allGenders and registration.allStates
+// registration.allGenders, registration.allStates,
+// and registration.userProfile
 export default combineReducers({
   allGenders,
   allStates,
+  userProfile,
 });

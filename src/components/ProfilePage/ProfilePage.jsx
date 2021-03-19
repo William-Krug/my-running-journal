@@ -1,6 +1,7 @@
 /* Import Libraries */
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 
 /* Import Components */
 import ProfileDetails from '../ProfileDetails/ProfileDetails';
@@ -16,10 +17,12 @@ function ProfilePage({ verbose }) {
   const user = useSelector((store) => store.user);
 
   // Local state used for toggling <RegisterForm /> component
-  const [editButtonClicked, setEditButtonClicked] = useState(false);
+  const [editButtonClicked, setEditButtonClicked] = useState(true);
 
   /*
-   */
+    Function toggle the <ProfileDetails /> and <RegisterForm />
+    components
+  */
   function registerFormToggle() {
     // Breadcrumbs for testing and debugging
     if (verbose) {
@@ -38,7 +41,6 @@ function ProfilePage({ verbose }) {
       ) : (
         <RegisterForm verbose={verbose} user={user} />
       )}
-
       <button onClick={registerFormToggle}>Edit</button>
       <button>Delete</button>
     </div>

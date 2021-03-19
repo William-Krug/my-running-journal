@@ -14,7 +14,7 @@ import swal from 'sweetalert';
  */
 function* fetchAllGenders(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ registration.saga -> fetchAllGenders() @@@');
+  // console.log('@@@ registration.saga -> fetchAllGenders() @@@');
 
   // GET all gender options from "genders" table
   try {
@@ -46,7 +46,7 @@ function* fetchAllGenders(action) {
  */
 function* fetchAllStates(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ registration.saga -> fetchAllStates() @@@');
+  // console.log('@@@ registration.saga -> fetchAllStates() @@@');
 
   // GET all state options from the "states" table
   try {
@@ -64,6 +64,38 @@ function* fetchAllStates(action) {
       'error'
     );
     console.log('ERROR in GET /api/user/allStates', error);
+  }
+}
+
+/**
+ * GET endpoint for /api/registration/userProfile
+ *
+ * Sends all user profile details as strings from
+ * "users" table to Redux store for use in the
+ * profile page
+ *
+ * @param {object} action
+ */
+function* getUserProfile(action) {
+  // Breadcrumbs for testing and debugging
+  // console.log('@@@ registration.saga -> getUserProfile() @@@');
+
+  // GET all profile details as strings
+  try {
+    const userProfile = yield axios.get('/api/registration/userProfile');
+
+    // save profile in Redux store
+    yield put({
+      type: 'SET_USER_PROFILE',
+      payload: userProfile.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/registration/userProfile', error);
   }
 }
 
@@ -92,6 +124,7 @@ function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
   yield takeLatest('FETCH_ALL_GENDERS', fetchAllGenders);
   yield takeLatest('FETCH_ALL_STATES', fetchAllStates);
+  yield takeLatest('GET_USER_PROFILE', getUserProfile);
 }
 
 export default registrationSaga;
