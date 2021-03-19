@@ -38,10 +38,15 @@ function* deleteUser(action) {
   console.log('@@@ user.saga -> deleteUser() @@@');
   console.log('action.payload:', action.payload);
 
+  // Remove user from DB
   try {
+    // Log out the user first so the system doesn't lock up
     yield put({ type: 'LOGOUT' });
+
+    // Remove user from "users" table
     yield axios.delete(`/api/user/delete/${action.payload.data}`);
 
+    // Send the user to the homepage/landing page
     action.payload.onComplete();
   } catch (error) {
     swal(
@@ -49,6 +54,7 @@ function* deleteUser(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
+    // Breadcrumbs for testing and debugging
     console.log('ERROR in GET /api/activities/user/delete/:id', error);
   }
 }

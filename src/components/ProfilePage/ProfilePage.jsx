@@ -92,7 +92,11 @@ function ProfilePage({ verbose }) {
       ) : (
         <RegisterForm verbose={verbose} user={user} />
       )}
-      <button onClick={registerFormToggle}>Edit</button>
+      {editButtonClicked ? (
+        <button onClick={registerFormToggle}>Edit</button>
+      ) : (
+        <button onClick={registerFormToggle}>Cancel</button>
+      )}
       <button onClick={deleteUser}>Delete</button>
     </div>
   );
