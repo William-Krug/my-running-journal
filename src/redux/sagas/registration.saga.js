@@ -67,38 +67,6 @@ function* fetchAllStates(action) {
   }
 }
 
-/**
- * GET endpoint for /api/registration/userProfile
- *
- * Sends all user profile details as strings from
- * "users" table to Redux store for use in the
- * profile page
- *
- * @param {object} action
- */
-function* getUserProfile(action) {
-  // Breadcrumbs for testing and debugging
-  // console.log('@@@ registration.saga -> getUserProfile() @@@');
-
-  // GET all profile details as strings
-  try {
-    const userProfile = yield axios.get('/api/registration/userProfile');
-
-    // save profile in Redux store
-    yield put({
-      type: 'SET_USER_PROFILE',
-      payload: userProfile.data,
-    });
-  } catch (error) {
-    swal(
-      'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
-      'error'
-    );
-    console.log('ERROR in GET /api/registration/userProfile', error);
-  }
-}
-
 // worker Saga: will be fired on "REGISTER" actions
 function* registerUser(action) {
   try {
@@ -124,7 +92,6 @@ function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
   yield takeLatest('FETCH_ALL_GENDERS', fetchAllGenders);
   yield takeLatest('FETCH_ALL_STATES', fetchAllStates);
-  yield takeLatest('GET_USER_PROFILE', getUserProfile);
 }
 
 export default registrationSaga;

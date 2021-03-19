@@ -39,6 +39,7 @@ function* deleteUser(action) {
   console.log('action.payload:', action.payload);
 
   try {
+    yield put({ type: 'LOGOUT' });
     yield axios.delete(`/api/user/delete/${action.payload.data}`);
 
     action.payload.onComplete();

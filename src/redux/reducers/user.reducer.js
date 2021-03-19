@@ -9,12 +9,6 @@ const userReducer = (state = {}, action) => {
   }
 };
 
-// export const editUser = (state = {}, action) => {
-//   switch (action.type) {
-//     case: ''
-//   }
-// }
-
 // user will be on the redux state at:
 // state.user
 export default userReducer;

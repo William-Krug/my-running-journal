@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
-import user /*, { editUser } */ from './user.reducer';
+import user from './user.reducer';
 import registration from './registration.reducer';
 import activities from './activities.reducer';
 
@@ -15,7 +15,6 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   registration,
   activities,
-  // editUser,
 });
 
 export default rootReducer;
