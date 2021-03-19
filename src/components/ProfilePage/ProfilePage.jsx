@@ -26,6 +26,9 @@ function ProfilePage({ verbose }) {
   /*
     Function toggle the <ProfileDetails /> and <RegisterForm />
     components
+
+    Sends user's information to Redux store to be grabbed and
+    populated on <RegisterForm /> page
   */
   function registerFormToggle() {
     // Breadcrumbs for testing and debugging
@@ -90,7 +93,7 @@ function ProfilePage({ verbose }) {
       {editButtonClicked ? (
         <ProfileDetails verbose={verbose} user={user} />
       ) : (
-        <RegisterForm verbose={verbose} user={user} />
+        <RegisterForm verbose={verbose} />
       )}
       {editButtonClicked ? (
         <button onClick={registerFormToggle}>Edit</button>

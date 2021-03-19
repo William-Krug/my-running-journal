@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { response } from 'express';
 import { put, takeLatest } from 'redux-saga/effects';
 import swal from 'sweetalert';
 
@@ -26,6 +27,37 @@ function* fetchUser() {
 }
 
 /**
+ * PUT endpoint for /api/user/:id
+ *
+ * Updates user's profile.  All fields, regardless of changes
+ * get updated
+ *
+ * @param {object} action
+ */
+function* updateUserProfile(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ user.saga -> updateUserProfile() @@@');
+  console.log('action.payload:', action.payload);
+
+  try {
+    const updatedUser = yield axios.put(`/api/user/${action.payload.id}`);
+
+    yield put({
+      type: 'SET_USER',
+      payload: updatedUser.data,
+    });
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    // Breadcrumbs for testing and debugging
+    console.log('ERROR in GET /api/activities/user/:id', error);
+  }
+}
+
+/**
  * DELETE endpoint for /api/user/delete/:id
  *
  * Deletes user from the "users" table and all of their
@@ -35,8 +67,8 @@ function* fetchUser() {
  */
 function* deleteUser(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ user.saga -> deleteUser() @@@');
-  console.log('action.payload:', action.payload);
+  // console.log('@@@ user.saga -> deleteUser() @@@');
+  // console.log('action.payload:', action.payload);
 
   // Remove user from DB
   try {
@@ -62,6 +94,7 @@ function* deleteUser(action) {
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
   yield takeLatest('DELETE_USER', deleteUser);
+  yield takeLatest('UPDATE_USER_PROFILE', updateUserProfile);
 }
 
 export default userSaga;

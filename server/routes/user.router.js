@@ -17,6 +17,62 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 /**
+ * PUT route for /api/user/:id
+ *
+ * Updates user's information in the "users" table
+ *
+ * req.body looks like:
+ * {
+ *  id: 171  -- string
+ *  first_name: Roxy    -- string
+ *  last_name: Rahl     -- string
+ *  birthdate: 02/22/1983   -- date
+ *  gender: 1         -- number (references "genders" table)
+ *  city: Chicago   -- string
+ *  state: 13   -- number (references "states" table)
+ *  country: United States -- string
+ *  username: RoxyR   --string
+ *  password: badBanana   -- password
+ * }
+ */
+router.put('/:id', (req, res, next) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### user.router -> PUT /api/user/:id ###');
+
+  const queryArguments = [
+    req.body.first_name,
+    req.body.last_name,
+    req.body.birthdate,
+    req.body.gender,
+    req.body.city,
+    req.body.state,
+    req.body.country,
+    req.body.username,
+    encryptLib.encryptPassword(req.body.password),
+    req.body.id,
+  ];
+
+  const sqlQuery = `
+  INSERT INTO "users"
+    ("first_name", "last_name", "birthdate", "gender", "city", "state", "country", "username", "password", "authLevel")
+  VALUES
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+  RETURNING id;
+  `;
+
+  pool
+    .query(sqlQuery, queryArguments)
+    .then((dbResponse) => {
+      console.log('SUCCESS in POST /api/user/register');
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('ERROR in POST /api/user/register:', error);
+      res.sendStatus(500);
+    });
+});
+
+/**
  * POST route for /api/user/register
  *
  * Adds new user to the "users" table
@@ -45,7 +101,6 @@ router.post('/register', (req, res, next) => {
     req.body.country,
     req.body.username,
     encryptLib.encryptPassword(req.body.password),
-    3,
   ];
 
   const sqlQuery = `

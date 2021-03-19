@@ -1,6 +1,7 @@
 /* Import Libraries */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 
 /**
  * Component captures new user information to be stored
@@ -9,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
  * @param {boolean} param0 global variable used for testing and debugging
  * @returns {jsx} renders app's registration form
  */
-function RegisterForm({ verbose, user }) {
+function RegisterForm({ verbose }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <RegisterForm /> ***');
@@ -22,21 +23,24 @@ function RegisterForm({ verbose, user }) {
     fetchAllStates();
   }, []);
 
-  // Local state variables used for form capture
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [birthdate, setBirthdate] = useState('');
-  const [gender, setGender] = useState(0);
-  const [city, setCity] = useState('');
-  const [state, setState] = useState(0);
-  const [country, setCountry] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
   // Data stored in reducers that will update with changes to DB
   const errors = useSelector((store) => store.errors);
+  const user = useSelector((store) => store.user);
   const allGenders = useSelector((store) => store.registration.allGenders);
   const allStates = useSelector((store) => store.registration.allStates);
+
+  // Local state variables used for form capture
+  const [firstName, setFirstName] = useState(user.first_name);
+  const [lastName, setLastName] = useState(user.last_name);
+  const [birthdate, setBirthdate] = useState(
+    moment(user.birthdate).format('yyyy-MM-DD')
+  );
+  const [gender, setGender] = useState(user.gender);
+  const [city, setCity] = useState(user.city);
+  const [state, setState] = useState(user.state);
+  const [country, setCountry] = useState(user.country);
+  const [username, setUsername] = useState(user.username);
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 
@@ -72,13 +76,30 @@ function RegisterForm({ verbose, user }) {
     });
   };
 
+  const registerOrUpdateUser = (event) => {
+    // Keep page from reloading
+    event.preventDefault();
+
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <RegisterForm /> -> registerOrUpdateUser() ***');
+    }
+
+    // New user needs to be registered
+    if (user.id === 0) {
+      registerUser();
+    }
+    // current user's profile needs to be updated
+    else {
+      updateUserProfile();
+    }
+  };
+
   /*
     Function captures new user input and bundles it up to
     be stored in the DB
   */
-  const registerUser = (event) => {
-    event.preventDefault();
-
+  const registerUser = () => {
     // Store new user information in DB
     dispatch({
       type: 'REGISTER',
@@ -96,8 +117,36 @@ function RegisterForm({ verbose, user }) {
     });
   }; // end registerUser
 
+  /*
+    Function captures updated user input and bundles it up 
+    to be stored in the DB
+  */
+  const updateUserProfile = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <RegisterForm /> -> updateUserProfile() ***');
+    }
+
+    // Store new user information in DB
+    dispatch({
+      type: 'UPDATE_USER_PROFILE',
+      payload: {
+        id: user.id,
+        first_name: firstName,
+        last_name: lastName,
+        birthdate: birthdate,
+        gender: gender,
+        city: city,
+        state: state,
+        country: country,
+        username: username,
+        password: password,
+      },
+    });
+  }; // end registerUser
+
   return (
-    <form className="formPanel" onSubmit={registerUser}>
+    <form className="formPanel" onSubmit={registerOrUpdateUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -249,7 +298,13 @@ function RegisterForm({ verbose, user }) {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        {user.id !== 0 ? (
+          <button className="btn" type="submit" name="submit">
+            Update
+          </button>
+        ) : (
+          <input className="btn" type="submit" name="submit" value="Register" />
+        )}
       </div>
     </form>
   );
