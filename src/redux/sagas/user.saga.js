@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
+import swal from 'sweetalert';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
@@ -24,8 +25,36 @@ function* fetchUser() {
   }
 }
 
+/**
+ * DELETE endpoint for /api/user/delete/:id
+ *
+ * Deletes user from the "users" table and all of their
+ * logged runs from the "activities" table
+ *
+ * @param {object} action
+ */
+function* deleteUser(action) {
+  // Breadcrumbs for testing and debugging
+  console.log('@@@ user.saga -> deleteUser() @@@');
+  console.log('action.payload:', action.payload);
+
+  try {
+    yield axios.delete(`/api/user/delete/${action.payload.data}`);
+
+    action.payload.onComplete();
+  } catch (error) {
+    swal(
+      'My Running Journal',
+      'An ERROR occurred during request.  Please try again later',
+      'error'
+    );
+    console.log('ERROR in GET /api/activities/user/delete/:id', error);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('DELETE_USER', deleteUser);
 }
 
 export default userSaga;

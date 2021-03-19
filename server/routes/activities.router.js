@@ -29,7 +29,7 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
-      // console.log('SUCCESS in GET /api/activities/user');
+      console.log('SUCCESS in GET /api/activities/user');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -60,7 +60,7 @@ router.get('/user/fastest', rejectUnauthenticated, (req, res) => {
   pool
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
-      // console.log('SUCCESS in GET /api/activities/user/fastest');
+      console.log('SUCCESS in GET /api/activities/user/fastest');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -92,7 +92,7 @@ router.get('/user/longest', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/longest');
+      console.log('SUCCESS in GET /api/activities/user/longest');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -125,7 +125,7 @@ router.get('/user/mostRecent', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/mostRecent');
+      console.log('SUCCESS in GET /api/activities/user/mostRecent');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -144,10 +144,10 @@ router.get('/user/mostRecent', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/dailyAverages'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/dailyAverages'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -165,7 +165,7 @@ router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/dailyAverages');
+      console.log('SUCCESS in GET /api/activities/user/dailyAverages');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -183,10 +183,10 @@ router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/weeklyDistanceAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/weeklyDistanceAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -206,7 +206,7 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/weeklyDistanceAverage');
+      console.log('SUCCESS in GET /api/activities/user/weeklyDistanceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -227,10 +227,10 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/weeklyTimeAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/weeklyTimeAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -250,7 +250,7 @@ router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/weeklyTimeAverage');
+      console.log('SUCCESS in GET /api/activities/user/weeklyTimeAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -271,10 +271,10 @@ router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/weeklySpeedAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/weeklySpeedAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -294,7 +294,7 @@ router.get('/user/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/weeklySpeedAverage');
+      console.log('SUCCESS in GET /api/activities/user/weeklySpeedAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -315,10 +315,10 @@ router.get('/user/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/weeklyPaceAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/weeklyPaceAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -338,7 +338,7 @@ router.get('/user/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/weeklyPaceAverage');
+      console.log('SUCCESS in GET /api/activities/user/weeklyPaceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -362,10 +362,10 @@ router.get(
   rejectUnauthenticated,
   (req, res) => {
     // Breadcrumbs for testing and debugging
-    console
-      .log
-      // '### activities.router -> POST /api/activities/user/monthlyDistanceAverage'
-      ();
+    // console
+    //   .log
+    //   '### activities.router -> POST /api/activities/user/monthlyDistanceAverage'
+    //   ();
 
     // SQL query
     const sqlQuery = `
@@ -385,7 +385,9 @@ router.get(
       .query(sqlQuery, [req.user.id])
       .then((dbResponse) => {
         // Breadcrumbs for testing and debugging
-        // console.log('SUCCESS in GET /api/activities/user/monthlyDistanceAverage');
+        console.log(
+          'SUCCESS in GET /api/activities/user/monthlyDistanceAverage'
+        );
         res.send(dbResponse.rows);
       })
       .catch((error) => {
@@ -407,10 +409,10 @@ router.get(
  */
 router.get('/user/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/monthlyTimeAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/monthlyTimeAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -430,7 +432,7 @@ router.get('/user/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/monthlyTimeAverage');
+      console.log('SUCCESS in GET /api/activities/user/monthlyTimeAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -451,10 +453,10 @@ router.get('/user/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/monthlySpeedAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/monthlySpeedAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -474,7 +476,7 @@ router.get('/user/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/monthlySpeedAverage');
+      console.log('SUCCESS in GET /api/activities/user/monthlySpeedAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -495,10 +497,10 @@ router.get('/user/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/monthlyPaceAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/monthlyPaceAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -518,7 +520,7 @@ router.get('/user/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/monthlyPaceAverage');
+      console.log('SUCCESS in GET /api/activities/user/monthlyPaceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -539,10 +541,10 @@ router.get('/user/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/yearlyDistanceAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/yearlyDistanceAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -562,7 +564,7 @@ router.get('/user/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/yearlyDistanceAverage');
+      console.log('SUCCESS in GET /api/activities/user/yearlyDistanceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -583,10 +585,10 @@ router.get('/user/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/yearlyTimeAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/yearlyTimeAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -606,7 +608,7 @@ router.get('/user/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/yearlyTimeAverage');
+      console.log('SUCCESS in GET /api/activities/user/yearlyTimeAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -627,10 +629,10 @@ router.get('/user/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/yearlySpeedAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/yearlySpeedAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -650,7 +652,7 @@ router.get('/user/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/yearlySpeedAverage');
+      console.log('SUCCESS in GET /api/activities/user/yearlySpeedAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -671,10 +673,10 @@ router.get('/user/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
  */
 router.get('/user/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console
-    .log
-    // '### activities.router -> POST /api/activities/user/yearlyPaceAverage'
-    ();
+  // console
+  //   .log
+  //   '### activities.router -> POST /api/activities/user/yearlyPaceAverage'
+  //   ();
 
   // SQL query
   const sqlQuery = `
@@ -694,7 +696,7 @@ router.get('/user/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, [req.user.id])
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in GET /api/activities/user/yearlyPaceAverage');
+      console.log('SUCCESS in GET /api/activities/user/yearlyPaceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
@@ -753,7 +755,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     .query(sqlQuery, queryArguments)
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      // console.log('SUCCESS in POST /api/activities');
+      console.log('SUCCESS in POST /api/activities');
       res.sendStatus(201);
     })
     .catch((error) => {

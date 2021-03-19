@@ -14,7 +14,7 @@ import swal from 'sweetalert';
  */
 function* fetchFastestRun(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchFastestRun() @@@');
+  // console.log('@@@ activities.saga -> fetchFastestRun() @@@');
 
   try {
     const fastestRun = yield axios.get('/api/activities/user/fastest');

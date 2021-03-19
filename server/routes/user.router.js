@@ -83,4 +83,25 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
+  // Breadcrumbs for testing and debugging
+  console.log('### user.router -> DELETE /api/user/delete/:id ###');
+
+  const sqlQuery = `
+  DELETE FROM "users"
+  WHERE "users".id = $1;
+  `;
+
+  pool
+    .query(sqlQuery, [req.user.id])
+    .then((dbResponse) => {
+      console.log('SUCCESS in DELETE /api/users/delete/:id');
+      res.sendStatus(200);
+    })
+    .then((error) => {
+      console.log('ERROR in POST /api/users/delete/:id', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;
