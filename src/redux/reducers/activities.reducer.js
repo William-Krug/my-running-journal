@@ -203,6 +203,158 @@ const userWeeklyPaceAverage = (
   }
 };
 
+/*
+  Holds user's monthly distance average
+*/
+const userMonthlyDistanceAverage = (
+  state = [
+    {
+      averageDistance: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_MONTHLY_DISTANCE_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's monthly time average
+*/
+const userMonthlyTimeAverage = (
+  state = [
+    {
+      averageTime: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_MONTHLY_TIME_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's monthly speed average
+*/
+const userMonthlySpeedAverage = (
+  state = [
+    {
+      averageSpeed: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_MONTHLY_SPEED_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's monthly pace average
+*/
+const userMonthlyPaceAverage = (
+  state = [
+    {
+      averagePace: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_MONTHLY_PACE_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's yearly distance average
+*/
+const userYearlyDistanceAverage = (
+  state = [
+    {
+      averageDistance: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_YEARLY_DISTANCE_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's yearly time average
+*/
+const userYearlyTimeAverage = (
+  state = [
+    {
+      averageTime: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_YEARLY_TIME_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's yearly speed average
+*/
+const userYearlySpeedAverage = (
+  state = [
+    {
+      averageSpeed: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_YEARLY_SPEED_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+/*
+  Holds user's yearly pace average
+*/
+const userYearlyPaceAverage = (
+  state = [
+    {
+      averagePace: 0,
+    },
+  ],
+  action
+) => {
+  switch (action.type) {
+    case 'SET_USER_YEARLY_PACE_AVERAGE':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys usersRuns, fastestRun,
 // longestRun, mostRecentRun
 // these will be on the redux state at:
@@ -221,4 +373,12 @@ export default combineReducers({
   userWeeklyTimeAverage,
   userWeeklySpeedAverage,
   userWeeklyPaceAverage,
+  userMonthlyDistanceAverage,
+  userMonthlyTimeAverage,
+  userMonthlySpeedAverage,
+  userMonthlyPaceAverage,
+  userYearlyDistanceAverage,
+  userYearlyTimeAverage,
+  userYearlySpeedAverage,
+  userYearlyPaceAverage,
 });

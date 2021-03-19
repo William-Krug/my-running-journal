@@ -37,6 +37,14 @@ function UserPage({ verbose }) {
     getWeeklyTimeAverage();
     getWeeklySpeedAverage();
     getWeeklyPaceAverage();
+    getMonthlyDistanceAverage();
+    getMonthlyTimeAverage();
+    getMonthlySpeedAverage();
+    getMonthlyPaceAverage();
+    getYearlyDistanceAverage();
+    getYearlyTimeAverage();
+    getYearlySpeedAverage();
+    getYearlyPaceAverage();
   }, []);
 
   // List of all user's runs (objects) from "activities" table
@@ -60,6 +68,30 @@ function UserPage({ verbose }) {
   const weeklyPaceAverage = useSelector(
     (store) => store.activities.userWeeklyPaceAverage
   );
+  const monthlyDistanceAverage = useSelector(
+    (store) => store.activities.userMonthlyDistanceAverage
+  );
+  const monthlyTimeAverage = useSelector(
+    (store) => store.activities.userMonthlyTimeAverage
+  );
+  const monthlySpeedAverage = useSelector(
+    (store) => store.activities.userMonthlySpeedAverage
+  );
+  const monthlyPaceAverage = useSelector(
+    (store) => store.activities.userMonthlyPaceAverage
+  );
+  const yearlyDistanceAverage = useSelector(
+    (store) => store.activities.userYearlyDistanceAverage
+  );
+  const yearlyTimeAverage = useSelector(
+    (store) => store.activities.userYearlyTimeAverage
+  );
+  const yearlySpeedAverage = useSelector(
+    (store) => store.activities.userYearlySpeedAverage
+  );
+  const yearlyPaceAverage = useSelector(
+    (store) => store.activities.userYearlyPaceAverage
+  );
 
   // Local variables used to pass props
   const weeklyAverages = [
@@ -68,6 +100,22 @@ function UserPage({ verbose }) {
       weeklyTimeAverage: weeklyTimeAverage[0].avg,
       weeklySpeedAverage: weeklySpeedAverage[0].avg,
       weeklyPaceAverage: weeklyPaceAverage[0].avg,
+    },
+  ];
+  const monthlyAverages = [
+    {
+      monthlyDistanceAverage: monthlyDistanceAverage[0].avg,
+      monthlyTimeAverage: monthlyTimeAverage[0].avg,
+      monthlySpeedAverage: monthlySpeedAverage[0].avg,
+      monthlyPaceAverage: monthlyPaceAverage[0].avg,
+    },
+  ];
+  const yearlyAverages = [
+    {
+      yearlyDistanceAverage: yearlyDistanceAverage[0].avg,
+      yearlyTimeAverage: yearlyTimeAverage[0].avg,
+      yearlySpeedAverage: yearlySpeedAverage[0].avg,
+      yearlyPaceAverage: yearlyPaceAverage[0].avg,
     },
   ];
 
@@ -220,6 +268,126 @@ function UserPage({ verbose }) {
     });
   };
 
+  /*
+    Function GETs user's monthly distance average
+  */
+  const getMonthlyDistanceAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getMonthlyDistanceAverage() ***');
+    }
+
+    // GET the monthly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_MONTHLY_DISTANCE_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's monthly time average
+  */
+  const getMonthlyTimeAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getMonthlyTimeAverage() ***');
+    }
+
+    // GET the monthly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_MONTHLY_TIME_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's monthly speed average
+  */
+  const getMonthlySpeedAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getMonthlySpeedAverage() ***');
+    }
+
+    // GET the monthly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_MONTHLY_SPEED_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's monthly pace average
+  */
+  const getMonthlyPaceAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getMonthlyPaceAverage() ***');
+    }
+
+    // GET the monthly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_MONTHLY_PACE_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's monthly distance average
+  */
+  const getYearlyDistanceAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getYearlyDistanceAverage() ***');
+    }
+
+    // GET the yearly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_YEARLY_DISTANCE_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's yearly time average
+  */
+  const getYearlyTimeAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getYearlyTimeAverage() ***');
+    }
+
+    // GET the yearly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_YEARLY_TIME_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's yearly speed average
+  */
+  const getYearlySpeedAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getYearlySpeedAverage() ***');
+    }
+
+    // GET the yearly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_YEARLY_SPEED_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs user's yearly pace average
+  */
+  const getYearlyPaceAverage = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> getYearlyPaceAverage() ***');
+    }
+
+    // GET the yearly averages from "activities" table
+    dispatch({
+      type: 'FETCH_USER_YEARLY_PACE_AVERAGE',
+    });
+  };
+
   return (
     <div>
       <h1>{user.username}'s Running Log</h1>
@@ -268,6 +436,8 @@ function UserPage({ verbose }) {
             verbose={verbose}
             dailyAverages={dailyAverages}
             weeklyAverages={weeklyAverages}
+            monthlyAverages={monthlyAverages}
+            yearlyAverages={yearlyAverages}
           />
         </div>
         <div>

@@ -2,15 +2,21 @@
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
 
-function RunMetrics({ verbose, dailyAverages, weeklyAverages }) {
+function RunMetrics({
+  verbose,
+  dailyAverages,
+  weeklyAverages,
+  monthlyAverages,
+  yearlyAverages,
+}) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <RunMetrics /> ***');
     console.log('dailyAverages:', dailyAverages);
     console.log('weeklyAverages:', weeklyAverages);
+    console.log('monthlyAverages:', monthlyAverages);
+    console.log('yearlyAverages:', yearlyAverages);
   }
-
-  console.log('weeklyAverages:', weeklyAverages);
 
   return (
     <table>
@@ -56,17 +62,35 @@ function RunMetrics({ verbose, dailyAverages, weeklyAverages }) {
         </tr>
         <tr>
           <th>Monthly</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>
+            {Number(monthlyAverages[0].monthlyDistanceAverage).toFixed(2)}
+          </td>
+          <td>
+            {moment
+              .duration(monthlyAverages[0].monthlyTimeAverage, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(monthlyAverages[0].monthlySpeedAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(monthlyAverages[0].monthlyPaceAverage, 'milliseconds')
+              .format()}
+          </td>
         </tr>
         <tr>
           <th>Yearly</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>{Number(yearlyAverages[0].yearlyDistanceAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(yearlyAverages[0].yearlyTimeAverage, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(yearlyAverages[0].yearlySpeedAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(yearlyAverages[0].yearlyPaceAverage, 'milliseconds')
+              .format()}
+          </td>
         </tr>
       </tbody>
     </table>
