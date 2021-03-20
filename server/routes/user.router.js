@@ -38,6 +38,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.put('/:id', (req, res, next) => {
   // Breadcrumbs for testing and debugging
   console.log('### user.router -> PUT /api/user/:id ###');
+  console.log('req.body:', req.body);
 
   const queryArguments = [
     req.body.first_name,
@@ -49,22 +50,29 @@ router.put('/:id', (req, res, next) => {
     req.body.country,
     req.body.username,
     encryptLib.encryptPassword(req.body.password),
-    req.body.id,
+    req.user.id,
   ];
 
   const sqlQuery = `
-  INSERT INTO "users"
-    ("first_name", "last_name", "birthdate", "gender", "city", "state", "country", "username", "password", "authLevel")
-  VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
-  RETURNING id;
+  UPDATE "users"
+  SET
+    "first_name" = $1,
+    "last_name" = $2,
+    "birthdate" = $3,
+    "gender" = $4,
+    "city" = $5,
+    "state" = $6,
+    "country" = $7,
+    "username" = $8,
+    "password" = $9
+  WHERE "users".id = $10;
   `;
 
   pool
     .query(sqlQuery, queryArguments)
     .then((dbResponse) => {
       console.log('SUCCESS in POST /api/user/register');
-      res.sendStatus(201);
+      res.sendStatus(200);
     })
     .catch((error) => {
       console.log('ERROR in POST /api/user/register:', error);
@@ -101,6 +109,7 @@ router.post('/register', (req, res, next) => {
     req.body.country,
     req.body.username,
     encryptLib.encryptPassword(req.body.password),
+    3, // authLevel
   ];
 
   const sqlQuery = `

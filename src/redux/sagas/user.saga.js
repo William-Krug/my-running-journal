@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { response } from 'express';
+
 import { put, takeLatest } from 'redux-saga/effects';
 import swal from 'sweetalert';
 
@@ -40,7 +40,10 @@ function* updateUserProfile(action) {
   console.log('action.payload:', action.payload);
 
   try {
-    const updatedUser = yield axios.put(`/api/user/${action.payload.id}`);
+    const updatedUser = yield axios.put(
+      `/api/user/${action.payload.id}`,
+      action.payload
+    );
 
     yield put({
       type: 'SET_USER',
