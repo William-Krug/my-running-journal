@@ -19,6 +19,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import AdminPage from '../AdminPage/AdminPage';
 
 /* Import CSS */
 import './App.css';
@@ -43,11 +44,11 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/about will show the about page. */}
+          {/* Visiting localhost:3000/admin will show the admin page. */}
           <Route
-            // shows AboutPage at all times (logged in or not)
+            // shows <AdminPage> if user's authLevel >= 2
             exact
-            path="/about"
+            path="/admin"
           >
             <AboutPage />
           </Route>

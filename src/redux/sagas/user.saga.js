@@ -49,6 +49,8 @@ function* updateUserProfile(action) {
       type: 'SET_USER',
       payload: updatedUser.data,
     });
+
+    action.payload.onComplete();
   } catch (error) {
     swal(
       'My Running Journal',
@@ -77,6 +79,7 @@ function* deleteUser(action) {
   try {
     // Log out the user first so the system doesn't lock up
     yield put({ type: 'LOGOUT' });
+    yield put({ type: 'UNSET_USER' });
 
     // Remove user from "users" table
     yield axios.delete(`/api/user/delete/${action.payload.data}`);

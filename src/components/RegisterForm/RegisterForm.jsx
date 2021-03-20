@@ -1,6 +1,7 @@
 /* Import Libraries */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 /**
@@ -15,6 +16,8 @@ function RegisterForm({ verbose }) {
   if (verbose) {
     console.log('*** in <RegisterForm /> ***');
   }
+
+  const history = useHistory();
 
   // Get all user registration options from DB
   // to keep data in sync
@@ -141,6 +144,9 @@ function RegisterForm({ verbose }) {
         country: country,
         username: username,
         password: password,
+        onComplete: () => {
+          history.push('/user');
+        },
       },
     });
   }; // end registerUser

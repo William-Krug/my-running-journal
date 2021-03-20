@@ -27,6 +27,12 @@ function Nav() {
           {loginLinkData.text}
         </Link>
 
+        {user.id <= 2 && (
+          <Link className="navLink" to="/admin">
+            Admin
+          </Link>
+        )}
+
         {user.id > 0 && (
           <>
             <Link className="navLink" to="/profile">
@@ -35,10 +41,6 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );
