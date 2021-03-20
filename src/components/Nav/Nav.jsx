@@ -27,10 +27,12 @@ function Nav() {
           {loginLinkData.text}
         </Link>
 
-        {user.id <= 2 && (
-          <Link className="navLink" to="/admin">
-            Admin
-          </Link>
+        {user.authLevel <= 2 && user.id > 0 && (
+          <>
+            <Link className="navLink" to="/admin">
+              Admin
+            </Link>
+          </>
         )}
 
         {user.id > 0 && (
