@@ -10,7 +10,7 @@ import RunMetrics from '../RunMetrics/RunMetrics';
 import LineChart from '../../charts/LineChart';
 
 /**
- * Component render's the user's personal page allowing them to:
+ * Component renders the user's personal page allowing them to:
  * - Log a new run
  * - Review their dashboard (recent run, longest run, fastest run)
  * - View their metrics (averages and graph)
