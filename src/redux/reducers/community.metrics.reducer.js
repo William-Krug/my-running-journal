@@ -113,7 +113,7 @@ const communityMonthlyDistanceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_MONTHLY_DISTANCE_AVERAGE':
+    case 'SET_COMMUNITY_MONTHLY_DISTANCE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -132,7 +132,7 @@ const communityMonthlyTimeAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_MONTHLY_TIME_AVERAGE':
+    case 'SET_COMMUNITY_MONTHLY_TIME_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -151,7 +151,7 @@ const communityMonthlySpeedAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_MONTHLY_SPEED_AVERAGE':
+    case 'SET_COMMUNITY_MONTHLY_SPEED_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -170,7 +170,7 @@ const communityMonthlyPaceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_MONTHLY_PACE_AVERAGE':
+    case 'SET_COMMUNITY_MONTHLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -189,7 +189,7 @@ const communityYearlyDistanceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_YEARLY_DISTANCE_AVERAGE':
+    case 'SET_COMMUNITY_YEARLY_DISTANCE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -208,7 +208,7 @@ const communityYearlyTimeAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_YEARLY_TIME_AVERAGE':
+    case 'SET_COMMUNITY_YEARLY_TIME_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -227,7 +227,7 @@ const communityYearlySpeedAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_YEARLY_SPEED_AVERAGE':
+    case 'SET_COMMUNITY_YEARLY_SPEED_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -246,7 +246,7 @@ const communityYearlyPaceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_community_YEARLY_PACE_AVERAGE':
+    case 'SET_COMMUNITY_YEARLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -261,4 +261,12 @@ export default combineReducers({
   communityWeeklyTimeAverage,
   communityWeeklySpeedAverage,
   communityWeeklyPaceAverage,
+  communityMonthlyDistanceAverage,
+  communityMonthlyTimeAverage,
+  communityMonthlySpeedAverage,
+  communityMonthlyPaceAverage,
+  communityYearlyDistanceAverage,
+  communityYearlyTimeAverage,
+  communityYearlySpeedAverage,
+  communityYearlyPaceAverage,
 });

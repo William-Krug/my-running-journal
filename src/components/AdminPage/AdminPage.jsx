@@ -25,10 +25,12 @@ function AdminPage({ verbose }) {
   useEffect(() => {
     getCommunityDailyAverages();
     getCommunityWeeklyAverages();
+    getCommunityMonthlyAverages();
+    getCommunityYearlyAverages();
   }, []);
 
   // Dynamic variables kept in the Redux store
-  const communityDailyAverages = useSelector(
+  const dailyAverages = useSelector(
     (store) => store.communityMetrics.communityDailyAverages
   );
   const weeklyDistanceAverage = useSelector(
@@ -43,30 +45,30 @@ function AdminPage({ verbose }) {
   const weeklyPaceAverage = useSelector(
     (store) => store.communityMetrics.communityWeeklyPaceAverage
   );
-  // const monthlyDistanceAverage = useSelector(
-  //   (store) => store.activities.userMonthlyDistanceAverage
-  // );
-  // const monthlyTimeAverage = useSelector(
-  //   (store) => store.activities.userMonthlyTimeAverage
-  // );
-  // const monthlySpeedAverage = useSelector(
-  //   (store) => store.activities.userMonthlySpeedAverage
-  // );
-  // const monthlyPaceAverage = useSelector(
-  //   (store) => store.activities.userMonthlyPaceAverage
-  // );
-  // const yearlyDistanceAverage = useSelector(
-  //   (store) => store.activities.userYearlyDistanceAverage
-  // );
-  // const yearlyTimeAverage = useSelector(
-  //   (store) => store.activities.userYearlyTimeAverage
-  // );
-  // const yearlySpeedAverage = useSelector(
-  //   (store) => store.activities.userYearlySpeedAverage
-  // );
-  // const yearlyPaceAverage = useSelector(
-  //   (store) => store.activities.userYearlyPaceAverage
-  // );
+  const monthlyDistanceAverage = useSelector(
+    (store) => store.communityMetrics.communityMonthlyDistanceAverage
+  );
+  const monthlyTimeAverage = useSelector(
+    (store) => store.communityMetrics.communityMonthlyTimeAverage
+  );
+  const monthlySpeedAverage = useSelector(
+    (store) => store.communityMetrics.communityMonthlySpeedAverage
+  );
+  const monthlyPaceAverage = useSelector(
+    (store) => store.communityMetrics.communityMonthlyPaceAverage
+  );
+  const yearlyDistanceAverage = useSelector(
+    (store) => store.communityMetrics.communityYearlyDistanceAverage
+  );
+  const yearlyTimeAverage = useSelector(
+    (store) => store.communityMetrics.communityYearlyTimeAverage
+  );
+  const yearlySpeedAverage = useSelector(
+    (store) => store.communityMetrics.communityYearlySpeedAverage
+  );
+  const yearlyPaceAverage = useSelector(
+    (store) => store.communityMetrics.communityYearlyPaceAverage
+  );
 
   // Local variables used to pass as props
   const weeklyAverages = [
@@ -77,21 +79,22 @@ function AdminPage({ verbose }) {
       weeklyPaceAverage: weeklyPaceAverage[0].avg,
     },
   ];
-  // const monthlyAverages = [
-  //   {
-  //     monthlyDistanceAverage: monthlyDistanceAverage[0].avg,
-  //     monthlyTimeAverage: monthlyTimeAverage[0].avg,
-  //     monthlySpeedAverage: monthlySpeedAverage[0].avg,
-  //     monthlyPaceAverage: monthlyPaceAverage[0].avg,
-  //   },
-  // ];
-  // const yearlyAverages = [
-  //   {
-  //     yearlyDistanceAverage: yearlyDistanceAverage[0].avg,
-  //     yearlyTimeAverage: yearlyTimeAverage[0].avg,
-  //     yearlySpeedAverage: yearlySpeedAverage[0].avg,
-  //     yearlyPaceAverage: yearlyPaceAverage[0].avg,
-  //   },
+  const monthlyAverages = [
+    {
+      monthlyDistanceAverage: monthlyDistanceAverage[0].avg,
+      monthlyTimeAverage: monthlyTimeAverage[0].avg,
+      monthlySpeedAverage: monthlySpeedAverage[0].avg,
+      monthlyPaceAverage: monthlyPaceAverage[0].avg,
+    },
+  ];
+  const yearlyAverages = [
+    {
+      yearlyDistanceAverage: yearlyDistanceAverage[0].avg,
+      yearlyTimeAverage: yearlyTimeAverage[0].avg,
+      yearlySpeedAverage: yearlySpeedAverage[0].avg,
+      yearlyPaceAverage: yearlyPaceAverage[0].avg,
+    },
+  ];
 
   /*
     Function GETs the community's daily averages on
@@ -140,6 +143,62 @@ function AdminPage({ verbose }) {
     });
   };
 
+  /*
+    Function GETs the community's monthly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
+  */
+  const getCommunityMonthlyAverages = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <AdminPage /> -> getCommunityMonthlyAverages() ***');
+    }
+
+    // GET weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_COMMUNITY_MONTHLY_DISTANCE_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_MONTHLY_TIME_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_MONTHLY_SPEED_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_MONTHLY_PACE_AVERAGE',
+    });
+  };
+
+  /*
+    Function GETs the community's yearly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
+  */
+  const getCommunityYearlyAverages = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <AdminPage /> -> getCommunityYearlyAverages() ***');
+    }
+
+    // GET weekly averages from "activities" table
+    dispatch({
+      type: 'FETCH_COMMUNITY_YEARLY_DISTANCE_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_YEARLY_TIME_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_YEARLY_SPEED_AVERAGE',
+    });
+    dispatch({
+      type: 'FETCH_COMMUNITY_YEARLY_PACE_AVERAGE',
+    });
+  };
+
   return (
     <div>
       <h1>Admin Portal</h1>
@@ -148,13 +207,13 @@ function AdminPage({ verbose }) {
       </section>
       <section>
         <h2>Community Metrics</h2>
-        {/* <RunMetrics
-            verbose={verbose}
-            dailyAverages={communityDailyAverages}
-            weeklyAverages={weeklyAverages}
-            monthlyAverages={monthlyAverages}
-            yearlyAverages={yearlyAverages}
-          /> */}
+        <RunMetrics
+          verbose={verbose}
+          dailyAverages={dailyAverages}
+          weeklyAverages={weeklyAverages}
+          monthlyAverages={monthlyAverages}
+          yearlyAverages={yearlyAverages}
+        />
       </section>
       <section></section>
     </div>
