@@ -45,7 +45,7 @@ function RunDetails({ verbose, title, runDetails }) {
             </tr>
             <tr>
               <td>Speed (mph):</td>
-              <td>{runDetails.mph}</td>
+              <td>{runDetails.speed}</td>
             </tr>
             <tr>
               <td>Pace (min/mile):</td>

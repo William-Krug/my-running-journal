@@ -2,11 +2,20 @@
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
 
-function RunMetrics({ verbose, dailyAverages }) {
+function RunMetrics({
+  verbose,
+  dailyAverages,
+  weeklyAverages,
+  monthlyAverages,
+  yearlyAverages,
+}) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <RunMetrics /> ***');
     console.log('dailyAverages:', dailyAverages);
+    console.log('weeklyAverages:', weeklyAverages);
+    console.log('monthlyAverages:', monthlyAverages);
+    console.log('yearlyAverages:', yearlyAverages);
   }
 
   return (
@@ -38,24 +47,50 @@ function RunMetrics({ verbose, dailyAverages }) {
         </tr>
         <tr>
           <th>Weekly</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>{Number(weeklyAverages[0].weeklyDistanceAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(weeklyAverages[0].weeklyTimeAverage, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(weeklyAverages[0].weeklySpeedAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(weeklyAverages[0].weeklyPaceAverage, 'milliseconds')
+              .format()}
+          </td>
         </tr>
         <tr>
           <th>Monthly</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>
+            {Number(monthlyAverages[0].monthlyDistanceAverage).toFixed(2)}
+          </td>
+          <td>
+            {moment
+              .duration(monthlyAverages[0].monthlyTimeAverage, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(monthlyAverages[0].monthlySpeedAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(monthlyAverages[0].monthlyPaceAverage, 'milliseconds')
+              .format()}
+          </td>
         </tr>
         <tr>
           <th>Yearly</th>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
-          <td>{}</td>
+          <td>{Number(yearlyAverages[0].yearlyDistanceAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(yearlyAverages[0].yearlyTimeAverage, 'milliseconds')
+              .format()}
+          </td>
+          <td>{Number(yearlyAverages[0].yearlySpeedAverage).toFixed(2)}</td>
+          <td>
+            {moment
+              .duration(yearlyAverages[0].yearlyPaceAverage, 'milliseconds')
+              .format()}
+          </td>
         </tr>
       </tbody>
     </table>

@@ -12,7 +12,7 @@ function Nav() {
     text: 'Login / Register',
   };
 
-  if (user.id != null) {
+  if (user.id != 0) {
     loginLinkData.path = '/user';
     loginLinkData.text = 'Home';
   }
@@ -27,7 +27,13 @@ function Nav() {
           {loginLinkData.text}
         </Link>
 
-        {user.id && (
+        {user.id <= 2 && (
+          <Link className="navLink" to="/admin">
+            Admin
+          </Link>
+        )}
+
+        {user.id > 0 && (
           <>
             <Link className="navLink" to="/profile">
               Profile
@@ -35,10 +41,6 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-
-        <Link className="navLink" to="/about">
-          About
-        </Link>
       </div>
     </div>
   );

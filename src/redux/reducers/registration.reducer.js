@@ -29,7 +29,8 @@ const allStates = (state = [], action) => {
 
 // make one object that has keys allGenders, allStates
 // these will be on the redux state at:
-// registration.allGenders and registration.allStates
+// registration.allGenders, registration.allStates,
+// and registration.userProfile
 export default combineReducers({
   allGenders,
   allStates,
