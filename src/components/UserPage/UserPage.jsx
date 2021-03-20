@@ -93,7 +93,7 @@ function UserPage({ verbose }) {
     (store) => store.activities.userYearlyPaceAverage
   );
 
-  // Local variables used to pass props
+  // Local variables used to pass as props
   const weeklyAverages = [
     {
       weeklyDistanceAverage: weeklyDistanceAverage[0].avg,

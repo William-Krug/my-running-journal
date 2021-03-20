@@ -7,15 +7,15 @@ import swal from 'sweetalert';
  * GET endpoint for /api/communityMetrics/dailyAverages
  *
  * Grabs all of the calculated averages for distance, time,
- * speed, and pace, for the entire app user base, from the db
+ * speed, and pace, for the entire app community base, from the db
  *
  * @param {object} action
  */
 function* fetchCommunityDailyAverages(action) {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '@@@ community.metrics.saga -> fetchCommunityDailyAverages() @@@'
-  );
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityDailyAverages() @@@'
+  // );
 
   try {
     const communityDailyAverages = yield axios.get(
@@ -37,147 +37,157 @@ function* fetchCommunityDailyAverages(action) {
 }
 
 /**
- * GET endpoint for /api/activities/user/weeklyDistanceAverage
+ * GET endpoint for /api/communityMetrics/weeklyDistanceAverage
  *
  * Grabs the calculated weekly average for distance from the db
  *
  * @param {object} action
  */
-function* fetchUserWeeklyDistanceAverage(action) {
+function* fetchCommunityWeeklyDistanceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserWeeklyDistanceAverage() @@@');
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityWeeklyDistanceAverage() @@@'
+  // );
 
   try {
-    const userWeeklyDistanceAverage = yield axios.get(
-      '/api/activities/user/weeklyDistanceAverage'
+    const communityWeeklyDistanceAverage = yield axios.get(
+      '/api/communityMetrics/weeklyDistanceAverage'
     );
 
     yield put({
-      type: 'SET_USER_WEEKLY_DISTANCE_AVERAGE',
-      payload: userWeeklyDistanceAverage.data,
+      type: 'SET_COMMUNITY_WEEKLY_DISTANCE_AVERAGE',
+      payload: communityWeeklyDistanceAverage.data,
     });
   } catch (error) {
     swal(
       'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
+      'An ERROR occurred during request.  Please try again later.',
       'error'
     );
     console.log(
-      'ERROR in GET /api/activities/user/weeklyDistanceAverage',
+      'ERROR in GET /api/communityMetrics/weeklyDistanceAverage:',
       error
     );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/weeklyTimeAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated weekly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserWeeklyTimeAverage(action) {
+function* fetchCommunityWeeklyTimeAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserWeeklyTimeAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userWeeklyTimeAverage = yield axios.get(
-      '/api/activities/user/weeklyTimeAverage'
+    const communityWeeklyTimeAverage = yield axios.get(
+      '/api/communityMetrics/weeklyTimeAverage'
     );
-    console.log('!!@@## userWeeklyTimeAverage:', userWeeklyTimeAverage.data);
+
     yield put({
-      type: 'SET_USER_WEEKLY_TIME_AVERAGE',
-      payload: userWeeklyTimeAverage.data,
+      type: 'SET_COMMUNITY_WEEKLY_TIME_AVERAGE',
+      payload: communityWeeklyTimeAverage.data,
     });
   } catch (error) {
     swal(
       'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
+      'An ERROR occurred during request.  Please try again later.',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/weeklyTimeAverage', error);
+    console.log('ERROR in GET /api/communityMetrics/weeklyTimeAverage:', error);
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/weeklySpeedAverage
+ * GET endpoint for /api/communityMetrics/weeklySpeedAverage
  *
- * Grabs the calculated weekly average for time from the db
+ * Grabs the calculated weekly average for speed from the db
  *
  * @param {object} action
  */
-function* fetchUserWeeklySpeedAverage(action) {
+function* fetchCommunityWeeklySpeedAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserWeeklySpeedAverage() @@@');
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityWeeklySpeedAverage() @@@'
+  // );
 
   try {
-    const userWeeklySpeedAverage = yield axios.get(
-      '/api/activities/user/weeklySpeedAverage'
+    const communityWeeklySpeedAverage = yield axios.get(
+      '/api/communityMetrics/weeklySpeedAverage'
     );
 
     yield put({
-      type: 'SET_USER_WEEKLY_SPEED_AVERAGE',
-      payload: userWeeklySpeedAverage.data,
+      type: 'SET_COMMUNITY_WEEKLY_SPEED_AVERAGE',
+      payload: communityWeeklySpeedAverage.data,
     });
   } catch (error) {
     swal(
       'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
+      'An ERROR occurred during request.  Please try again later.',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/weeklySpeedAverage', error);
+    console.log('ERROR in GET /api/communityMetrics/weeklyTimeAverage:', error);
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/weeklyPaceAverage
+ * GET endpoint for /api/communityMetrics/weeklyPaceAverage
  *
- * Grabs the calculated weekly average for time from the db
+ * Grabs the calculated weekly average for pace from the db
  *
  * @param {object} action
  */
-function* fetchUserWeeklyPaceAverage(action) {
+function* fetchCommunityWeeklyPaceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserWeeklyPaceAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyPaceAverage() @@@'
+  );
 
   try {
-    const userWeeklyPaceAverage = yield axios.get(
-      '/api/activities/user/weeklyPaceAverage'
+    const communityWeeklyPaceAverage = yield axios.get(
+      '/api/communityMetrics/weeklyPaceAverage'
     );
 
     yield put({
-      type: 'SET_USER_WEEKLY_PACE_AVERAGE',
-      payload: userWeeklyPaceAverage.data,
+      type: 'SET_COMMUNITY_WEEKLY_PACE_AVERAGE',
+      payload: communityWeeklyPaceAverage.data,
     });
   } catch (error) {
     swal(
       'My Running Journal',
-      'An ERROR occurred during request.  Please try again later',
+      'An ERROR occurred during request.  Please try again later.',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/weeklyPaceAverage', error);
+    console.log('ERROR in GET /api/communityMetrics/weeklyPaceAverage:', error);
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/monthlyDistanceAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated monthly average for distance from the db
  *
  * @param {object} action
  */
-function* fetchUserMonthlyDistanceAverage(action) {
+function* fetchcommunityMonthlyDistanceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserMonthlyDistanceAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userMonthlyDistanceAverage = yield axios.get(
-      '/api/activities/user/monthlyDistanceAverage'
+    const communityMonthlyDistanceAverage = yield axios.get(
+      '/api/activities/community/monthlyDistanceAverage'
     );
 
     yield put({
-      type: 'SET_USER_MONTHLY_DISTANCE_AVERAGE',
-      payload: userMonthlyDistanceAverage.data,
+      type: 'SET_community_MONTHLY_DISTANCE_AVERAGE',
+      payload: communityMonthlyDistanceAverage.data,
     });
   } catch (error) {
     swal(
@@ -186,31 +196,33 @@ function* fetchUserMonthlyDistanceAverage(action) {
       'error'
     );
     console.log(
-      'ERROR in GET /api/activities/user/monthlyDistanceAverage',
+      'ERROR in GET /api/activities/community/monthlyDistanceAverage',
       error
     );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/monthlyTimeAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated monthly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserMonthlyTimeAverage(action) {
+function* fetchcommunityMonthlyTimeAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserMonthlyTimeAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userMonthlyTimeAverage = yield axios.get(
-      '/api/activities/user/monthlyTimeAverage'
+    const communityMonthlyTimeAverage = yield axios.get(
+      '/api/activities/community/monthlyTimeAverage'
     );
 
     yield put({
-      type: 'SET_USER_MONTHLY_TIME_AVERAGE',
-      payload: userMonthlyTimeAverage.data,
+      type: 'SET_community_MONTHLY_TIME_AVERAGE',
+      payload: communityMonthlyTimeAverage.data,
     });
   } catch (error) {
     swal(
@@ -218,29 +230,34 @@ function* fetchUserMonthlyTimeAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/monthlyTimeAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/monthlyTimeAverage',
+      error
+    );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/monthlySpeedAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated monthly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserMonthlySpeedAverage(action) {
+function* fetchcommunityMonthlySpeedAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserMonthlySpeedAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userMonthlySpeedAverage = yield axios.get(
-      '/api/activities/user/monthlySpeedAverage'
+    const communityMonthlySpeedAverage = yield axios.get(
+      '/api/activities/community/monthlySpeedAverage'
     );
 
     yield put({
-      type: 'SET_USER_MONTHLY_SPEED_AVERAGE',
-      payload: userMonthlySpeedAverage.data,
+      type: 'SET_community_MONTHLY_SPEED_AVERAGE',
+      payload: communityMonthlySpeedAverage.data,
     });
   } catch (error) {
     swal(
@@ -248,29 +265,34 @@ function* fetchUserMonthlySpeedAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/monthlySpeedAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/monthlySpeedAverage',
+      error
+    );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/monthlyPaceAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated monthly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserMonthlyPaceAverage(action) {
+function* fetchcommunityMonthlyPaceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserMonthlyPaceAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userMonthlyPaceAverage = yield axios.get(
-      '/api/activities/user/monthlyPaceAverage'
+    const communityMonthlyPaceAverage = yield axios.get(
+      '/api/activities/community/monthlyPaceAverage'
     );
 
     yield put({
-      type: 'SET_USER_MONTHLY_PACE_AVERAGE',
-      payload: userMonthlyPaceAverage.data,
+      type: 'SET_community_MONTHLY_PACE_AVERAGE',
+      payload: communityMonthlyPaceAverage.data,
     });
   } catch (error) {
     swal(
@@ -278,29 +300,34 @@ function* fetchUserMonthlyPaceAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/monthlyPaceAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/monthlyPaceAverage',
+      error
+    );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/yearlyDistanceAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated yearly average for distance from the db
  *
  * @param {object} action
  */
-function* fetchUserYearlyDistanceAverage(action) {
+function* fetchcommunityYearlyDistanceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserYearlyDistanceAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userYearlyDistanceAverage = yield axios.get(
-      '/api/activities/user/yearlyDistanceAverage'
+    const communityYearlyDistanceAverage = yield axios.get(
+      '/api/activities/community/yearlyDistanceAverage'
     );
 
     yield put({
-      type: 'SET_USER_YEARLY_DISTANCE_AVERAGE',
-      payload: userYearlyDistanceAverage.data,
+      type: 'SET_community_YEARLY_DISTANCE_AVERAGE',
+      payload: communityYearlyDistanceAverage.data,
     });
   } catch (error) {
     swal(
@@ -309,31 +336,33 @@ function* fetchUserYearlyDistanceAverage(action) {
       'error'
     );
     console.log(
-      'ERROR in GET /api/activities/user/yearlyDistanceAverage',
+      'ERROR in GET /api/activities/community/yearlyDistanceAverage',
       error
     );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/yearlyTimeAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated yearly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserYearlyTimeAverage(action) {
+function* fetchcommunityYearlyTimeAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserYearlyTimeAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userYearlyTimeAverage = yield axios.get(
-      '/api/activities/user/yearlyTimeAverage'
+    const communityYearlyTimeAverage = yield axios.get(
+      '/api/activities/community/yearlyTimeAverage'
     );
 
     yield put({
-      type: 'SET_USER_YEARLY_TIME_AVERAGE',
-      payload: userYearlyTimeAverage.data,
+      type: 'SET_community_YEARLY_TIME_AVERAGE',
+      payload: communityYearlyTimeAverage.data,
     });
   } catch (error) {
     swal(
@@ -341,29 +370,34 @@ function* fetchUserYearlyTimeAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/yearlyTimeAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/yearlyTimeAverage',
+      error
+    );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/yearlySpeedAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated yearly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserYearlySpeedAverage(action) {
+function* fetchcommunityYearlySpeedAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserYearlySpeedAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userYearlySpeedAverage = yield axios.get(
-      '/api/activities/user/yearlySpeedAverage'
+    const communityYearlySpeedAverage = yield axios.get(
+      '/api/activities/community/yearlySpeedAverage'
     );
 
     yield put({
-      type: 'SET_USER_YEARLY_SPEED_AVERAGE',
-      payload: userYearlySpeedAverage.data,
+      type: 'SET_community_YEARLY_SPEED_AVERAGE',
+      payload: communityYearlySpeedAverage.data,
     });
   } catch (error) {
     swal(
@@ -371,29 +405,34 @@ function* fetchUserYearlySpeedAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/yearlySpeedAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/yearlySpeedAverage',
+      error
+    );
   }
 }
 
 /**
- * GET endpoint for /api/activities/user/yearlyPaceAverage
+ * GET endpoint for /api/communityMetrics/weeklyTimeAverage
  *
  * Grabs the calculated yearly average for time from the db
  *
  * @param {object} action
  */
-function* fetchUserYearlyPaceAverage(action) {
+function* fetchcommunityYearlyPaceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log('@@@ activities.saga -> fetchUserYearlyPaceAverage() @@@');
+  console.log(
+    '@@@ community.metrics.saga -> fetchCommunityWeeklyTimeAverage() @@@'
+  );
 
   try {
-    const userYearlyPaceAverage = yield axios.get(
-      '/api/activities/user/yearlyPaceAverage'
+    const communityYearlyPaceAverage = yield axios.get(
+      '/api/activities/community/yearlyPaceAverage'
     );
 
     yield put({
-      type: 'SET_USER_YEARLY_PACE_AVERAGE',
-      payload: userYearlyPaceAverage.data,
+      type: 'SET_community_YEARLY_PACE_AVERAGE',
+      payload: communityYearlyPaceAverage.data,
     });
   } catch (error) {
     swal(
@@ -401,7 +440,10 @@ function* fetchUserYearlyPaceAverage(action) {
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
-    console.log('ERROR in GET /api/activities/user/yearlyPaceAverage', error);
+    console.log(
+      'ERROR in GET /api/activities/community/yearlyPaceAverage',
+      error
+    );
   }
 }
 
@@ -409,6 +451,22 @@ function* activitiesSaga() {
   yield takeLatest(
     'FETCH_COMMUNITY_DAILY_AVERAGES',
     fetchCommunityDailyAverages
+  );
+  yield takeLatest(
+    'FETCH_COMMUNITY_WEEKLY_DISTANCE_AVERAGE',
+    fetchCommunityWeeklyDistanceAverage
+  );
+  yield takeLatest(
+    'FETCH_COMMUNITY_WEEKLY_TIME_AVERAGE',
+    fetchCommunityWeeklyTimeAverage
+  );
+  yield takeLatest(
+    'FETCH_COMMUNITY_WEEKLY_SPEED_AVERAGE',
+    fetchCommunityWeeklySpeedAverage
+  );
+  yield takeLatest(
+    'FETCH_COMMUNITY_WEEKLY_PACE_AVERAGE',
+    fetchCommunityWeeklyPaceAverage
   );
 }
 

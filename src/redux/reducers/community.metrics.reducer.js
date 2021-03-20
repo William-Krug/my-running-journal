@@ -26,9 +26,9 @@ const communityDailyAverages = (
 };
 
 /*
-  Holds user's weekly distance average
+  Holds community's weekly distance average
 */
-const userWeeklyDistanceAverage = (
+const communityWeeklyDistanceAverage = (
   state = [
     {
       averageDistance: 0,
@@ -37,7 +37,7 @@ const userWeeklyDistanceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_WEEKLY_DISTANCE_AVERAGE':
+    case 'SET_COMMUNITY_WEEKLY_DISTANCE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -45,9 +45,9 @@ const userWeeklyDistanceAverage = (
 };
 
 /*
-  Holds user's weekly time average
+  Holds community's weekly time average
 */
-const userWeeklyTimeAverage = (
+const communityWeeklyTimeAverage = (
   state = [
     {
       averageTime: 0,
@@ -56,7 +56,7 @@ const userWeeklyTimeAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_WEEKLY_TIME_AVERAGE':
+    case 'SET_COMMUNITY_WEEKLY_TIME_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -64,9 +64,9 @@ const userWeeklyTimeAverage = (
 };
 
 /*
-  Holds user's weekly speed average
+  Holds community's weekly speed average
 */
-const userWeeklySpeedAverage = (
+const communityWeeklySpeedAverage = (
   state = [
     {
       averageSpeed: 0,
@@ -75,7 +75,7 @@ const userWeeklySpeedAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_WEEKLY_SPEED_AVERAGE':
+    case 'SET_COMMUNITY_WEEKLY_SPEED_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -83,9 +83,9 @@ const userWeeklySpeedAverage = (
 };
 
 /*
-  Holds user's weekly pace average
+  Holds community's weekly pace average
 */
-const userWeeklyPaceAverage = (
+const communityWeeklyPaceAverage = (
   state = [
     {
       averagePace: 0,
@@ -94,7 +94,7 @@ const userWeeklyPaceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_WEEKLY_PACE_AVERAGE':
+    case 'SET_COMMUNITY_WEEKLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -102,9 +102,9 @@ const userWeeklyPaceAverage = (
 };
 
 /*
-  Holds user's monthly distance average
+  Holds community's monthly distance average
 */
-const userMonthlyDistanceAverage = (
+const communityMonthlyDistanceAverage = (
   state = [
     {
       averageDistance: 0,
@@ -113,7 +113,7 @@ const userMonthlyDistanceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_MONTHLY_DISTANCE_AVERAGE':
+    case 'SET_community_MONTHLY_DISTANCE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -121,9 +121,9 @@ const userMonthlyDistanceAverage = (
 };
 
 /*
-  Holds user's monthly time average
+  Holds community's monthly time average
 */
-const userMonthlyTimeAverage = (
+const communityMonthlyTimeAverage = (
   state = [
     {
       averageTime: 0,
@@ -132,7 +132,7 @@ const userMonthlyTimeAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_MONTHLY_TIME_AVERAGE':
+    case 'SET_community_MONTHLY_TIME_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -140,9 +140,9 @@ const userMonthlyTimeAverage = (
 };
 
 /*
-  Holds user's monthly speed average
+  Holds community's monthly speed average
 */
-const userMonthlySpeedAverage = (
+const communityMonthlySpeedAverage = (
   state = [
     {
       averageSpeed: 0,
@@ -151,7 +151,7 @@ const userMonthlySpeedAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_MONTHLY_SPEED_AVERAGE':
+    case 'SET_community_MONTHLY_SPEED_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -159,9 +159,9 @@ const userMonthlySpeedAverage = (
 };
 
 /*
-  Holds user's monthly pace average
+  Holds community's monthly pace average
 */
-const userMonthlyPaceAverage = (
+const communityMonthlyPaceAverage = (
   state = [
     {
       averagePace: 0,
@@ -170,7 +170,7 @@ const userMonthlyPaceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_MONTHLY_PACE_AVERAGE':
+    case 'SET_community_MONTHLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -178,9 +178,9 @@ const userMonthlyPaceAverage = (
 };
 
 /*
-  Holds user's yearly distance average
+  Holds community's yearly distance average
 */
-const userYearlyDistanceAverage = (
+const communityYearlyDistanceAverage = (
   state = [
     {
       averageDistance: 0,
@@ -189,7 +189,7 @@ const userYearlyDistanceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_YEARLY_DISTANCE_AVERAGE':
+    case 'SET_community_YEARLY_DISTANCE_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -197,9 +197,9 @@ const userYearlyDistanceAverage = (
 };
 
 /*
-  Holds user's yearly time average
+  Holds community's yearly time average
 */
-const userYearlyTimeAverage = (
+const communityYearlyTimeAverage = (
   state = [
     {
       averageTime: 0,
@@ -208,7 +208,7 @@ const userYearlyTimeAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_YEARLY_TIME_AVERAGE':
+    case 'SET_community_YEARLY_TIME_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -216,9 +216,9 @@ const userYearlyTimeAverage = (
 };
 
 /*
-  Holds user's yearly speed average
+  Holds community's yearly speed average
 */
-const userYearlySpeedAverage = (
+const communityYearlySpeedAverage = (
   state = [
     {
       averageSpeed: 0,
@@ -227,7 +227,7 @@ const userYearlySpeedAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_YEARLY_SPEED_AVERAGE':
+    case 'SET_community_YEARLY_SPEED_AVERAGE':
       return action.payload;
     default:
       return state;
@@ -235,9 +235,9 @@ const userYearlySpeedAverage = (
 };
 
 /*
-  Holds user's yearly pace average
+  Holds community's yearly pace average
 */
-const userYearlyPaceAverage = (
+const communityYearlyPaceAverage = (
   state = [
     {
       averagePace: 0,
@@ -246,17 +246,19 @@ const userYearlyPaceAverage = (
   action
 ) => {
   switch (action.type) {
-    case 'SET_USER_YEARLY_PACE_AVERAGE':
+    case 'SET_community_YEARLY_PACE_AVERAGE':
       return action.payload;
     default:
       return state;
   }
 };
 
-// make one object that has keys usersRuns, fastestRun,
-// longestRun, mostRecentRun
 // these will be on the redux state at:
 // communityMetrics.communityDailyAverages
 export default combineReducers({
   communityDailyAverages,
+  communityWeeklyDistanceAverage,
+  communityWeeklyTimeAverage,
+  communityWeeklySpeedAverage,
+  communityWeeklyPaceAverage,
 });

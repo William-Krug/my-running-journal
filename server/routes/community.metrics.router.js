@@ -17,9 +17,9 @@ const router = express.Router();
  */
 router.get('/dailyAverages', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '### community.metrics.router -> GET /api/communityMetrics/dailyAverages ###'
-  );
+  // console.log(
+  //   '### community.metrics.router -> GET /api/communityMetrics/dailyAverages ###'
+  // );
 
   // SQL query
   const sqlQuery = `
@@ -41,49 +41,47 @@ router.get('/dailyAverages', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
-      console.log('ERROR in POST /api/communityMetrics/dailyAverages:', error);
+      console.log('ERROR in GET /api/communityMetrics/dailyAverages:', error);
       res.sendStatus(500);
     });
 });
 
 /**
- * GET route for /api/activities/user/weeklyDistanceAverage
+ * GET route for /api/communityMetrics/weeklyDistanceAverage
  *
- * Returns the user's calculated weekly distance from the
+ * Returns the community's calculated weekly distance from the
  * "activities" table
  */
-router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
+router.get('/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/weeklyDistanceAverage'
-  //   ();
+  // console.log(
+  //   '### community.metrics.router -> GET /api/communityMetrics/weeklyDistanceAverage ###'
+  // );
 
   // SQL query
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
-	  (SELECT SUM(DISTANCE) as "averageDistance"
-    FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
+    (SELECT SUM(DISTANCE) as "averageDistance"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 
   // Ping DB
   pool
-    .query(sqlQuery, [req.user.id])
+    .query(sqlQuery)
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      console.log('SUCCESS in GET /api/activities/user/weeklyDistanceAverage');
+      console.log('SUCCESS in GET /api/communityMetrics/weeklyDistanceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
       console.log(
-        'ERROR in POST /api/activities/user/weeklyDistanceAverage:',
+        'ERROR in GET /api/communityMetrics/weeklyDistanceAverage:',
         error
       );
       res.sendStatus(500);
@@ -91,43 +89,41 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/weeklyTimeAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
- * Returns the user's calculated weekly time from the
+ * Returns the community's calculated weekly time from the
  * "activities" table
  */
-router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
+router.get('/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/weeklyTimeAverage'
-  //   ();
+  // console.log(
+  //   '### community.metrics.router -> GET /api/communityMetrics/weeklyTimeAverage ###'
+  // );
 
   // SQL query
   const sqlQuery = `
   SELECT AVG("averageTime")
   FROM
-	  (SELECT SUM(TIME) as "averageTime"
-    FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
+    (SELECT SUM(TIME) as "averageTime"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 
   // Ping DB
   pool
-    .query(sqlQuery, [req.user.id])
+    .query(sqlQuery)
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      console.log('SUCCESS in GET /api/activities/user/weeklyTimeAverage');
+      console.log('SUCCESS in GET /api/communityMetrics/weeklyTimeAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
       console.log(
-        'ERROR in POST /api/activities/user/weeklyTimeAverage:',
+        'ERROR in GET /api/communityMetrics/weeklyTimeAverage:',
         error
       );
       res.sendStatus(500);
@@ -135,43 +131,41 @@ router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/weeklySpeedAverage
+ * GET route for /api/communityMetrics/weeklySpeedAverage
  *
- * Returns the user's calculated weekly speed from the
+ * Returns the community's calculated weekly speed from the
  * "activities" table
  */
-router.get('/user/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
+router.get('/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/weeklySpeedAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
   SELECT AVG("averageSpeed")
   FROM
-	  (SELECT AVG(SPEED) as "averageSpeed"
-    FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".speed
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".speed) as "weeklyDistance"
+    (SELECT AVG(SPEED) as "averageSpeed"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".speed
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".speed) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 
   // Ping DB
   pool
-    .query(sqlQuery, [req.user.id])
+    .query(sqlQuery)
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      console.log('SUCCESS in GET /api/activities/user/weeklySpeedAverage');
+      console.log('SUCCESS in GET /api/communityMetrics/weeklySpeedAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
       console.log(
-        'ERROR in POST /api/activities/user/weeklySpeedAverage:',
+        'ERROR in GET /api/communityMetrics/weeklySpeedAverage:',
         error
       );
       res.sendStatus(500);
@@ -179,17 +173,16 @@ router.get('/user/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/weeklyPaceAverage
+ * GET route for /api/communityMetrics/weeklyPaceAverage
  *
- * Returns the user's calculated weekly pace from the
+ * Returns the community's calculated weekly pace from the
  * "activities" table
  */
-router.get('/user/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
+router.get('/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/weeklyPaceAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklyPaceAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -199,23 +192,22 @@ router.get('/user/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
   FROM
     (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".pace
     FROM "activities"
-    WHERE "activities".user_id = $1
     GROUP BY "activities".date, "activities".user_id, "activities".pace) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 
   // Ping DB
   pool
-    .query(sqlQuery, [req.user.id])
+    .query(sqlQuery)
     .then((dbResponse) => {
       // Breadcrumbs for testing and debugging
-      console.log('SUCCESS in GET /api/activities/user/weeklyPaceAverage');
+      console.log('SUCCESS in GET /api/communityMetrics/weeklyPaceAverage');
       res.send(dbResponse.rows);
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
       console.log(
-        'ERROR in POST /api/activities/user/weeklyPaceAverage:',
+        'ERROR in POST /api/communityMetrics/weeklyPaceAverage:',
         error
       );
       res.sendStatus(500);
@@ -223,7 +215,7 @@ router.get('/user/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/monthlyDistanceAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated monthly distance from the
  * "activities" table
@@ -233,10 +225,9 @@ router.get(
   rejectUnauthenticated,
   (req, res) => {
     // Breadcrumbs for testing and debugging
-    // console
-    //   .log
-    //   '### activities.router -> POST /api/activities/user/monthlyDistanceAverage'
-    //   ();
+    console.log(
+      '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+    );
 
     // SQL query
     const sqlQuery = `
@@ -273,17 +264,16 @@ router.get(
 );
 
 /**
- * GET route for /api/activities/user/monthlyTimeAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated monthly time from the
  * "activities" table
  */
 router.get('/user/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/monthlyTimeAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -317,17 +307,16 @@ router.get('/user/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/monthlySpeedAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated monthly speed from the
  * "activities" table
  */
 router.get('/user/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/monthlySpeedAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -361,17 +350,16 @@ router.get('/user/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/monthlyPaceAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated monthly pace from the
  * "activities" table
  */
 router.get('/user/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/monthlyPaceAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -405,17 +393,16 @@ router.get('/user/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/yearlyDistanceAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated yearly distance from the
  * "activities" table
  */
 router.get('/user/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/yearlyDistanceAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -449,17 +436,16 @@ router.get('/user/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/yearlyTimeAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated yearly time from the
  * "activities" table
  */
 router.get('/user/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/yearlyTimeAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -493,17 +479,16 @@ router.get('/user/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/yearlySpeedAverage
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  *
  * Returns the user's calculated yearly speed from the
  * "activities" table
  */
 router.get('/user/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/yearlySpeedAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -537,17 +522,15 @@ router.get('/user/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * GET route for /api/activities/user/yearlyPaceAverage
- *
+ * GET route for /api/communityMetrics/weeklyTimeAverage
  * Returns the user's calculated yearly pace from the
  * "activities" table
  */
 router.get('/user/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
-  // console
-  //   .log
-  //   '### activities.router -> POST /api/activities/user/yearlyPaceAverage'
-  //   ();
+  console.log(
+    '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
+  );
 
   // SQL query
   const sqlQuery = `
@@ -576,62 +559,6 @@ router.get('/user/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
         'ERROR in POST /api/activities/user/yearlyPaceAverage:',
         error
       );
-      res.sendStatus(500);
-    });
-});
-
-/**
- * POST route for /api/activities
- *
- * Adds new run to the "activities" table
- *
- * req.body looks like:
- * {
- *  date: 2021-03-16  -- date
- *  route: Treadmill  -- string
- *  distance: 3.35  -- number (float)
- *  time: 1800  -- number (total time in seconds)
- *  speed: 6.70  -- number (float)
- *  pace: 8.96  -- number
- *  notes: Dreadmill  --string
- * }
- */
-router.post('/', rejectUnauthenticated, (req, res) => {
-  // Breadcrumbs for testing and debugging
-  // console.log('### activities.router -> POST /api/activities');
-  // console.log('req.body', req.body);
-
-  // Data encapsulation
-  const queryArguments = [
-    req.user.id,
-    req.body.date,
-    req.body.route,
-    req.body.distance,
-    req.body.time,
-    req.body.speed,
-    req.body.pace,
-    req.body.notes,
-  ];
-
-  // SQL query
-  const sqlQuery = `
-  INSERT INTO "activities"
-    ("user_id", "date", "route", "distance", "time", "speed", "pace", "notes")
-  VALUES
-    ($1, $2, $3, $4, $5, $6, $7, $8)
-  `;
-
-  // Ping DB
-  pool
-    .query(sqlQuery, queryArguments)
-    .then((dbResponse) => {
-      // Breadcrumbs for testing and debugging
-      console.log('SUCCESS in POST /api/activities');
-      res.sendStatus(201);
-    })
-    .catch((error) => {
-      // Breadcrumbs for testing and debugging
-      console.log('ERROR in POST /api/activities:', error);
       res.sendStatus(500);
     });
 });
