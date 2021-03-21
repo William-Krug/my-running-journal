@@ -192,12 +192,12 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
-	  (SELECT SUM(DISTANCE) as "averageDistance"
+    (SELECT SUM(DISTANCE) as "averageDistance"
     FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
+    FROM "activities"
+    WHERE "activities".user_id = $1
+  GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 

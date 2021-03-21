@@ -316,9 +316,9 @@ function* fetchCommunityMonthlyPaceAverage(action) {
  */
 function* fetchCommunityYearlyDistanceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '@@@ community.metrics.saga -> fetchCommunityYearlyDistanceAverage() @@@'
-  );
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityYearlyDistanceAverage() @@@'
+  // );
 
   try {
     const communityYearlyDistanceAverage = yield axios.get(
@@ -351,9 +351,9 @@ function* fetchCommunityYearlyDistanceAverage(action) {
  */
 function* fetchCommunityYearlyTimeAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '@@@ community.metrics.saga -> fetchCommunityYearlyTimeAverage() @@@'
-  );
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityYearlyTimeAverage() @@@'
+  // );
 
   try {
     const communityYearlyTimeAverage = yield axios.get(
@@ -383,9 +383,9 @@ function* fetchCommunityYearlyTimeAverage(action) {
  */
 function* fetchCommunityYearlySpeedAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '@@@ community.metrics.saga -> fetchCommunityYearlySpeedAverage() @@@'
-  );
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityYearlySpeedAverage() @@@'
+  // );
 
   try {
     const communityYearlySpeedAverage = yield axios.get(
@@ -418,9 +418,9 @@ function* fetchCommunityYearlySpeedAverage(action) {
  */
 function* fetchCommunityYearlyPaceAverage(action) {
   // Breadcrumbs for testing and debugging
-  console.log(
-    '@@@ community.metrics.saga -> fetchCommunityYearlyPaceAverage() @@@'
-  );
+  // console.log(
+  //   '@@@ community.metrics.saga -> fetchCommunityYearlyPaceAverage() @@@'
+  // );
 
   try {
     const communityYearlyPaceAverage = yield axios.get(

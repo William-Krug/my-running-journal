@@ -3,6 +3,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RunMetrics from '../RunMetrics/RunMetrics';
 
+/* Import Components */
+import PieChart from '../../charts/PicChart';
+
 /**
  * Component renders the Admin view that provides Amin and Employee
  * level authLevel users with:
@@ -23,6 +26,7 @@ function AdminPage({ verbose }) {
 
   // GET all of the MRJ community information on page load
   useEffect(() => {
+    getCommunityDashboardBreakdowns();
     getCommunityDailyAverages();
     getCommunityWeeklyAverages();
     getCommunityMonthlyAverages();
@@ -30,6 +34,15 @@ function AdminPage({ verbose }) {
   }, []);
 
   // Dynamic variables kept in the Redux store
+  const genderBreakdown = useSelector(
+    (store) => store.communityDashboard.genderBreakdown
+  );
+  const stateBreakdown = useSelector(
+    (store) => store.communityDashboard.stateBreakdown
+  );
+  const countryBreakdown = useSelector(
+    (store) => store.communityDashboard.countryBreakdown
+  );
   const dailyAverages = useSelector(
     (store) => store.communityMetrics.communityDailyAverages
   );
@@ -71,6 +84,13 @@ function AdminPage({ verbose }) {
   );
 
   // Local variables used to pass as props
+  let genderLabels = [];
+  let genderPercentages = [];
+  for (let i = 0; i < genderBreakdown.length; i++) {
+    genderLabels.push(genderBreakdown.gender);
+    genderPercentages.push(genderBreakdown['?column?']);
+  }
+
   const weeklyAverages = [
     {
       weeklyDistanceAverage: weeklyDistanceAverage[0].avg,
@@ -95,6 +115,40 @@ function AdminPage({ verbose }) {
       yearlyPaceAverage: yearlyPaceAverage[0].avg,
     },
   ];
+
+  /*
+    Function GETs the community's breakdown own:
+    - Age (ranges) (%)
+    - Gender (%)
+    - State (%)
+    - Country (%)
+    - Distance (ranges) (%)
+    - Time (ranges) (%)
+    - Speed (ranges) (%)
+    - Pace (ranges) (%)
+  */
+  const getCommunityDashboardBreakdowns = () => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <AdminPage /> -> getCommunityDashboardBreakdowns() ***');
+    }
+
+    // GET Age Breakdown
+    // GET Gender Breakdown
+    dispatch({
+      type: 'FETCH_GENDER_BREAKDOWN',
+    });
+
+    // GET State Breakdown
+    dispatch({
+      type: 'FETCH_STATE_BREAKDOWN',
+    });
+    // GET Country Breakdown
+    // GET Distance Breakdown
+    // GET Time Breakdown
+    // GET Speed Breakdown
+    // GET Pace Breakdown
+  };
 
   /*
     Function GETs the community's daily averages on
@@ -199,11 +253,64 @@ function AdminPage({ verbose }) {
     });
   };
 
+  console.log('##$$## countryBreakdown:', countryBreakdown);
   return (
     <div>
       <h1>Admin Portal</h1>
       <section>
         <h2>Community Demographics</h2>
+
+        {/* Age Breakdown */}
+        {/* <div>
+          <PieChart verbose={verbose} title={'Age Breakdown'} values={}/>
+        </div> */}
+
+        {/* Gender Breakdown */}
+        <div>
+          <PieChart
+            verbose={verbose}
+            title={'Gender Breakdown'}
+            values={genderBreakdown}
+          />
+        </div>
+
+        {/* State Breakdown */}
+        <div>
+          <PieChart
+            verbose={verbose}
+            title={'State Breakdown'}
+            values={stateBreakdown}
+          />
+        </div>
+
+        {/* Country Breakdown */}
+        <div>
+          <PieChart
+            verbose={verbose}
+            title={'Country Breakdown'}
+            values={countryBreakdown}
+          />
+        </div>
+
+        {/* Distance Breakdown */}
+        {/* <div>
+          <PieChart verbose={verbose} title={'Distance Breakdown'} values={} />
+        </div> */}
+
+        {/* Time Breakdown */}
+        {/* <div>
+          <PieChart verbose={verbose} title={'Time Breakdown'} values={}/>
+        </div> */}
+
+        {/* Speed Breakdown */}
+        {/* <div>
+          <PieChart verbose={verbose} title={'Speed Breakdown'} values={} />
+        </div> */}
+
+        {/* Pace Breakdown */}
+        {/* <div>
+          <PieChart verbose={verbose} title={'Pace Breakdown'} values={} />
+        </div> */}
       </section>
       <section>
         <h2>Community Metrics</h2>
