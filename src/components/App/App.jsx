@@ -6,8 +6,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 /* Import Components */
 import Nav from '../Nav/Nav';
@@ -38,6 +38,7 @@ function App() {
 
   return (
     <Router>
+      <CssBaseline />
       <div>
         <Nav />
         <Switch>

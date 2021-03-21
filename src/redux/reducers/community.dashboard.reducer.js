@@ -9,7 +9,8 @@ import { combineReducers } from 'redux';
 const genderBreakdown = (
   state = [
     {
-      female: 0,
+      label: 'female',
+      data: 40.12,
     },
   ],
   action
@@ -28,7 +29,8 @@ const genderBreakdown = (
 const stateBreakdown = (
   state = [
     {
-      alabama: 0,
+      label: 'alabama',
+      data: 12.8,
     },
   ],
   action
@@ -47,7 +49,8 @@ const stateBreakdown = (
 const countryBreakdown = (
   state = [
     {
-      'United States': 100,
+      label: 'United States',
+      data: 100,
     },
   ],
   action

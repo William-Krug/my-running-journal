@@ -253,7 +253,6 @@ function AdminPage({ verbose }) {
     });
   };
 
-  console.log('##$$## countryBreakdown:', countryBreakdown);
   return (
     <div>
       <h1>Admin Portal</h1>

@@ -1,5 +1,5 @@
 /* Import Libraries */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -33,18 +33,9 @@ function UserPage({ verbose }) {
     findLongestRun();
     findFastestRun();
     getDailyAverages();
-    getWeeklyDistanceAverage();
-    getWeeklyTimeAverage();
-    getWeeklySpeedAverage();
-    getWeeklyPaceAverage();
-    getMonthlyDistanceAverage();
-    getMonthlyTimeAverage();
-    getMonthlySpeedAverage();
-    getMonthlyPaceAverage();
-    getYearlyDistanceAverage();
-    getYearlyTimeAverage();
-    getYearlySpeedAverage();
-    getYearlyPaceAverage();
+    getWeeklyAverages();
+    getMonthlyAverages();
+    getYearlyAverages();
   }, []);
 
   // List of all user's runs (objects) from "activities" table
@@ -209,183 +200,95 @@ function UserPage({ verbose }) {
   };
 
   /*
-    Function GETs user's weekly distance average
+    Function GETs user's weekly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getWeeklyDistanceAverage = () => {
+  const getWeeklyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getWeeklyAverages() ***');
     }
 
-    // GET the weekly averages from "activities" table
+    // GET weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly time average
-  */
-  const getWeeklyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyTimeAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly speed average
-  */
-  const getWeeklySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklySpeedAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly pace average
-  */
-  const getWeeklyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyPaceAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_PACE_AVERAGE',
     });
   };
 
   /*
-    Function GETs user's monthly distance average
+    Function GETs user's monthly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getMonthlyDistanceAverage = () => {
+  const getMonthlyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getMonthlyAverages() ***');
     }
 
-    // GET the monthly averages from "activities" table
+    // GET monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly time average
-  */
-  const getMonthlyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyTimeAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly speed average
-  */
-  const getMonthlySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlySpeedAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly pace average
-  */
-  const getMonthlyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyPaceAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_PACE_AVERAGE',
     });
   };
 
   /*
-    Function GETs user's monthly distance average
+    Function GETs user's yearly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getYearlyDistanceAverage = () => {
+  const getYearlyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getYearlyAverages() ***');
     }
 
-    // GET the yearly averages from "activities" table
+    // GET yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly time average
-  */
-  const getYearlyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyTimeAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly speed average
-  */
-  const getYearlySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlySpeedAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly pace average
-  */
-  const getYearlyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyPaceAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_PACE_AVERAGE',
     });
+  };
+
+  const viewRunDetails = (element) => {
+    // Breadcrumbs for testing and debugging
+    if (verbose) {
+      console.log('*** <UserPage /> -> viewRunDetails() ***');
+    }
+    console.log('*** <UserPage /> -> viewRunDetails() ***');
   };
 
   return (

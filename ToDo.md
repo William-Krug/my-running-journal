@@ -122,11 +122,11 @@
 - [ ] Props to pass to chart:
   - [ ] `title={}`
   - [ ] `labels={}`
-  - [ ] `data={'}`
+  - [ ] `values={'}`
 - [ ] Age Breakdown
-- [ ] Gender Breakdown
-- [ ] State Breakdown
-- [ ] Country Breakdown
+- [x] Gender Breakdown
+- [x] State Breakdown
+- [x] Country Breakdown
 - [ ] Distance Breakdown
 - [ ] Time Breakdown
 - [ ] Speed Breakdown

@@ -1,8 +1,9 @@
 /* Import Libraries */
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
+import Popup from '../components/Popup/Popup';
 
 /**
  * Component renders a graphical history of the user's
@@ -23,6 +24,9 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
 
   const dispatch = useDispatch();
 
+  // Local state variables to handle page changes
+  const [openPopup, setOpenPopup] = useState(false);
+
   // Local variables used for graphing
   let xValues = [];
   let yValues = [];
@@ -41,23 +45,31 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
     Used to get the specific run's details for viewing
     and editing
   */
-  const getElementAtEvent = (element) => {
+  const viewRunDetails = (element) => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <LineChart /> -> getElementAtEvent() ***');
+      console.log('*** <LineChart /> -> viewRunDetails() ***');
       console.log('element:', element);
+      console.log('element[0]._index.id:', element[0]._index.id);
     }
+
+    console.log('*** <LineChart /> -> viewRunDetails() ***');
+    console.log('element:', element);
+    console.log('element[0]:', element[0]);
+    console.log('element[0]._index:', element[0]._index);
+    console.log('element[0]._index.id:', element[0]._index.id);
 
     // Find the "activites" table id
     const runId = allUsersRuns[element[0]._index].id;
 
     // GET run details for clicked event
-    dispatch({
-      type: 'GET_SINGLE_RUN',
-      payload: {
-        id: runId,
-      },
-    });
+    // dispatch({
+    //   type: 'GET_SINGLE_RUN',
+    //   payload: {
+    //     id: runId,
+    //   },
+    // });
+    setOpenPopup(true);
   };
 
   /*
@@ -122,8 +134,10 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
       <Line
         data={data}
         options={options}
-        getElementAtEvent={getElementAtEvent}
+        // getElementAtEvent={getElementAtEvent}
+        getElementAtEvent={viewRunDetails}
       />
+      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}></Popup>
     </section>
   );
 }
