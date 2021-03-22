@@ -295,13 +295,18 @@ function UserPage({ verbose }) {
       {/* Dashboard */}
       <section>
         <Paper variant="elevation">
-          <Grid container xs={12}>
+          <Grid
+            container
+            justify="space-evenly"
+            alignItems="flex-start"
+            spacing={3}
+          >
             <Grid item xs={12}>
               <h2>Dashboard</h2>
             </Grid>
 
             {/* Most Recent Run */}
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Card variant="outlined">
                 <RunDetails
                   verbose={verbose}
@@ -312,18 +317,18 @@ function UserPage({ verbose }) {
             </Grid>
 
             {/* Longest Run */}
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Card variant="outlined">
                 <RunDetails
                   verbose={verbose}
-                  title={'Most Recent Run'}
-                  runDetails={mostRecentRun}
+                  title={'Longest Run'}
+                  runDetails={longestRun}
                 />
               </Card>
             </Grid>
 
             {/* Fastest Run */}
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Card variant="outlined">
                 <RunDetails
                   verbose={verbose}

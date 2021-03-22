@@ -82,9 +82,9 @@ function LoginForm({ verbose }) {
         </label>
       </div>
       <div>
-        <Button variant="contained" color="primary">
+        {/* <Button variant="contained" color="primary">
           Log In
-        </Button>
+        </Button> */}
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>

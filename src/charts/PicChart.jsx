@@ -25,7 +25,19 @@ function PieChart({ verbose, title, values }) {
     datasets: [
       {
         data: dataIn,
-        backgroundColor: ['#ed2939', '#002395', '#fdc651', '#00a86b'],
+        backgroundColor: [
+          '#ed1123',
+          '#00188f',
+          '#fff100',
+          '#009e49',
+          '#68217a',
+          '#ff8c00',
+          '#bad80a',
+          '#00bcf2',
+          '#ec008c',
+          '#00b294',
+        ],
+        borderWidth: 0.75,
       },
     ],
   };

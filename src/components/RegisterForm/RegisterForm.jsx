@@ -156,7 +156,7 @@ function RegisterForm({ verbose }) {
 
   return (
     <form className="formPanel" onSubmit={registerOrUpdateUser}>
-      <h2>Register User</h2>
+      {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>}
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
