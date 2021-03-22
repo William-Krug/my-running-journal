@@ -316,13 +316,13 @@ function RegisterForm({ verbose }) {
             Register
           </Button>
         )}
-        {/* {user.id !== 0 ? (
+        {user.id !== 0 ? (
           <button className="btn" type="submit" name="submit">
             Update
           </button>
         ) : (
           <input className="btn" type="submit" name="submit" value="Register" />
-        )} */}
+        )}
       </div>
     </form>
   );

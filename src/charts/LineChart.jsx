@@ -8,6 +8,7 @@ import { Line } from 'react-chartjs-2';
 import Popup from '../components/Popup/Popup';
 import RunDetails from '../components/RunDetails/RunDetails';
 
+//
 let singleRun = {};
 
 /**
@@ -70,7 +71,7 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   };
 
   /*
-    Function determines graph data necessary to render
+    Determines graph data necessary to render
     points in the chart
   */
   const data = {
@@ -88,7 +89,7 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   };
 
   /*
-    Function determines chart aesthetics
+    Determines chart aesthetics
   */
   const options = {
     tooltips: { enabled: false },
@@ -128,22 +129,13 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
       </div>
 
       {/* Render Line Chart */}
-      <Line
-        data={data}
-        options={options}
-        // getElementAtEvent={getElementAtEvent}
-        getElementAtEvent={viewRunDetails}
-      />
+      <Line data={data} options={options} getElementAtEvent={viewRunDetails} />
       <Popup
         title="Run Details"
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <RunDetails
-          verbose={verbose}
-          title={'Banana Yeah'}
-          runDetails={singleRun}
-        />
+        <RunDetails verbose={verbose} title={''} runDetails={singleRun} />
       </Popup>
     </section>
   );

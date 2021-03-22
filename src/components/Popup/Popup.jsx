@@ -1,6 +1,7 @@
 /* Import Libraries */
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import { Button, Dialog, DialogTitle, DialogContent } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 
 function Popup(props) {
   // Breadcrumbs for testing and debugging
@@ -8,13 +9,24 @@ function Popup(props) {
     console.log('*** in <Popup /> ***');
   }
 
-  console.log('$$%%$$%% Poppu Open %%$$%%$$');
   const { title, children, openPopup, setOpenPopup, verbose } = props;
 
   return (
     <Dialog open={openPopup} maxWidth="md">
-      <DialogTitle>
-        <div>{title}</div>
+      <DialogTitle style={{ paddingRight: '5px' }}>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flexGrow: 1 }}>{title}</div>
+
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => {
+              setOpenPopup(false);
+            }}
+          >
+            <CloseIcon color="action" />
+          </Button>
+        </div>
       </DialogTitle>
       <DialogContent dividers>{children}</DialogContent>
     </Dialog>
