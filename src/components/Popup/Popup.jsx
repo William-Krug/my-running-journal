@@ -8,16 +8,15 @@ function Popup(props) {
     console.log('*** in <Popup /> ***');
   }
 
+  console.log('$$%%$$%% Poppu Open %%$$%%$$');
   const { title, children, openPopup, setOpenPopup, verbose } = props;
 
   return (
-    <Dialog open={openPopup}>
+    <Dialog open={openPopup} maxWidth="md">
       <DialogTitle>
-        <div>title go here</div>
+        <div>{title}</div>
       </DialogTitle>
-      <DialogContent>
-        <div>content goes here</div>
-      </DialogContent>
+      <DialogContent dividers>{children}</DialogContent>
     </Dialog>
   );
 }

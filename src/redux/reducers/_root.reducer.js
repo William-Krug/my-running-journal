@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import registration from './registration.reducer';
 import activities from './activities.reducer';
+import userRunDetails from './user.run.details.reducer';
 import communityDashboard from './community.dashboard.reducer';
 import communityMetrics from './community.metrics.reducer';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   registration,
   activities,
+  userRunDetails,
   communityDashboard,
   communityMetrics,
 });

@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
+/* Import Material-UI components */
+import Button from '@material-ui/core/Button';
+
 /**
  * Component captures new user information to be stored
  * in the "users" table in DB
@@ -305,12 +308,21 @@ function RegisterForm({ verbose }) {
       </div>
       <div>
         {user.id !== 0 ? (
+          <Button variant="contained" color="primary">
+            Update
+          </Button>
+        ) : (
+          <Button variant="contained" color="primary">
+            Register
+          </Button>
+        )}
+        {/* {user.id !== 0 ? (
           <button className="btn" type="submit" name="submit">
             Update
           </button>
         ) : (
           <input className="btn" type="submit" name="submit" value="Register" />
-        )}
+        )} */}
       </div>
     </form>
   );

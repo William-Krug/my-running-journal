@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
+import { Card, Grid, Paper } from '@material-ui/core';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
@@ -283,14 +284,6 @@ function UserPage({ verbose }) {
     });
   };
 
-  const viewRunDetails = (element) => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> viewRunDetails() ***');
-    }
-    console.log('*** <UserPage /> -> viewRunDetails() ***');
-  };
-
   return (
     <div>
       <h1>{user.username}'s Running Log</h1>
@@ -301,34 +294,75 @@ function UserPage({ verbose }) {
 
       {/* Dashboard */}
       <section>
-        <h2>Dashboard</h2>
+        <Paper variant="elevation">
+          <Grid container xs={12}>
+            <Grid item xs={12}>
+              <h2>Dashboard</h2>
+            </Grid>
+
+            {/* Most Recent Run */}
+            <Grid item xs={4}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Most Recent Run'}
+                  runDetails={mostRecentRun}
+                />
+              </Card>
+            </Grid>
+
+            {/* Longest Run */}
+            <Grid item xs={4}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Most Recent Run'}
+                  runDetails={mostRecentRun}
+                />
+              </Card>
+            </Grid>
+
+            {/* Fastest Run */}
+            <Grid item xs={4}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Fastest Run'}
+                  runDetails={fastestRun}
+                />
+              </Card>
+            </Grid>
+          </Grid>
+        </Paper>
+
+        {/* <h2>Dashboard</h2> */}
 
         {/* Most Recent Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Most Recent Run'}
             runDetails={mostRecentRun}
           />
-        </div>
+        </div> */}
 
         {/* Longest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Longest Run'}
             runDetails={longestRun}
           />
-        </div>
+        </div> */}
 
         {/* Fastest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Fastest Run'}
             runDetails={fastestRun}
           />
-        </div>
+        </div> */}
       </section>
 
       {/* Metrics */}

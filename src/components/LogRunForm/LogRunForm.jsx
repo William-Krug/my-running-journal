@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+/* Import Material-UI components */
+import Button from '@material-ui/core/Button';
+
 /**
  * Component captures user's run information to be stored
  * in the "activities" table in DB
@@ -191,7 +194,10 @@ function LogRunForm({ verbose }) {
           </label>
         </div>
         <div>
-          <button>Add Run</button>
+          <Button variant="contained" color="primary">
+            Add Run
+          </Button>
+          {/* <button>Add Run</button> */}
         </div>
       </form>
     </div>

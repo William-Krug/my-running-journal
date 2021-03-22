@@ -3,7 +3,8 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import activitiesSaga from './activities.saga';
-import communityDashboard from './community.dashboard.saga';
+import userRunDetailsSaga from './user.run.details.saga';
+import communityDashboardSaga from './community.dashboard.saga';
 import communityMetricsSaga from './community.metrics.saga';
 
 // rootSaga is the primary saga.
@@ -19,7 +20,8 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     activitiesSaga(),
-    communityDashboard(),
+    userRunDetailsSaga(),
+    communityDashboardSaga(),
     communityMetricsSaga(),
   ]);
 }

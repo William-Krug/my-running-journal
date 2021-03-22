@@ -1,9 +1,14 @@
 /* Import Libraries */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
+
+/* Import Components */
 import Popup from '../components/Popup/Popup';
+import RunDetails from '../components/RunDetails/RunDetails';
+
+let singleRun = {};
 
 /**
  * Component renders a graphical history of the user's
@@ -23,6 +28,11 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   }
 
   const dispatch = useDispatch();
+
+  // Grab dynamic variables from the Redux store
+  const singleRunDetails = useSelector(
+    (store) => store.userRunDetails.singleRunDetails
+  );
 
   // Local state variables to handle page changes
   const [openPopup, setOpenPopup] = useState(false);
@@ -53,22 +63,9 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
       console.log('element[0]._index.id:', element[0]._index.id);
     }
 
-    console.log('*** <LineChart /> -> viewRunDetails() ***');
-    console.log('element:', element);
-    console.log('element[0]:', element[0]);
-    console.log('element[0]._index:', element[0]._index);
-    console.log('element[0]._index.id:', element[0]._index.id);
+    // Assign the clicked on run for passing as props
+    singleRun = allUsersRuns[element[0]._index];
 
-    // Find the "activites" table id
-    const runId = allUsersRuns[element[0]._index].id;
-
-    // GET run details for clicked event
-    // dispatch({
-    //   type: 'GET_SINGLE_RUN',
-    //   payload: {
-    //     id: runId,
-    //   },
-    // });
     setOpenPopup(true);
   };
 
@@ -137,7 +134,17 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
         // getElementAtEvent={getElementAtEvent}
         getElementAtEvent={viewRunDetails}
       />
-      <Popup openPopup={openPopup} setOpenPopup={setOpenPopup}></Popup>
+      <Popup
+        title="Run Details"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
+        <RunDetails
+          verbose={verbose}
+          title={'Banana Yeah'}
+          runDetails={singleRun}
+        />
+      </Popup>
     </section>
   );
 }

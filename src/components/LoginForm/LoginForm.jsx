@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
+/* Import Material-UI components */
+import Button from '@material-ui/core/Button';
+
 /**
  *
  * @param {boolean} verbose global variable used for testing and debugging
@@ -79,6 +82,9 @@ function LoginForm({ verbose }) {
         </label>
       </div>
       <div>
+        <Button variant="contained" color="primary">
+          Log In
+        </Button>
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>

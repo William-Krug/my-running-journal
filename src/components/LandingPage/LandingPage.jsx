@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-// ToDo - edit/update/remove for material-ui
+/* Import Material-UI components */
+import Button from '@material-ui/core/Button';
 import './LandingPage.css';
 
 /* Import Components */
@@ -69,8 +70,18 @@ function LandingPage({ verbose }) {
 
       {/* Buttons to login / register */}
       <div>
-        <button onClick={loginFormToggle}>Login</button>
-        <button onClick={() => history.push('/registration')}>Register</button>
+        <Button variant="contained" color="primary" onClick={loginFormToggle}>
+          Login
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => history.push('/registration')}
+        >
+          Register
+        </Button>
+        {/* <button onClick={loginFormToggle}>Login</button>
+        <button onClick={() => history.push('/registration')}>Register</button> */}
       </div>
     </section>
   );
