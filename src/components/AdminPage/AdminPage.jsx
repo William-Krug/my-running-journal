@@ -270,7 +270,7 @@ function AdminPage({ verbose }) {
     <div>
       <h1>Admin Portal</h1>
       <section>
-        <Paper>
+        <Paper variant="elevation">
           <Grid
             container
             justify="space-evenly"
@@ -289,7 +289,7 @@ function AdminPage({ verbose }) {
             </Grid> */}
 
             {/* Gender Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -300,7 +300,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* State Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -311,7 +311,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* Country Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -322,7 +322,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* Distance Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -333,7 +333,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* Time Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -344,7 +344,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* Speed Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}
@@ -355,7 +355,7 @@ function AdminPage({ verbose }) {
             </Grid>
 
             {/* Pace Breakdown */}
-            <Grid item xs={4}>
+            <Grid item xs={5}>
               <Card variant="outlined">
                 <PieChart
                   verbose={verbose}

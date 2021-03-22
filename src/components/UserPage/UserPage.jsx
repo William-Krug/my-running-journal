@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Grid, Paper } from '@material-ui/core';
+import { Button, Card, Grid, Paper } from '@material-ui/core';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
@@ -301,8 +301,19 @@ function UserPage({ verbose }) {
             alignItems="flex-start"
             spacing={3}
           >
-            <Grid item xs={12}>
-              <h2>Dashboard</h2>
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
+                <h2>Dashboard</h2>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => console.log('new button was clicked')}
+                >
+                  Add Run
+                </Button>
+              </Grid>
             </Grid>
 
             {/* Most Recent Run */}
@@ -372,24 +383,30 @@ function UserPage({ verbose }) {
 
       {/* Metrics */}
       <section>
-        <h2>Metrics</h2>
-        <div>
-          <RunMetrics
-            verbose={verbose}
-            dailyAverages={dailyAverages}
-            weeklyAverages={weeklyAverages}
-            monthlyAverages={monthlyAverages}
-            yearlyAverages={yearlyAverages}
-          />
-        </div>
-        <div>
-          <LineChart
-            verbose={verbose}
-            allUsersRuns={allUsersRuns}
-            label={'Distance'}
-            title={'Run History'}
-          />
-        </div>
+        <Paper variant="elevation">
+          <Grid container justify="center" alignItems="center">
+            <Grid item xs={12}>
+              <h2>Metrics</h2>
+            </Grid>
+            <Grid item xs={12}>
+              <RunMetrics
+                verbose={verbose}
+                dailyAverages={dailyAverages}
+                weeklyAverages={weeklyAverages}
+                monthlyAverages={monthlyAverages}
+                yearlyAverages={yearlyAverages}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <LineChart
+                verbose={verbose}
+                allUsersRuns={allUsersRuns}
+                label={'Distance'}
+                title={'Run History'}
+              />
+            </Grid>
+          </Grid>
+        </Paper>
       </section>
     </div>
   );
