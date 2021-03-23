@@ -259,7 +259,7 @@ function LogRunForm({ verbose }) {
           </label> */}
         </div>
         <div>
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Add Run
           </Button>
           {/* <button>Add Run</button> */}

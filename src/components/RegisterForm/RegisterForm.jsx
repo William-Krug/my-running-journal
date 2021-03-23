@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import {
+  Box,
   Button,
   FormControl,
   InputLabel,
@@ -55,6 +56,8 @@ function RegisterForm({ verbose }) {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
+  const showFields = user.id !== 0 ? true : false;
 
   /*
     Function gets the list of all available gender options
@@ -161,29 +164,32 @@ function RegisterForm({ verbose }) {
   }; // end registerUser
 
   return (
+    // {showFields &&
     <form className="formPanel" onSubmit={registerOrUpdateUser}>
-      {user.id !== 0 ? (
-        <Typography variant="h4" component="h2" gutterBottom>
-          Update User
-        </Typography>
-      ) : (
-        <Typography variant="h4" component="h2" gutterBottom>
-          Register User
-        </Typography>
-      )}
-      {/* {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>} */}
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
+      <Box mb={3}>
+        {user.id !== 0 ? (
+          <Typography variant="h4" component="h2" gutterBottom>
+            Update User
+          </Typography>
+        ) : (
+          <Typography variant="h4" component="h2" gutterBottom>
+            Register User
+          </Typography>
+        )}
+        {/* {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>} */}
+        {errors.registrationMessage && (
+          <h3 className="alert" role="alert">
+            {errors.registrationMessage}
+          </h3>
+        )}
+      </Box>
 
       {/* First Name */}
-      <div>
+      <Box mb={3}>
         <TextField
           label="First Name:"
           variant="filled"
-          value={firstName}
+          defaultValue={firstName}
           placeholder="Roxy"
           fullWidth
           required
@@ -200,20 +206,22 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setFirstName(event.target.value)}
           />
         </label> */}
-      </div>
+      </Box>
 
       {/* Last Name */}
-      <TextField
-        label="Last Name:"
-        variant="outlined"
-        value={lastName}
-        placeholder="Rahl"
-        fullWidth
-        required
-        onChange={(event) => setLastName(event.target.value)}
-      />
-      <div>
-        {/* <label htmlFor="lastName">
+      <Box mb={3}>
+        <TextField
+          label="Last Name:"
+          variant="outlined"
+          defaultValue={lastName}
+          placeholder="Rahl"
+          fullWidth
+          required
+          onChange={(event) => setLastName(event.target.value)}
+        />
+      </Box>
+      {/* <div> */}
+      {/* <label htmlFor="lastName">
           Last Name:
           <input
             type="text"
@@ -224,10 +232,10 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setLastName(event.target.value)}
           />
         </label> */}
-      </div>
+      {/* </div> */}
 
       {/* Birth date */}
-      <div>
+      <Box mb={3}>
         <label htmlFor="birthdate">
           Birth Date:
           <input
@@ -238,15 +246,15 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setBirthdate(event.target.value)}
           />
         </label>
-      </div>
+      </Box>
 
       {/* Gender */}
-      <div>
+      <Box mb={3}>
         <FormControl variant="filled" fullWidth>
           <InputLabel id="gender-selection">Gender:</InputLabel>
           <Select
             labelId="gender-selection"
-            value={gender}
+            defaultValue={gender}
             required
             onChange={(event) => setGender(event.target.value)}
           >
@@ -279,14 +287,14 @@ function RegisterForm({ verbose }) {
             })}
           </select>
         </label> */}
-      </div>
+      </Box>
 
       {/* City */}
-      <div>
+      <Box mb={3}>
         <TextField
           label="City:"
           variant="standard"
-          value={city}
+          defaultValue={city}
           placeholder="Chicago"
           fullWidth
           required
@@ -303,15 +311,15 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setCity(event.target.value)}
           />
         </label> */}
-      </div>
+      </Box>
 
       {/* State */}
-      <div>
+      <Box mb={3}>
         <FormControl variant="filled" fullWidth>
           <InputLabel id="state-selection">State:</InputLabel>
           <Select
             labelId="state-selection"
-            value={state}
+            defaultValue={state}
             required
             onChange={(event) => setState(event.target.value)}
           >
@@ -344,14 +352,14 @@ function RegisterForm({ verbose }) {
             })}
           </select>
         </label> */}
-      </div>
+      </Box>
 
       {/* Country */}
-      <div>
+      <Box mb={3}>
         <TextField
           label="Country:"
           variant="standard"
-          value={country}
+          defaultValue={country}
           placeholder="United States"
           fullWidth
           required
@@ -368,14 +376,14 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setCountry(event.target.value)}
           />
         </label> */}
-      </div>
+      </Box>
 
       {/* Username */}
-      <div>
+      <Box mb={3}>
         <TextField
           label="Username:"
           variant="standard"
-          value={username}
+          defaultValue={username}
           fullWidth
           required
           onChange={(event) => setUsername(event.target.value)}
@@ -390,14 +398,14 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label> */}
-      </div>
+      </Box>
 
       {/* Password */}
-      <div>
+      <Box mb={3}>
         <TextField
           label="Password:"
           variant="filled"
-          value={password}
+          defaultValue={password}
           fullWidth
           required
           onChange={(event) => setPassword(event.target.value)}
@@ -412,14 +420,14 @@ function RegisterForm({ verbose }) {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label> */}
-      </div>
-      <div>
+      </Box>
+      <Box mb={3}>
         {user.id !== 0 ? (
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Update
           </Button>
         ) : (
-          <Button variant="contained" color="primary">
+          <Button type="submit" variant="contained" color="primary">
             Register
           </Button>
         )}
@@ -430,8 +438,9 @@ function RegisterForm({ verbose }) {
         ) : (
           <input className="btn" type="submit" name="submit" value="Register" />
         )}
-      </div>
+      </Box>
     </form>
+    // }
   );
 }
 
