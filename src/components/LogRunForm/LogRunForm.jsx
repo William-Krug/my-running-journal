@@ -2,20 +2,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, Button, Grid, InputLabel, TextField } from '@material-ui/core';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
 
 /**
  * Component captures user's run information to be stored
  * in the "activities" table in DB
  *
  * @param {boolean} verbose global variable used for testing and debugging
+ * @param {function} setOpenPopup function that sets the state of `openPopup` to close popup after logging new run
  * @returns {jsx} renders app's log run form
  */
-function LogRunForm({ verbose }) {
+function LogRunForm({ verbose, setOpenPopup }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <LogRunForm /> ***');
@@ -96,6 +92,9 @@ function LogRunForm({ verbose }) {
     setNewMinute('');
     setNewSecond('');
     setNewNotes('');
+
+    // Close Popup component
+    setOpenPopup(false);
   }
 
   return (
@@ -103,36 +102,24 @@ function LogRunForm({ verbose }) {
       <form onSubmit={logRun}>
         {/* Run Date */}
         <Box mb={3}>
-          {/* <MuiPickersUtilsProvider utils={MomentUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Run Date:"
-              value={newDate}
-              onChange={(event) => setNewDate(event.target.value)}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-          </MuiPickersUtilsProvider> */}
-          <label htmlFor="newDate">
-            Run Date:
-            <input
-              type="date"
-              name="newDate"
-              value={newDate}
-              required
-              onChange={(event) => setNewDate(event.target.value)}
-            />
-          </label>
+          <Grid container>
+            <Grid item xs={6}>
+              <InputLabel id="date">Date</InputLabel>
+              <TextField
+                type="date"
+                labelId="date"
+                value={newDate}
+                required
+                fullWidth
+                onChange={(event) => setNewDate(event.target.value)}
+              />
+            </Grid>
+          </Grid>
         </Box>
 
         {/* Route Name */}
         <Box mb={3}>
-          <Grid constiner>
+          <Grid container>
             <Grid item xs={6}>
               <InputLabel id="routeName">Route Name</InputLabel>
               <TextField

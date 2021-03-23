@@ -291,7 +291,7 @@ function UserPage({ verbose }) {
     <div>
       {/* Page Title */}
       <Grid container justify="center">
-        <Grid item xs={4}>
+        <Grid item>
           <Typography variant="h3" component="h1" gutterBottom>
             {user.username}'s Running Log
           </Typography>
@@ -304,11 +304,11 @@ function UserPage({ verbose }) {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <LogRunForm verbose={verbose} />
+        <LogRunForm verbose={verbose} setOpenPopup={setOpenPopup} />
       </Popup>
 
       {/* Dashboard */}
-      <Box mb={10}>
+      <Box mb={3}>
         <Grid container justify="space-evenly" alignItems="flex-start">
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
@@ -374,7 +374,7 @@ function UserPage({ verbose }) {
       </Box>
 
       {/* Metrics */}
-      <Box mb={5}>
+      <Box mb={3}>
         <Grid container>
           <Grid item xs={2}>
             <Box p={10}>
@@ -384,7 +384,8 @@ function UserPage({ verbose }) {
             </Box>
           </Grid>
         </Grid>
-        {/* <h2>Metrics</h2> */}
+
+        {/* Table */}
         <Grid container justify="center" alignItems="center" xs={12}>
           <Grid item xs={5}>
             <Card variant="elevation" elevation="5">
@@ -401,7 +402,7 @@ function UserPage({ verbose }) {
           </Grid>
         </Grid>
       </Box>
-      <Box mb={10}>
+      <Box mb={3}>
         <Grid container justify="center" alignItems="center" xs={12}>
           <Grid item xs={9}>
             <Card variant="elevation" elevation="5">

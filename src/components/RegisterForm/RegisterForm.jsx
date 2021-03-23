@@ -203,7 +203,6 @@ function RegisterForm({ verbose }) {
         <TextField
           labelId="firstName"
           defaultValue={firstName}
-          // placeholder="Roxy"
           fullWidth
           required
           onChange={(event) => setFirstName(event.target.value)}
@@ -216,7 +215,6 @@ function RegisterForm({ verbose }) {
         <TextField
           labelId="lastName"
           defaultValue={lastName}
-          // placeholder="Rahl"
           fullWidth
           required
           onChange={(event) => setLastName(event.target.value)}
@@ -225,16 +223,15 @@ function RegisterForm({ verbose }) {
 
       {/* Birth date */}
       <Box mb={3}>
-        <label htmlFor="birthdate">
-          Birth Date:
-          <input
-            type="date"
-            name="birthdate"
-            value={birthdate}
-            required
-            onChange={(event) => setBirthdate(event.target.value)}
-          />
-        </label>
+        <InputLabel id="birthDate">Birth Date</InputLabel>
+        <TextField
+          type="date"
+          labelId="birthDate"
+          value={birthdate}
+          required
+          fullWidth
+          onChange={(event) => setBirthdate(event.target.value)}
+        />
       </Box>
 
       {/* Gender */}

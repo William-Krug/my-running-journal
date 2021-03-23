@@ -270,14 +270,14 @@ function AdminPage({ verbose }) {
     <div>
       {/* Page Title */}
       <Grid container justify="center">
-        <Grid item xs={4}>
+        <Grid item>
           <Typography variant="h3" component="h1">
             Admin Portal
           </Typography>
         </Grid>
       </Grid>
 
-      <Box mb={10}>
+      <Box mb={3}>
         <Grid
           container
           justify="space-evenly"
@@ -397,16 +397,36 @@ function AdminPage({ verbose }) {
       </Box>
 
       {/* Metrics */}
-      <Box mb={10}>
-        <h2>Community Metrics</h2>
-        <RunMetrics
-          verbose={verbose}
-          dailyAverages={dailyAverages}
-          weeklyAverages={weeklyAverages}
-          monthlyAverages={monthlyAverages}
-          yearlyAverages={yearlyAverages}
-        />
+      <Box mb={3}>
+        <Grid container>
+          <Grid item xs={4}>
+            <Box p={10}>
+              <Typography variant="h4" component="h2" gutterBottom>
+                Community Metrics
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+
+        {/* Table */}
+        <Grid container justify="center" alignItems="center" xs={12}>
+          <Grid item xs={5}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
+                <RunMetrics
+                  verbose={verbose}
+                  dailyAverages={dailyAverages}
+                  weeklyAverages={weeklyAverages}
+                  monthlyAverages={monthlyAverages}
+                  yearlyAverages={yearlyAverages}
+                />
+              </Box>
+            </Card>
+          </Grid>
+        </Grid>
       </Box>
+
+      {/* User Authorization Levels */}
       <section></section>
     </div>
   );

@@ -28,13 +28,6 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
     console.log('allUsersRuns:', allUsersRuns);
   }
 
-  const dispatch = useDispatch();
-
-  // Grab dynamic variables from the Redux store
-  const singleRunDetails = useSelector(
-    (store) => store.userRunDetails.singleRunDetails
-  );
-
   // Local state variables to handle page changes
   const [openPopup, setOpenPopup] = useState(false);
 
