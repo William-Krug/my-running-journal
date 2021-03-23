@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import {
   Box,
   Button,
+  Grid,
   IconButton,
   Input,
   InputLabel,
@@ -165,30 +166,38 @@ function LogRunForm({ verbose }) {
 
         {/* Time */}
         <Box mb={3}>
-          {/* Hours */}
-          <InputLabel id="hours">Hours</InputLabel>
-          <TextField
-            labelID="hours"
-            value={newHour}
-            required
-            onChange={(event) => setNewHour(event.target.value)}
-          />
-          {/* Minutes */}
-          <InputLabel id="minutes">Minutes</InputLabel>
-          <TextField
-            labelId="minutes"
-            value={newMinute}
-            required
-            onChange={(event) => setNewMinute(event.target.value)}
-          />
-          {/* Seconds */}
-          <InputLabel id="seconds">Seconds</InputLabel>
-          <TextField
-            labelId="seconds"
-            value={newSecond}
-            required
-            onChange={(event) => setNewSecond(event.target.value)}
-          />
+          <Grid container>
+            {/* Hours */}
+            <Grid item xs={2}>
+              <InputLabel id="hours">Hours</InputLabel>
+              <TextField
+                labelID="hours"
+                value={newHour}
+                required
+                onChange={(event) => setNewHour(event.target.value)}
+              />
+            </Grid>
+            {/* Minutes */}
+            <Grid item xs={2}>
+              <InputLabel id="minutes">Minutes</InputLabel>
+              <TextField
+                labelId="minutes"
+                value={newMinute}
+                required
+                onChange={(event) => setNewMinute(event.target.value)}
+              />
+            </Grid>
+            {/* Seconds */}
+            <Grid item xs={2}>
+              <InputLabel id="seconds">Seconds</InputLabel>
+              <TextField
+                labelId="seconds"
+                value={newSecond}
+                required
+                onChange={(event) => setNewSecond(event.target.value)}
+              />
+            </Grid>
+          </Grid>
         </Box>
 
         {/* Notes */}

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Card, Grid, Paper, Typography } from '@material-ui/core';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
@@ -298,103 +298,78 @@ function UserPage({ verbose }) {
       </section>
 
       {/* Dashboard */}
-      <section>
-        <Paper variant="elevation">
-          <Grid container justify="space-evenly" alignItems="flex-start">
-            <Grid container justify="space-between" alignItems="center">
-              <Grid item>
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Dashboard
-                </Typography>
+      <Box mb={10}>
+        <Grid container justify="space-evenly" alignItems="flex-start">
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item>
+              <Typography variant="h4" component="h2" gutterBottom>
+                Dashboard
+              </Typography>
 
-                {/* <h2>Dashboard</h2> */}
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => console.log('new button was clicked')}
-                >
-                  Add Run
-                </Button>
-              </Grid>
+              {/* <h2>Dashboard</h2> */}
             </Grid>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => console.log('new button was clicked')}
+              >
+                Add Run
+              </Button>
+            </Grid>
+          </Grid>
 
-            {/* Most Recent Run */}
-            <Grid item xs={3}>
-              <Card variant="outlined">
+          {/* Most Recent Run */}
+          <Grid item xs={3}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
                 <RunDetails
                   verbose={verbose}
                   title={'Most Recent Run'}
                   runDetails={mostRecentRun}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Longest Run */}
-            <Grid item xs={3}>
-              <Card variant="outlined">
+          {/* Longest Run */}
+          <Grid item xs={3}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
                 <RunDetails
                   verbose={verbose}
                   title={'Longest Run'}
                   runDetails={longestRun}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Fastest Run */}
-            <Grid item xs={3}>
-              <Card variant="outlined">
+          {/* Fastest Run */}
+          <Grid item xs={3}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
                 <RunDetails
                   verbose={verbose}
                   title={'Fastest Run'}
                   runDetails={fastestRun}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
           </Grid>
-        </Paper>
-
-        {/* <h2>Dashboard</h2> */}
-
-        {/* Most Recent Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Most Recent Run'}
-            runDetails={mostRecentRun}
-          />
-        </div> */}
-
-        {/* Longest Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Longest Run'}
-            runDetails={longestRun}
-          />
-        </div> */}
-
-        {/* Fastest Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Fastest Run'}
-            runDetails={fastestRun}
-          />
-        </div> */}
-      </section>
+        </Grid>
+      </Box>
 
       {/* Metrics */}
-      <section>
-        <Paper variant="elevation">
-          <Typography variant="h4" component="h2" gutterBottom>
-            Metrics
-          </Typography>
-          {/* <h2>Metrics</h2> */}
-          <Grid container justify="center" alignItems="center" xs={12}>
-            <Grid item xs={5}>
-              <Card variant="outlined">
+      <Box mb={5}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Metrics
+        </Typography>
+        {/* <h2>Metrics</h2> */}
+        <Grid container justify="center" alignItems="center" xs={12}>
+          <Grid item xs={5}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
                 <RunMetrics
                   verbose={verbose}
                   dailyAverages={dailyAverages}
@@ -402,25 +377,27 @@ function UserPage({ verbose }) {
                   monthlyAverages={monthlyAverages}
                   yearlyAverages={yearlyAverages}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
           </Grid>
-        </Paper>
-        <Paper variant="elevation">
-          <Grid container justify="center" alignItems="center" xs={12}>
-            <Grid item xs={9}>
-              <Card variant="outlined">
+        </Grid>
+      </Box>
+      <Box mb={10}>
+        <Grid container justify="center" alignItems="center" xs={12}>
+          <Grid item xs={9}>
+            <Card variant="elevation" elevation="5">
+              <Box p={3}>
                 <LineChart
                   verbose={verbose}
                   allUsersRuns={allUsersRuns}
                   label={'Distance'}
                   title={'Run History'}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
           </Grid>
-        </Paper>
-      </section>
+        </Grid>
+      </Box>
     </div>
   );
 }
