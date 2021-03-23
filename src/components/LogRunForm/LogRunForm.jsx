@@ -1,9 +1,12 @@
 /* Import Libraries */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
-/* Import Material-UI components */
-import Button from '@material-ui/core/Button';
+import { Button, TextField } from '@material-ui/core';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import MomentUtils from '@date-io/moment';
 
 /**
  * Component captures user's run information to be stored
@@ -23,7 +26,7 @@ function LogRunForm({ verbose }) {
   // Local state variables used for form capture
   const [newDate, setNewDate] = useState('');
   const [newRoute, setNewRoute] = useState('');
-  const [newDistance, setNewDistance] = useState(0);
+  const [newDistance, setNewDistance] = useState('');
   const [newHour, setNewHour] = useState('');
   const [newMinute, setNewMinute] = useState('');
   const [newSecond, setNewSecond] = useState('');
@@ -100,6 +103,21 @@ function LogRunForm({ verbose }) {
       <form onSubmit={logRun}>
         {/* Run Date */}
         <div>
+          {/* <MuiPickersUtilsProvider utils={MomentUtils}>
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="MM/dd/yyyy"
+              margin="normal"
+              id="date-picker-inline"
+              label="Run Date:"
+              value={newDate}
+              onChange={(event) => setNewDate(event.target.value)}
+              KeyboardButtonProps={{
+                'aria-label': 'change date',
+              }}
+            />
+          </MuiPickersUtilsProvider> */}
           <label htmlFor="newDate">
             Run Date:
             <input
@@ -114,7 +132,15 @@ function LogRunForm({ verbose }) {
 
         {/* Route Name */}
         <div>
-          <label htmlFor="newRoute">
+          <TextField
+            label="Route Name:"
+            variant="outlined"
+            value={newRoute}
+            placeholder="Secret Path"
+            required
+            onChange={(event) => setNewRoute(event.target.value)}
+          />
+          {/* <label htmlFor="newRoute">
             Route Name:
             <input
               type="text"
@@ -123,12 +149,20 @@ function LogRunForm({ verbose }) {
               placeholder="Secret Path"
               onChange={(event) => setNewRoute(event.target.value)}
             />
-          </label>
+          </label> */}
         </div>
 
         {/* Distance */}
         <div>
-          <label htmlFor="newDistance">
+          <TextField
+            label="Distance:"
+            variant="filled"
+            value={newDistance}
+            placeholder="5.34"
+            required
+            onChange={(event) => setNewDistance(event.target.value)}
+          />
+          {/* <label htmlFor="newDistance">
             Distance:
             <input
               type="number"
@@ -140,15 +174,23 @@ function LogRunForm({ verbose }) {
               required
               onChange={(event) => setNewDistance(event.target.value)}
             />
-          </label>
+          </label> */}
         </div>
 
         {/* Time */}
         <div>
-          <label htmlFor="newTime">
-            Time:
-            {/* Hours */}
-            <input
+          <TextField
+            label="hours"
+            value={newHour}
+            placeholder="hh"
+            required
+            onChange={(event) => setNewHour(event.target.value)}
+          />
+          {/* <label htmlFor="newTime">
+          </div>
+            Time: */}
+          {/* Hours */}
+          {/* <input
               type="number"
               name="newTime"
               value={newHour}
@@ -156,9 +198,16 @@ function LogRunForm({ verbose }) {
               required
               min="0"
               onChange={(event) => setNewHour(event.target.value)}
-            />
-            {/* Minutes */}
-            <input
+            /> */}
+          {/* Minutes */}
+          <TextField
+            label="minutes"
+            value={newMinute}
+            placeholder="mm"
+            required
+            onChange={(event) => setNewMinute(event.target.value)}
+          />
+          {/* <input
               type="number"
               name="newTime"
               value={newMinute}
@@ -166,9 +215,16 @@ function LogRunForm({ verbose }) {
               required
               min="0"
               onChange={(event) => setNewMinute(event.target.value)}
-            />
-            {/* Seconds */}
-            <input
+            /> */}
+          {/* Seconds */}
+          <TextField
+            label="seconds"
+            value={newSecond}
+            placeholder="ss"
+            required
+            onChange={(event) => setNewSecond(event.target.value)}
+          />
+          {/* <input
               type="number"
               name="newTime"
               value={newSecond}
@@ -177,12 +233,21 @@ function LogRunForm({ verbose }) {
               required
               onChange={(event) => setNewSecond(event.target.value)}
             />
-          </label>
+          </label> */}
         </div>
 
         {/* Notes */}
         <div>
-          <label htmlFor="newNotes">
+          <TextField
+            label="Notes:"
+            value={newNotes}
+            placeholder="Watch out for ice"
+            multiline
+            rows={5}
+            required
+            onChange={(event) => setNewNotes(event.target.value)}
+          />
+          {/* <label htmlFor="newNotes">
             Notes:
             <input
               type="text"
@@ -191,7 +256,7 @@ function LogRunForm({ verbose }) {
               placeholder="Watch out for ice"
               onChange={(event) => setNewNotes(event.target.value)}
             />
-          </label>
+          </label> */}
         </div>
         <div>
           <Button variant="contained" color="primary">

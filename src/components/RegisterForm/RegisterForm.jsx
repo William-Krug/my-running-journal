@@ -3,9 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
-
-/* Import Material-UI components */
-import { Button, Typography } from '@material-ui/core';
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 
 /**
  * Component captures new user information to be stored
@@ -174,7 +180,16 @@ function RegisterForm({ verbose }) {
 
       {/* First Name */}
       <div>
-        <label htmlFor="firstName">
+        <TextField
+          label="First Name:"
+          variant="filled"
+          value={firstName}
+          placeholder="Roxy"
+          fullWidth
+          required
+          onChange={(event) => setFirstName(event.target.value)}
+        />
+        {/* <label htmlFor="firstName">
           First Name:
           <input
             type="text"
@@ -184,12 +199,21 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setFirstName(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* Last Name */}
+      <TextField
+        label="Last Name:"
+        variant="outlined"
+        value={lastName}
+        placeholder="Rahl"
+        fullWidth
+        required
+        onChange={(event) => setLastName(event.target.value)}
+      />
       <div>
-        <label htmlFor="lastName">
+        {/* <label htmlFor="lastName">
           Last Name:
           <input
             type="text"
@@ -199,7 +223,7 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setLastName(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* Birth date */}
@@ -218,7 +242,27 @@ function RegisterForm({ verbose }) {
 
       {/* Gender */}
       <div>
-        <label htmlFor="gender">
+        <FormControl variant="filled" fullWidth>
+          <InputLabel id="gender-selection">Gender:</InputLabel>
+          <Select
+            labelId="gender-selection"
+            value={gender}
+            required
+            onChange={(event) => setGender(event.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select a Gender</em>
+            </MenuItem>
+            {allGenders.map((gender) => {
+              return (
+                <MenuItem key={gender.id} value={gender.id}>
+                  {gender.gender}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        {/* <label htmlFor="gender">
           Gender:
           <select
             name="gender"
@@ -234,12 +278,21 @@ function RegisterForm({ verbose }) {
               );
             })}
           </select>
-        </label>
+        </label> */}
       </div>
 
       {/* City */}
       <div>
-        <label htmlFor="City">
+        <TextField
+          label="City:"
+          variant="standard"
+          value={city}
+          placeholder="Chicago"
+          fullWidth
+          required
+          onChange={(event) => setCity(event.target.value)}
+        />
+        {/* <label htmlFor="City">
           City:
           <input
             type="text"
@@ -249,12 +302,32 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setCity(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* State */}
       <div>
-        <label htmlFor="state">
+        <FormControl variant="filled" fullWidth>
+          <InputLabel id="state-selection">State:</InputLabel>
+          <Select
+            labelId="state-selection"
+            value={state}
+            required
+            onChange={(event) => setState(event.target.value)}
+          >
+            <MenuItem value="">
+              <em>Select a State</em>
+            </MenuItem>
+            {allStates.map((state) => {
+              return (
+                <MenuItem key={state.id} value={state.id}>
+                  {state.state}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+        {/* <label htmlFor="state">
           State:
           <select
             name="state"
@@ -270,12 +343,21 @@ function RegisterForm({ verbose }) {
               );
             })}
           </select>
-        </label>
+        </label> */}
       </div>
 
       {/* Country */}
       <div>
-        <label htmlFor="country">
+        <TextField
+          label="Country:"
+          variant="standard"
+          value={country}
+          placeholder="United States"
+          fullWidth
+          required
+          onChange={(event) => setCountry(event.target.value)}
+        />
+        {/* <label htmlFor="country">
           Country:
           <input
             type="text"
@@ -285,12 +367,20 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setCountry(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* Username */}
       <div>
-        <label htmlFor="username">
+        <TextField
+          label="Username:"
+          variant="standard"
+          value={username}
+          fullWidth
+          required
+          onChange={(event) => setUsername(event.target.value)}
+        />
+        {/* <label htmlFor="username">
           Username:
           <input
             type="text"
@@ -299,12 +389,20 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* Password */}
       <div>
-        <label htmlFor="password">
+        <TextField
+          label="Password:"
+          variant="filled"
+          value={password}
+          fullWidth
+          required
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        {/* <label htmlFor="password">
           Password:
           <input
             type="password"
@@ -313,7 +411,7 @@ function RegisterForm({ verbose }) {
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </label> */}
       </div>
       <div>
         {user.id !== 0 ? (
