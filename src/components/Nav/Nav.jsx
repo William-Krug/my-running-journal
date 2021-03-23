@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -20,23 +21,34 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
+        <Typography variant="h2" component="h1" gutterBottom>
+          My Running Journal
+        </Typography>
         <h1 className="nav-title">My Running Journal</h1>
       </Link>
       <div>
         <Link className="navLink" to={loginLinkData.path}>
-          {loginLinkData.text}
+          <Typography variant="body1" component="body1" gutterBottom>
+            {loginLinkData.text}
+          </Typography>
         </Link>
 
-        {user.id <= 2 && (
-          <Link className="navLink" to="/admin">
-            Admin
-          </Link>
+        {user.authLevel <= 2 && user.id > 0 && (
+          <>
+            <Link className="navLink" to="/admin">
+              <Typography variant="body1" component="body1" gutterBottom>
+                Admin
+              </Typography>
+            </Link>
+          </>
         )}
 
         {user.id > 0 && (
           <>
             <Link className="navLink" to="/profile">
-              Profile
+              <Typography variant="body1" component="body1" gutterBottom>
+                Profile
+              </Typography>
             </Link>
             <LogOutButton className="navLink" />
           </>

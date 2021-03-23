@@ -6,14 +6,13 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
+import { CssBaseline } from '@material-ui/core';
 
 /* Import Components */
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -38,6 +37,7 @@ function App() {
 
   return (
     <Router>
+      <CssBaseline />
       <div>
         <Nav />
         <Switch>
@@ -45,13 +45,13 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:3000/admin will show the admin page. */}
-          <Route
+          <ProtectedRoute
             // shows <AdminPage> if user's authLevel >= 2
             exact
             path="/admin"
           >
-            <AboutPage />
-          </Route>
+            <AdminPage verbose={verbose} />
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.

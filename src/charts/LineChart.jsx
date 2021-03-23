@@ -1,8 +1,15 @@
 /* Import Libraries */
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
+
+/* Import Components */
+import Popup from '../components/Popup/Popup';
+import RunDetails from '../components/RunDetails/RunDetails';
+
+//
+let singleRun = {};
 
 /**
  * Component renders a graphical history of the user's
@@ -23,6 +30,14 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
 
   const dispatch = useDispatch();
 
+  // Grab dynamic variables from the Redux store
+  const singleRunDetails = useSelector(
+    (store) => store.userRunDetails.singleRunDetails
+  );
+
+  // Local state variables to handle page changes
+  const [openPopup, setOpenPopup] = useState(false);
+
   // Local variables used for graphing
   let xValues = [];
   let yValues = [];
@@ -41,27 +56,22 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
     Used to get the specific run's details for viewing
     and editing
   */
-  const getElementAtEvent = (element) => {
+  const viewRunDetails = (element) => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <LineChart /> -> getElementAtEvent() ***');
+      console.log('*** <LineChart /> -> viewRunDetails() ***');
       console.log('element:', element);
+      console.log('element[0]._index.id:', element[0]._index.id);
     }
 
-    // Find the "activites" table id
-    const runId = allUsersRuns[element[0]._index].id;
+    // Assign the clicked on run for passing as props
+    singleRun = allUsersRuns[element[0]._index];
 
-    // GET run details for clicked event
-    dispatch({
-      type: 'GET_SINGLE_RUN',
-      payload: {
-        id: runId,
-      },
-    });
+    setOpenPopup(true);
   };
 
   /*
-    Function determines graph data necessary to render
+    Determines graph data necessary to render
     points in the chart
   */
   const data = {
@@ -79,7 +89,7 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   };
 
   /*
-    Function determines chart aesthetics
+    Determines chart aesthetics
   */
   const options = {
     tooltips: { enabled: false },
@@ -119,11 +129,14 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
       </div>
 
       {/* Render Line Chart */}
-      <Line
-        data={data}
-        options={options}
-        getElementAtEvent={getElementAtEvent}
-      />
+      <Line data={data} options={options} getElementAtEvent={viewRunDetails} />
+      <Popup
+        title="Run Details"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
+        <RunDetails verbose={verbose} title={''} runDetails={singleRun} />
+      </Popup>
     </section>
   );
 }

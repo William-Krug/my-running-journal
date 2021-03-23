@@ -1,7 +1,8 @@
 /* Import Libraries */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
+import { Button, Card, Grid, Paper, Typography } from '@material-ui/core';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
@@ -10,7 +11,7 @@ import RunMetrics from '../RunMetrics/RunMetrics';
 import LineChart from '../../charts/LineChart';
 
 /**
- * Component render's the user's personal page allowing them to:
+ * Component renders the user's personal page allowing them to:
  * - Log a new run
  * - Review their dashboard (recent run, longest run, fastest run)
  * - View their metrics (averages and graph)
@@ -33,18 +34,9 @@ function UserPage({ verbose }) {
     findLongestRun();
     findFastestRun();
     getDailyAverages();
-    getWeeklyDistanceAverage();
-    getWeeklyTimeAverage();
-    getWeeklySpeedAverage();
-    getWeeklyPaceAverage();
-    getMonthlyDistanceAverage();
-    getMonthlyTimeAverage();
-    getMonthlySpeedAverage();
-    getMonthlyPaceAverage();
-    getYearlyDistanceAverage();
-    getYearlyTimeAverage();
-    getYearlySpeedAverage();
-    getYearlyPaceAverage();
+    getWeeklyAverages();
+    getMonthlyAverages();
+    getYearlyAverages();
   }, []);
 
   // List of all user's runs (objects) from "activities" table
@@ -93,7 +85,7 @@ function UserPage({ verbose }) {
     (store) => store.activities.userYearlyPaceAverage
   );
 
-  // Local variables used to pass props
+  // Local variables used to pass as props
   const weeklyAverages = [
     {
       weeklyDistanceAverage: weeklyDistanceAverage[0].avg,
@@ -209,180 +201,84 @@ function UserPage({ verbose }) {
   };
 
   /*
-    Function GETs user's weekly distance average
+    Function GETs user's weekly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getWeeklyDistanceAverage = () => {
+  const getWeeklyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getWeeklyAverages() ***');
     }
 
-    // GET the weekly averages from "activities" table
+    // GET weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly time average
-  */
-  const getWeeklyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyTimeAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly speed average
-  */
-  const getWeeklySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklySpeedAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's weekly pace average
-  */
-  const getWeeklyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getWeeklyPaceAverage() ***');
-    }
-
-    // GET the weekly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_WEEKLY_PACE_AVERAGE',
     });
   };
 
   /*
-    Function GETs user's monthly distance average
+    Function GETs user's monthly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getMonthlyDistanceAverage = () => {
+  const getMonthlyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getMonthlyAverages() ***');
     }
 
-    // GET the monthly averages from "activities" table
+    // GET monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly time average
-  */
-  const getMonthlyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyTimeAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly speed average
-  */
-  const getMonthlySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlySpeedAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's monthly pace average
-  */
-  const getMonthlyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getMonthlyPaceAverage() ***');
-    }
-
-    // GET the monthly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_MONTHLY_PACE_AVERAGE',
     });
   };
 
   /*
-    Function GETs user's monthly distance average
+    Function GETs user's yearly averages on
+    - Distance
+    - Time
+    - Speed
+    - Pace
   */
-  const getYearlyDistanceAverage = () => {
+  const getYearlyAverages = () => {
     // Breadcrumbs for testing and debugging
     if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyDistanceAverage() ***');
+      console.log('*** <UserPage /> -> getYearlyAverages() ***');
     }
 
-    // GET the yearly averages from "activities" table
+    // GET yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_DISTANCE_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly time average
-  */
-  const getYearlyTimeAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyTimeAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_TIME_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly speed average
-  */
-  const getYearlySpeedAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlySpeedAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_SPEED_AVERAGE',
     });
-  };
-
-  /*
-    Function GETs user's yearly pace average
-  */
-  const getYearlyPaceAverage = () => {
-    // Breadcrumbs for testing and debugging
-    if (verbose) {
-      console.log('*** <UserPage /> -> getYearlyPaceAverage() ***');
-    }
-
-    // GET the yearly averages from "activities" table
     dispatch({
       type: 'FETCH_USER_YEARLY_PACE_AVERAGE',
     });
@@ -390,7 +286,12 @@ function UserPage({ verbose }) {
 
   return (
     <div>
-      <h1>{user.username}'s Running Log</h1>
+      <Typography variant="h3" component="h1" gutterBottom>
+        {user.username}'s Running Log
+      </Typography>
+
+      {/* <h1>{user.username}'s Running Log</h1> */}
+
       {/* Log a new run */}
       <section>
         <LogRunForm verbose={verbose} />
@@ -398,56 +299,127 @@ function UserPage({ verbose }) {
 
       {/* Dashboard */}
       <section>
-        <h2>Dashboard</h2>
+        <Paper variant="elevation">
+          <Grid container justify="space-evenly" alignItems="flex-start">
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
+                <Typography variant="h4" component="h2" gutterBottom>
+                  Dashboard
+                </Typography>
+
+                {/* <h2>Dashboard</h2> */}
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => console.log('new button was clicked')}
+                >
+                  Add Run
+                </Button>
+              </Grid>
+            </Grid>
+
+            {/* Most Recent Run */}
+            <Grid item xs={3}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Most Recent Run'}
+                  runDetails={mostRecentRun}
+                />
+              </Card>
+            </Grid>
+
+            {/* Longest Run */}
+            <Grid item xs={3}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Longest Run'}
+                  runDetails={longestRun}
+                />
+              </Card>
+            </Grid>
+
+            {/* Fastest Run */}
+            <Grid item xs={3}>
+              <Card variant="outlined">
+                <RunDetails
+                  verbose={verbose}
+                  title={'Fastest Run'}
+                  runDetails={fastestRun}
+                />
+              </Card>
+            </Grid>
+          </Grid>
+        </Paper>
+
+        {/* <h2>Dashboard</h2> */}
 
         {/* Most Recent Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Most Recent Run'}
             runDetails={mostRecentRun}
           />
-        </div>
+        </div> */}
 
         {/* Longest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Longest Run'}
             runDetails={longestRun}
           />
-        </div>
+        </div> */}
 
         {/* Fastest Run */}
-        <div>
+        {/* <div>
           <RunDetails
             verbose={verbose}
             title={'Fastest Run'}
             runDetails={fastestRun}
           />
-        </div>
+        </div> */}
       </section>
 
       {/* Metrics */}
       <section>
-        <h2>Metrics</h2>
-        <div>
-          <RunMetrics
-            verbose={verbose}
-            dailyAverages={dailyAverages}
-            weeklyAverages={weeklyAverages}
-            monthlyAverages={monthlyAverages}
-            yearlyAverages={yearlyAverages}
-          />
-        </div>
-        <div>
-          <LineChart
-            verbose={verbose}
-            allUsersRuns={allUsersRuns}
-            label={'Distance'}
-            title={'Run History'}
-          />
-        </div>
+        <Paper variant="elevation">
+          <Typography variant="h4" component="h2" gutterBottom>
+            Metrics
+          </Typography>
+          {/* <h2>Metrics</h2> */}
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={5}>
+              <Card variant="outlined">
+                <RunMetrics
+                  verbose={verbose}
+                  dailyAverages={dailyAverages}
+                  weeklyAverages={weeklyAverages}
+                  monthlyAverages={monthlyAverages}
+                  yearlyAverages={yearlyAverages}
+                />
+              </Card>
+            </Grid>
+          </Grid>
+        </Paper>
+        <Paper variant="elevation">
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={9}>
+              <Card variant="outlined">
+                <LineChart
+                  verbose={verbose}
+                  allUsersRuns={allUsersRuns}
+                  label={'Distance'}
+                  title={'Run History'}
+                />
+              </Card>
+            </Grid>
+          </Grid>
+        </Paper>
       </section>
     </div>
   );

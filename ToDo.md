@@ -88,33 +88,47 @@
 - [x] create metrics container
 - [x] create table
 - [x] sql queries to get daily averages
-- [ ] sql queries to get weekly averages
-- [ ] sql queries to get monthly averages
-- [ ] sql queries to get yearly averages
-- [ ] Saga -> router -> saga -> reducer for ^^
-- [ ] populate table
+- [x] sql queries to get weekly averages
+- [x] sql queries to get monthly averages
+- [x] sql queries to get yearly averages
+- [x] Saga -> router -> saga -> reducer for ^^
+- [x] populate table
 - [x] create `<LineChart />` (reusable)
 - [x] send `props` to `<LineChart />`
 - [x] display `<LineChart />`
-- [ ] documentation
+- [x] documentation
 
 ## Profile Page
 
 - [x] create `<ProfilePage />` component
 - [x] add link in `<Nav />` to access page
-- [ ] page returns logged in user's information
+- [x] page returns logged in user's information
 - [x] greeting message
-- [ ] `<button>Edit</button>`
-  - [ ] switches view to `<RegisterForm />`
-  - [ ] form populates with user's information
-  - [ ] for now says update vs. register
-  - [ ] PUT route to update profile
-- [ ] `<button>Delete Profile</button>`
-  - [ ] Sweet alert verification
-  - [ ] DELETE route to remove user from "users" table
-  - [ ] takes user to homepage/landing page
-- [ ] documentation
+- [x] `<button>Edit</button>`
+  - [x] switches view to `<RegisterForm />`
+  - [x] form populates with user's information
+  - [x] for now says update vs. register
+  - [x] PUT route to update profile
+- [x] `<button>Delete Profile</button>`
+  - [x] Sweet alert verification
+  - [x] DELETE route to remove user from "users" table
+  - [x] takes user to homepage/landing page
+- [x] documentation
 
 ## Admin Page
 
+### Community Dashboard
+
+- [ ] Props to pass to chart:
+  - [ ] `title={}`
+  - [ ] `labels={}`
+  - [ ] `values={'}`
+- [ ] Age Breakdown
+- [x] Gender Breakdown
+- [x] State Breakdown
+- [x] Country Breakdown
+- [ ] Distance Breakdown
+- [ ] Time Breakdown
+- [ ] Speed Breakdown
+- [ ] Pace Breakdown
 - [ ] documentation

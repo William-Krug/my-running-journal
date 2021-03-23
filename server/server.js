@@ -12,6 +12,9 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const registrationRouter = require('./routes/registration.router');
 const activitiesRouter = require('./routes/activities.router');
+const userRunDetailsRouter = require('./routes/user.run.details.router');
+const communityDashboardRouter = require('./routes/community.dashboard.router');
+const communityMetricsRouter = require('./routes/community.metrics.router');
 
 /* Body parser middleware */
 app.use(bodyParser.json());
@@ -28,6 +31,9 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/registration', registrationRouter);
 app.use('/api/activities', activitiesRouter);
+app.use('/api/userRunDetails', userRunDetailsRouter);
+app.use('/api/communityDashboard', communityDashboardRouter);
+app.use('/api/communityMetrics', communityMetricsRouter);
 
 // Serve static files
 app.use(express.static('build'));

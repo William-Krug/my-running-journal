@@ -2,6 +2,21 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import {
+  Box,
+  Button,
+  IconButton,
+  Input,
+  FilledInput,
+  OutlinedInput,
+  InputLabel,
+  InputAdornment,
+  FormHelperText,
+  FormControl,
+  TextField,
+  Typography,
+} from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 /**
  *
@@ -16,6 +31,7 @@ function LoginForm({ verbose }) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -41,46 +57,88 @@ function LoginForm({ verbose }) {
     }
   }; // end login
 
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {/* Alert user to incorrect username/password combination */}
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
+      <Box mb={3}>
+        <Typography variant="h4" component="h2" gutterBottom>
+          Login
+        </Typography>
+
+        {/* Alert user to incorrect username/password combination */}
+        {errors.loginMessage && (
+          <Typography variant="h5" component="h3" gutterBottom>
+            {errors.loginMessage}
+          </Typography>
+        )}
+      </Box>
 
       {/* Capture user input */}
-      <div>
+      <Box mb={3}>
         {/* Username */}
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
+        <InputLabel id="username">Username</InputLabel>
+        <TextField
+          labelID="username"
+          defaultValue={username}
+          onChange={(event) => setUsername(event.target.value)}
+        />
+      </Box>
+
+      <Box mb={3}>
         {/* Password */}
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
+        <InputLabel>Password</InputLabel>
+        <Input
+          type={showPassword ? 'text' : 'password'}
+          label="Password:"
+          defaultValue={password}
+          onChange={(event) => setPassword(event.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </Box>
+
+      {/* <FormControl className={clsx(classes.margin, classes.textField)}>
+        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+        <Input
+          id="standard-adornment-password"
+          type={values.showPassword ? 'text' : 'password'}
+          value={values.password}
+          onChange={handleChange('password')}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {values.showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
+        />
+      </FormControl> */}
+
+      <Box mb={3}>
+        <Button type="submit" variant="contained" color="primary">
+          Log In
+        </Button>
+      </Box>
     </form>
   );
 }

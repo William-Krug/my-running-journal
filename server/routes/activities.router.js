@@ -33,7 +33,7 @@ router.get('/user', rejectUnauthenticated, (req, res) => {
       res.send(dbResponse.rows);
     })
     .catch((error) => {
-      console.log('ERROR in POST /api/activities:', error);
+      console.log('ERROR in GET /api/activities:', error);
       res.sendStatus(500);
     });
 });
@@ -64,7 +64,7 @@ router.get('/user/fastest', rejectUnauthenticated, (req, res) => {
       res.send(dbResponse.rows);
     })
     .catch((error) => {
-      console.log('ERROR in POST /api/activities/user/fastest:', error);
+      console.log('ERROR in GET /api/activities/user/fastest:', error);
       res.sendStatus(500);
     });
 });
@@ -97,7 +97,7 @@ router.get('/user/longest', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
-      console.log('ERROR in POST /api/activities/user/longest:', error);
+      console.log('ERROR in GET /api/activities/user/longest:', error);
       res.sendStatus(500);
     });
 });
@@ -130,7 +130,7 @@ router.get('/user/mostRecent', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
-      console.log('ERROR in POST /api/activities/user/mostRecent:', error);
+      console.log('ERROR in GET /api/activities/user/mostRecent:', error);
       res.sendStatus(500);
     });
 });
@@ -146,7 +146,7 @@ router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
   // Breadcrumbs for testing and debugging
   // console
   //   .log
-  //   '### activities.router -> POST /api/activities/user/dailyAverages'
+  //   '### activities.router -> GET /api/activities/user/dailyAverages'
   //   ();
 
   // SQL query
@@ -170,7 +170,7 @@ router.get('/user/dailyAverages', rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       // Breadcrumbs for testing and debugging
-      console.log('ERROR in POST /api/activities/user/dailyAverages:', error);
+      console.log('ERROR in GET /api/activities/user/dailyAverages:', error);
       res.sendStatus(500);
     });
 });
@@ -192,12 +192,12 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
-	  (SELECT SUM(DISTANCE) as "averageDistance"
+    (SELECT SUM(DISTANCE) as "averageDistance"
     FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
+    FROM "activities"
+    WHERE "activities".user_id = $1
+  GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 
@@ -212,7 +212,7 @@ router.get('/user/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
     .catch((error) => {
       // Breadcrumbs for testing and debugging
       console.log(
-        'ERROR in POST /api/activities/user/weeklyDistanceAverage:',
+        'ERROR in GET /api/activities/user/weeklyDistanceAverage:',
         error
       );
       res.sendStatus(500);
@@ -236,12 +236,12 @@ router.get('/user/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
   const sqlQuery = `
   SELECT AVG("averageTime")
   FROM
-	  (SELECT SUM(TIME) as "averageTime"
+    (SELECT SUM(TIME) as "averageTime"
     FROM
-	  (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
-	  FROM "activities"
-	  WHERE "activities".user_id = $1
-	  GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
+    FROM "activities"
+    WHERE "activities".user_id = $1
+    GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
   GROUP BY "week") as "weeklyAverage";
   `;
 

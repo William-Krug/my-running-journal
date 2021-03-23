@@ -1,6 +1,7 @@
 /* Import Libraries */
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
+import { Typography } from '@material-ui/core';
 
 function RunMetrics({
   verbose,
