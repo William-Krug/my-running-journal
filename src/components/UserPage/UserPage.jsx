@@ -289,11 +289,14 @@ function UserPage({ verbose }) {
 
   return (
     <div>
-      <Typography variant="h3" component="h1" gutterBottom>
-        {user.username}'s Running Log
-      </Typography>
-
-      {/* <h1>{user.username}'s Running Log</h1> */}
+      {/* Page Title */}
+      <Grid container justify="center">
+        <Grid item xs={4}>
+          <Typography variant="h3" component="h1" gutterBottom>
+            {user.username}'s Running Log
+          </Typography>
+        </Grid>
+      </Grid>
 
       {/* Log a new run */}
       <Popup
@@ -308,20 +311,24 @@ function UserPage({ verbose }) {
       <Box mb={10}>
         <Grid container justify="space-evenly" alignItems="flex-start">
           <Grid container justify="space-between" alignItems="center">
-            <Grid item xs={2}>
-              <Typography variant="h4" component="h2" gutterBottom>
-                Dashboard
-              </Typography>
+            <Grid item>
+              <Box p={10}>
+                <Typography variant="h4" component="h2" gutterBottom>
+                  Dashboard
+                </Typography>
+              </Box>
             </Grid>
-            <Grid item xs={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={() => setOpenPopup(!openPopup)}
-              >
-                <AddIcon />
-                Add Run
-              </Button>
+            <Grid item>
+              <Box p={10}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setOpenPopup(!openPopup)}
+                >
+                  <AddIcon />
+                  Add Run
+                </Button>
+              </Box>
             </Grid>
           </Grid>
 
@@ -368,9 +375,15 @@ function UserPage({ verbose }) {
 
       {/* Metrics */}
       <Box mb={5}>
-        <Typography variant="h4" component="h2" gutterBottom>
-          Metrics
-        </Typography>
+        <Grid container>
+          <Grid item xs={2}>
+            <Box p={10}>
+              <Typography variant="h4" component="h2" gutterBottom>
+                Metrics
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
         {/* <h2>Metrics</h2> */}
         <Grid container justify="center" alignItems="center" xs={12}>
           <Grid item xs={5}>

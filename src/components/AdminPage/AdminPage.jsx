@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RunMetrics from '../RunMetrics/RunMetrics';
-import { Box, Card, Grid } from '@material-ui/core';
+import { Box, Card, Grid, Typography } from '@material-ui/core';
 
 /* Import Components */
 import PieChart from '../../charts/PicChart';
@@ -268,9 +268,15 @@ function AdminPage({ verbose }) {
 
   return (
     <div>
-      <Typography variant="h3" component="h1">
-        Admin Portal
-      </Typography>
+      {/* Page Title */}
+      <Grid container justify="center">
+        <Grid item xs={4}>
+          <Typography variant="h3" component="h1">
+            Admin Portal
+          </Typography>
+        </Grid>
+      </Grid>
+
       <Box mb={10}>
         <Grid
           container
@@ -278,10 +284,14 @@ function AdminPage({ verbose }) {
           alignItems="flex-start"
           spacing={3}
         >
-          <Grid item xs={12}>
-            <Typography variant="h4" component="h2">
-              Community Demographics
-            </Typography>
+          <Grid container>
+            <Grid item>
+              <Box p={10}>
+                <Typography variant="h4" component="h2">
+                  Community Demographics
+                </Typography>
+              </Box>
+            </Grid>
           </Grid>
 
           {/* Age Breakdown */}
@@ -384,76 +394,9 @@ function AdminPage({ verbose }) {
             </Card>
           </Grid>
         </Grid>
-        {/* <h2>Community Demographics</h2> */}
-
-        {/* Age Breakdown */}
-        {/* <div>
-          <PieChart verbose={verbose} title={'Age Breakdown'} values={}/>
-        </div> */}
-
-        {/* Gender Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Gender Breakdown'}
-            values={genderBreakdown}
-          />
-        </div> */}
-
-        {/* State Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'State Breakdown'}
-            values={stateBreakdown}
-          />
-        </div> */}
-
-        {/* Country Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Country Breakdown'}
-            values={countryBreakdown}
-          />
-        </div> */}
-
-        {/* Distance Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Distance Breakdown'}
-            values={distanceBreakdown}
-          />
-        </div> */}
-
-        {/* Time Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Time Breakdown'}
-            values={timeBreakdown}
-          />
-        </div> */}
-
-        {/* Speed Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Speed Breakdown'}
-            values={speedBreakdown}
-          />
-        </div> */}
-
-        {/* Pace Breakdown */}
-        {/* <div>
-          <PieChart
-            verbose={verbose}
-            title={'Pace Breakdown'}
-            values={paceBreakdown}
-          />
-        </div> */}
       </Box>
+
+      {/* Metrics */}
       <Box mb={10}>
         <h2>Community Metrics</h2>
         <RunMetrics

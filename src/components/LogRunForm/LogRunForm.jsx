@@ -1,18 +1,7 @@
 /* Import Libraries */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  Box,
-  Button,
-  Grid,
-  IconButton,
-  Input,
-  InputLabel,
-  InputAdornment,
-  TextField,
-  Typography,
-} from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { Box, Button, Grid, InputLabel, TextField } from '@material-ui/core';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -102,7 +91,7 @@ function LogRunForm({ verbose }) {
     // Clear inputs
     setNewDate('');
     setNewRoute('');
-    setNewDistance(0);
+    setNewDistance('');
     setNewHour('');
     setNewMinute('');
     setNewSecond('');
