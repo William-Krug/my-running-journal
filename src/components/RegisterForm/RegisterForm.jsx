@@ -7,12 +7,16 @@ import {
   Box,
   Button,
   FormControl,
+  IconButton,
+  Input,
   InputLabel,
+  InputAdornment,
   MenuItem,
   Select,
   TextField,
   Typography,
 } from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 /**
  * Component captures new user information to be stored
@@ -54,6 +58,7 @@ function RegisterForm({ verbose }) {
   const [country, setCountry] = useState(user.country);
   const [username, setUsername] = useState(user.username);
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -108,6 +113,14 @@ function RegisterForm({ verbose }) {
     else {
       updateUserProfile();
     }
+  };
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
   };
 
   /*
@@ -178,61 +191,37 @@ function RegisterForm({ verbose }) {
         )}
         {/* {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>} */}
         {errors.registrationMessage && (
-          <h3 className="alert" role="alert">
+          <Typography variant="h5" component="h3" gutterBottom>
             {errors.registrationMessage}
-          </h3>
+          </Typography>
         )}
       </Box>
 
       {/* First Name */}
       <Box mb={3}>
+        <InputLabel id="firstName">First Name</InputLabel>
         <TextField
-          label="First Name:"
-          variant="filled"
+          labelId="firstName"
           defaultValue={firstName}
-          placeholder="Roxy"
+          // placeholder="Roxy"
           fullWidth
           required
           onChange={(event) => setFirstName(event.target.value)}
         />
-        {/* <label htmlFor="firstName">
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            value={firstName}
-            placeholder="Roxy"
-            required
-            onChange={(event) => setFirstName(event.target.value)}
-          />
-        </label> */}
       </Box>
 
       {/* Last Name */}
       <Box mb={3}>
+        <InputLabel id="lastName">Last Name</InputLabel>
         <TextField
-          label="Last Name:"
-          variant="outlined"
+          labelId="lastName"
           defaultValue={lastName}
-          placeholder="Rahl"
+          // placeholder="Rahl"
           fullWidth
           required
           onChange={(event) => setLastName(event.target.value)}
         />
       </Box>
-      {/* <div> */}
-      {/* <label htmlFor="lastName">
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            placeholder="Rahl"
-            required
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label> */}
-      {/* </div> */}
 
       {/* Birth date */}
       <Box mb={3}>
@@ -250,10 +239,10 @@ function RegisterForm({ verbose }) {
 
       {/* Gender */}
       <Box mb={3}>
-        <FormControl variant="filled" fullWidth>
-          <InputLabel id="gender-selection">Gender:</InputLabel>
+        <FormControl fullWidth>
+          <InputLabel id="gender">Gender</InputLabel>
           <Select
-            labelId="gender-selection"
+            labelId="gender"
             defaultValue={gender}
             required
             onChange={(event) => setGender(event.target.value)}
@@ -270,55 +259,27 @@ function RegisterForm({ verbose }) {
             })}
           </Select>
         </FormControl>
-        {/* <label htmlFor="gender">
-          Gender:
-          <select
-            name="gender"
-            value={gender}
-            onChange={(event) => setGender(event.target.value)}
-          >
-            <option value="0">- Gender -</option>
-            {allGenders.map((gender) => {
-              return (
-                <option key={gender.id} value={gender.id}>
-                  {gender.gender}
-                </option>
-              );
-            })}
-          </select>
-        </label> */}
       </Box>
 
       {/* City */}
       <Box mb={3}>
+        <InputLabel id="city">City</InputLabel>
         <TextField
-          label="City:"
-          variant="standard"
+          labelId="city"
           defaultValue={city}
-          placeholder="Chicago"
+          // placeholder="Chicago"
           fullWidth
           required
           onChange={(event) => setCity(event.target.value)}
         />
-        {/* <label htmlFor="City">
-          City:
-          <input
-            type="text"
-            name="city"
-            value={city}
-            placeholder="Chicago"
-            required
-            onChange={(event) => setCity(event.target.value)}
-          />
-        </label> */}
       </Box>
 
       {/* State */}
       <Box mb={3}>
-        <FormControl variant="filled" fullWidth>
-          <InputLabel id="state-selection">State:</InputLabel>
+        <FormControl fullWidth>
+          <InputLabel id="state">State:</InputLabel>
           <Select
-            labelId="state-selection"
+            labelId="state"
             defaultValue={state}
             required
             onChange={(event) => setState(event.target.value)}
@@ -335,92 +296,59 @@ function RegisterForm({ verbose }) {
             })}
           </Select>
         </FormControl>
-        {/* <label htmlFor="state">
-          State:
-          <select
-            name="state"
-            value={state}
-            onChange={(event) => setState(event.target.value)}
-          >
-            <option value="0">- State -</option>
-            {allStates.map((state) => {
-              return (
-                <option key={state.id} value={state.id}>
-                  {state.state}
-                </option>
-              );
-            })}
-          </select>
-        </label> */}
       </Box>
 
       {/* Country */}
       <Box mb={3}>
+        <InputLabel id="country">Country</InputLabel>
         <TextField
-          label="Country:"
+          labelId="country"
           variant="standard"
           defaultValue={country}
-          placeholder="United States"
+          // placeholder="United States"
           fullWidth
           required
           onChange={(event) => setCountry(event.target.value)}
         />
-        {/* <label htmlFor="country">
-          Country:
-          <input
-            type="text"
-            name="country"
-            value={country}
-            placeholder="United States"
-            required
-            onChange={(event) => setCountry(event.target.value)}
-          />
-        </label> */}
       </Box>
 
       {/* Username */}
       <Box mb={3}>
+        <InputLabel id="username">Username</InputLabel>
         <TextField
-          label="Username:"
-          variant="standard"
+          labelId="username"
           defaultValue={username}
           fullWidth
           required
           onChange={(event) => setUsername(event.target.value)}
         />
-        {/* <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label> */}
       </Box>
 
       {/* Password */}
       <Box mb={3}>
-        <TextField
-          label="Password:"
-          variant="filled"
+        <InputLabel id="password">Password</InputLabel>
+        <Input
+          type={showPassword ? 'text' : 'password'}
+          labelId="password"
           defaultValue={password}
           fullWidth
           required
           onChange={(event) => setPassword(event.target.value)}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleShowPassword}
+                onMouseDown={handleMouseDownPassword}
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          }
         />
-        {/* <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label> */}
       </Box>
+
+      {/* Button */}
       <Box mb={3}>
         {user.id !== 0 ? (
           <Button type="submit" variant="contained" color="primary">
@@ -430,13 +358,6 @@ function RegisterForm({ verbose }) {
           <Button type="submit" variant="contained" color="primary">
             Register
           </Button>
-        )}
-        {user.id !== 0 ? (
-          <button className="btn" type="submit" name="submit">
-            Update
-          </button>
-        ) : (
-          <input className="btn" type="submit" name="submit" value="Register" />
         )}
       </Box>
     </form>

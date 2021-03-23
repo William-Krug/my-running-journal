@@ -1,7 +1,17 @@
 /* Import Libraries */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, TextField } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  IconButton,
+  Input,
+  InputLabel,
+  InputAdornment,
+  TextField,
+  Typography,
+} from '@material-ui/core';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -102,7 +112,7 @@ function LogRunForm({ verbose }) {
     <div>
       <form onSubmit={logRun}>
         {/* Run Date */}
-        <div>
+        <Box mb={3}>
           {/* <MuiPickersUtilsProvider utils={MomentUtils}>
             <KeyboardDatePicker
               disableToolbar
@@ -128,142 +138,76 @@ function LogRunForm({ verbose }) {
               onChange={(event) => setNewDate(event.target.value)}
             />
           </label>
-        </div>
+        </Box>
 
         {/* Route Name */}
-        <div>
+        <Box mb={3}>
+          <InputLabel id="routeName">Route Name</InputLabel>
           <TextField
-            label="Route Name:"
-            variant="outlined"
+            labelId="routName"
             value={newRoute}
-            placeholder="Secret Path"
-            required
+            fullWidth
             onChange={(event) => setNewRoute(event.target.value)}
           />
-          {/* <label htmlFor="newRoute">
-            Route Name:
-            <input
-              type="text"
-              name="newRoute"
-              value={newRoute}
-              placeholder="Secret Path"
-              onChange={(event) => setNewRoute(event.target.value)}
-            />
-          </label> */}
-        </div>
+        </Box>
 
         {/* Distance */}
-        <div>
+        <Box mb={3}>
+          <InputLabel id="distance">Distance</InputLabel>
           <TextField
-            label="Distance:"
-            variant="filled"
+            labelId="distance"
             value={newDistance}
-            placeholder="5.34"
             required
+            fullWidth
             onChange={(event) => setNewDistance(event.target.value)}
           />
-          {/* <label htmlFor="newDistance">
-            Distance:
-            <input
-              type="number"
-              name="newDistance"
-              value={newDistance}
-              placeholder="5.34"
-              step="0.01"
-              min="0"
-              required
-              onChange={(event) => setNewDistance(event.target.value)}
-            />
-          </label> */}
-        </div>
+        </Box>
 
         {/* Time */}
-        <div>
+        <Box mb={3}>
+          {/* Hours */}
+          <InputLabel id="hours">Hours</InputLabel>
           <TextField
-            label="hours"
+            labelID="hours"
             value={newHour}
-            placeholder="hh"
             required
             onChange={(event) => setNewHour(event.target.value)}
           />
-          {/* <label htmlFor="newTime">
-          </div>
-            Time: */}
-          {/* Hours */}
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newHour}
-              placeholder="hh"
-              required
-              min="0"
-              onChange={(event) => setNewHour(event.target.value)}
-            /> */}
           {/* Minutes */}
+          <InputLabel id="minutes">Minutes</InputLabel>
           <TextField
-            label="minutes"
+            labelId="minutes"
             value={newMinute}
-            placeholder="mm"
             required
             onChange={(event) => setNewMinute(event.target.value)}
           />
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newMinute}
-              placeholder="mm"
-              required
-              min="0"
-              onChange={(event) => setNewMinute(event.target.value)}
-            /> */}
           {/* Seconds */}
+          <InputLabel id="seconds">Seconds</InputLabel>
           <TextField
-            label="seconds"
+            labelId="seconds"
             value={newSecond}
-            placeholder="ss"
             required
             onChange={(event) => setNewSecond(event.target.value)}
           />
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newSecond}
-              placeholder="ss"
-              min="0"
-              required
-              onChange={(event) => setNewSecond(event.target.value)}
-            />
-          </label> */}
-        </div>
+        </Box>
 
         {/* Notes */}
-        <div>
+        <Box mb={3}>
+          <InputLabel id="notes">Notes</InputLabel>
           <TextField
-            label="Notes:"
+            labelId="notes"
             value={newNotes}
-            placeholder="Watch out for ice"
             multiline
             rows={5}
-            required
+            fullWidth
             onChange={(event) => setNewNotes(event.target.value)}
           />
-          {/* <label htmlFor="newNotes">
-            Notes:
-            <input
-              type="text"
-              name="newNotes"
-              value={newNotes}
-              placeholder="Watch out for ice"
-              onChange={(event) => setNewNotes(event.target.value)}
-            />
-          </label> */}
-        </div>
-        <div>
+        </Box>
+        <Box mb={3}>
           <Button type="submit" variant="contained" color="primary">
             Add Run
           </Button>
-          {/* <button>Add Run</button> */}
-        </div>
+        </Box>
       </form>
     </div>
   );

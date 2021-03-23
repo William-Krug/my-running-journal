@@ -7,18 +7,16 @@ import {
   Button,
   IconButton,
   Input,
-  FilledInput,
-  OutlinedInput,
   InputLabel,
   InputAdornment,
-  FormHelperText,
-  FormControl,
   TextField,
   Typography,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 /**
+ * Component renders the login form to allow user's to
+ * access the app
  *
  * @param {boolean} verbose global variable used for testing and debugging
  * @returns {jsx} renders the app's login form
@@ -81,23 +79,25 @@ function LoginForm({ verbose }) {
       </Box>
 
       {/* Capture user input */}
+      {/* Username */}
       <Box mb={3}>
-        {/* Username */}
         <InputLabel id="username">Username</InputLabel>
         <TextField
           labelID="username"
           defaultValue={username}
+          fullWidth
           onChange={(event) => setUsername(event.target.value)}
         />
       </Box>
 
+      {/* Password */}
       <Box mb={3}>
-        {/* Password */}
-        <InputLabel>Password</InputLabel>
+        <InputLabel id="password">Password</InputLabel>
         <Input
           type={showPassword ? 'text' : 'password'}
-          label="Password:"
+          labelId="password"
           defaultValue={password}
+          fullWidth
           onChange={(event) => setPassword(event.target.value)}
           endAdornment={
             <InputAdornment position="end">
@@ -112,27 +112,6 @@ function LoginForm({ verbose }) {
           }
         />
       </Box>
-
-      {/* <FormControl className={clsx(classes.margin, classes.textField)}>
-        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-        <Input
-          id="standard-adornment-password"
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          onChange={handleChange('password')}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </FormControl> */}
 
       <Box mb={3}>
         <Button type="submit" variant="contained" color="primary">
