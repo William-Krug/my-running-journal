@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RunMetrics from '../RunMetrics/RunMetrics';
-import { Card, Grid, Paper } from '@material-ui/core';
+import { Box, Card, Grid } from '@material-ui/core';
 
 /* Import Components */
 import PieChart from '../../charts/PicChart';
@@ -268,104 +268,122 @@ function AdminPage({ verbose }) {
 
   return (
     <div>
-      <h1>Admin Portal</h1>
-      <section>
-        <Paper variant="elevation">
-          <Grid
-            container
-            justify="space-evenly"
-            alignItems="flex-start"
-            spacing={3}
-          >
-            <Grid item xs={12}>
-              <h2>Community Demographics</h2>
-            </Grid>
+      <Typography variant="h3" component="h1">
+        Admin Portal
+      </Typography>
+      <Box mb={10}>
+        <Grid
+          container
+          justify="space-evenly"
+          alignItems="flex-start"
+          spacing={3}
+        >
+          <Grid item xs={12}>
+            <Typography variant="h4" component="h2">
+              Community Demographics
+            </Typography>
+          </Grid>
 
-            {/* Age Breakdown */}
-            {/* <Grid item xs={4}>
+          {/* Age Breakdown */}
+          {/* <Grid item xs={4}>
               <Card variant="outlined">
+              <Box p={3}>
                 <PieChart verbose={verbose} title={'Age Breakdown'} values={} />
+                </Box>
               </Card>
             </Grid> */}
 
-            {/* Gender Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Gender Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Gender Breakdown'}
                   values={genderBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* State Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* State Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'State Breakdown'}
                   values={stateBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Country Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Country Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Country Breakdown'}
                   values={countryBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Distance Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Distance Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Distance Breakdown'}
                   values={distanceBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Time Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Time Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Time Breakdown'}
                   values={timeBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Speed Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Speed Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Speed Breakdown'}
                   values={speedBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
+          </Grid>
 
-            {/* Pace Breakdown */}
-            <Grid item xs={5}>
-              <Card variant="outlined">
+          {/* Pace Breakdown */}
+          <Grid item xs={5}>
+            <Card variant="outlined">
+              <Box p={3}>
                 <PieChart
                   verbose={verbose}
                   title={'Pace Breakdown'}
                   values={paceBreakdown}
                 />
-              </Card>
-            </Grid>
+              </Box>
+            </Card>
           </Grid>
-        </Paper>
+        </Grid>
         {/* <h2>Community Demographics</h2> */}
 
         {/* Age Breakdown */}
@@ -435,8 +453,8 @@ function AdminPage({ verbose }) {
             values={paceBreakdown}
           />
         </div> */}
-      </section>
-      <section>
+      </Box>
+      <Box mb={10}>
         <h2>Community Metrics</h2>
         <RunMetrics
           verbose={verbose}
@@ -445,7 +463,7 @@ function AdminPage({ verbose }) {
           monthlyAverages={monthlyAverages}
           yearlyAverages={yearlyAverages}
         />
-      </section>
+      </Box>
       <section></section>
     </div>
   );

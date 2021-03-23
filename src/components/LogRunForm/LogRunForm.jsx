@@ -143,25 +143,33 @@ function LogRunForm({ verbose }) {
 
         {/* Route Name */}
         <Box mb={3}>
-          <InputLabel id="routeName">Route Name</InputLabel>
-          <TextField
-            labelId="routName"
-            value={newRoute}
-            fullWidth
-            onChange={(event) => setNewRoute(event.target.value)}
-          />
+          <Grid constiner>
+            <Grid item xs={6}>
+              <InputLabel id="routeName">Route Name</InputLabel>
+              <TextField
+                labelId="routName"
+                value={newRoute}
+                fullWidth
+                onChange={(event) => setNewRoute(event.target.value)}
+              />
+            </Grid>
+          </Grid>
         </Box>
 
         {/* Distance */}
         <Box mb={3}>
-          <InputLabel id="distance">Distance</InputLabel>
-          <TextField
-            labelId="distance"
-            value={newDistance}
-            required
-            fullWidth
-            onChange={(event) => setNewDistance(event.target.value)}
-          />
+          <Grid container>
+            <Grid item xs={6}>
+              <InputLabel id="distance">Distance</InputLabel>
+              <TextField
+                labelId="distance"
+                value={newDistance}
+                required
+                fullWidth
+                onChange={(event) => setNewDistance(event.target.value)}
+              />
+            </Grid>
+          </Grid>
         </Box>
 
         {/* Time */}
@@ -202,19 +210,23 @@ function LogRunForm({ verbose }) {
 
         {/* Notes */}
         <Box mb={3}>
-          <InputLabel id="notes">Notes</InputLabel>
-          <TextField
-            labelId="notes"
-            value={newNotes}
-            multiline
-            rows={5}
-            fullWidth
-            onChange={(event) => setNewNotes(event.target.value)}
-          />
+          <Grid container>
+            <Grid item xs={6}>
+              <InputLabel id="notes">Notes</InputLabel>
+              <TextField
+                labelId="notes"
+                value={newNotes}
+                multiline
+                rows={5}
+                fullWidth
+                onChange={(event) => setNewNotes(event.target.value)}
+              />
+            </Grid>
+          </Grid>
         </Box>
         <Box mb={3}>
           <Button type="submit" variant="contained" color="primary">
-            Add Run
+            Log Run
           </Button>
         </Box>
       </form>

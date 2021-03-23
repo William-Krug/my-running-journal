@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Card, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Card, Grid, Typography } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
 import RunDetails from '../RunDetails/RunDetails';
 import RunMetrics from '../RunMetrics/RunMetrics';
 import LineChart from '../../charts/LineChart';
+import Popup from '../Popup/Popup';
 
 /**
  * Component renders the user's personal page allowing them to:
@@ -41,6 +43,7 @@ function UserPage({ verbose }) {
 
   // List of all user's runs (objects) from "activities" table
   const user = useSelector((store) => store.user);
+  const [openPopup, setOpenPopup] = useState(false);
   const allUsersRuns = useSelector((store) => store.activities.usersRuns);
   const fastestRun = useSelector((store) => store.activities.fastestRun);
   const longestRun = useSelector((store) => store.activities.longestRun);
@@ -293,27 +296,30 @@ function UserPage({ verbose }) {
       {/* <h1>{user.username}'s Running Log</h1> */}
 
       {/* Log a new run */}
-      <section>
+      <Popup
+        title="Log New Run"
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+      >
         <LogRunForm verbose={verbose} />
-      </section>
+      </Popup>
 
       {/* Dashboard */}
       <Box mb={10}>
         <Grid container justify="space-evenly" alignItems="flex-start">
           <Grid container justify="space-between" alignItems="center">
-            <Grid item>
+            <Grid item xs={2}>
               <Typography variant="h4" component="h2" gutterBottom>
                 Dashboard
               </Typography>
-
-              {/* <h2>Dashboard</h2> */}
             </Grid>
-            <Grid item>
+            <Grid item xs={2}>
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => console.log('new button was clicked')}
+                onClick={() => setOpenPopup(!openPopup)}
               >
+                <AddIcon />
                 Add Run
               </Button>
             </Grid>
