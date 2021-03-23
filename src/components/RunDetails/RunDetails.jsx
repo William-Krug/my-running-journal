@@ -1,7 +1,7 @@
 /* Import Libraries */
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
-import { Card, Grid, Paper } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 /**
  * Component render's a run's details from an object passed in
@@ -21,7 +21,10 @@ function RunDetails({ verbose, title, runDetails }) {
 
   return (
     <div>
-      <h3>{title}</h3>
+      <Typography variant="h5" component="h3" gutterBottom>
+        {title}
+      </Typography>
+      {/* <h3>{title}</h3> */}
       {/* <Grid container spacing={3} alignItems="center">
         <Grid item xs={6}>
           <h4>Date:</h4>

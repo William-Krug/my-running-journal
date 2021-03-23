@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogContent,
   Grid,
+  Typography,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -27,7 +28,9 @@ function Popup(props) {
           // style={{ display: 'flex' }}
         >
           <Grid item style={{ flexGrow: 1 }}>
-            {title}
+            <Typography variant="h4" component="h2" gutterBottom>
+              {title}
+            </Typography>
           </Grid>
           <Grid item>
             <Button

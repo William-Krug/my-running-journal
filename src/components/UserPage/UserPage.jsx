@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Grid, Paper } from '@material-ui/core';
+import { Button, Card, Grid, Paper, Typography } from '@material-ui/core';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
@@ -286,7 +286,12 @@ function UserPage({ verbose }) {
 
   return (
     <div>
-      <h1>{user.username}'s Running Log</h1>
+      <Typography variant="h3" component="h1" gutterBottom>
+        {user.username}'s Running Log
+      </Typography>
+
+      {/* <h1>{user.username}'s Running Log</h1> */}
+
       {/* Log a new run */}
       <section>
         <LogRunForm verbose={verbose} />
@@ -295,15 +300,14 @@ function UserPage({ verbose }) {
       {/* Dashboard */}
       <section>
         <Paper variant="elevation">
-          <Grid
-            container
-            justify="space-evenly"
-            alignItems="flex-start"
-            spacing={3}
-          >
+          <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid container justify="space-between" alignItems="center">
               <Grid item>
-                <h2>Dashboard</h2>
+                <Typography variant="h4" component="h2" gutterBottom>
+                  Dashboard
+                </Typography>
+
+                {/* <h2>Dashboard</h2> */}
               </Grid>
               <Grid item>
                 <Button
@@ -384,26 +388,35 @@ function UserPage({ verbose }) {
       {/* Metrics */}
       <section>
         <Paper variant="elevation">
-          <Grid container justify="center" alignItems="center">
-            <Grid item xs={12}>
-              <h2>Metrics</h2>
+          <Typography variant="h4" component="h2" gutterBottom>
+            Metrics
+          </Typography>
+          {/* <h2>Metrics</h2> */}
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={5}>
+              <Card variant="outlined">
+                <RunMetrics
+                  verbose={verbose}
+                  dailyAverages={dailyAverages}
+                  weeklyAverages={weeklyAverages}
+                  monthlyAverages={monthlyAverages}
+                  yearlyAverages={yearlyAverages}
+                />
+              </Card>
             </Grid>
-            <Grid item xs={12}>
-              <RunMetrics
-                verbose={verbose}
-                dailyAverages={dailyAverages}
-                weeklyAverages={weeklyAverages}
-                monthlyAverages={monthlyAverages}
-                yearlyAverages={yearlyAverages}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <LineChart
-                verbose={verbose}
-                allUsersRuns={allUsersRuns}
-                label={'Distance'}
-                title={'Run History'}
-              />
+          </Grid>
+        </Paper>
+        <Paper variant="elevation">
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={9}>
+              <Card variant="outlined">
+                <LineChart
+                  verbose={verbose}
+                  allUsersRuns={allUsersRuns}
+                  label={'Distance'}
+                  title={'Run History'}
+                />
+              </Card>
             </Grid>
           </Grid>
         </Paper>

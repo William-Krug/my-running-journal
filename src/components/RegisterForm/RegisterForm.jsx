@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 /* Import Material-UI components */
-import Button from '@material-ui/core/Button';
+import { Button, Typography } from '@material-ui/core';
 
 /**
  * Component captures new user information to be stored
@@ -156,7 +156,16 @@ function RegisterForm({ verbose }) {
 
   return (
     <form className="formPanel" onSubmit={registerOrUpdateUser}>
-      {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>}
+      {user.id !== 0 ? (
+        <Typography variant="h4" component="h2" gutterBottom>
+          Update User
+        </Typography>
+      ) : (
+        <Typography variant="h4" component="h2" gutterBottom>
+          Register User
+        </Typography>
+      )}
+      {/* {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>} */}
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}

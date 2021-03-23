@@ -7,13 +7,12 @@ import {
   Switch,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 
 /* Import Components */
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-// import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
