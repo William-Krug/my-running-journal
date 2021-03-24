@@ -292,7 +292,7 @@ function UserPage({ verbose }) {
       {/* Page Title */}
       <Grid container justify="center">
         <Grid item>
-          <Typography variant="h3" component="h1" gutterBottom>
+          <Typography variant="h3" component="h1">
             {user.username}'s Running Log
           </Typography>
         </Grid>
@@ -313,7 +313,7 @@ function UserPage({ verbose }) {
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Box p={10}>
-                <Typography variant="h4" component="h2" gutterBottom>
+                <Typography variant="h4" component="h2">
                   Dashboard
                 </Typography>
               </Box>
@@ -378,7 +378,7 @@ function UserPage({ verbose }) {
         <Grid container>
           <Grid item xs={2}>
             <Box p={10}>
-              <Typography variant="h4" component="h2" gutterBottom>
+              <Typography variant="h4" component="h2">
                 Metrics
               </Typography>
             </Box>

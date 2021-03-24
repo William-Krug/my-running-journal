@@ -20,6 +20,15 @@ const communityDailyAverages = (
   switch (action.type) {
     case 'SET_COMMUNITY_DAILY_AVERAGES':
       return action.payload;
+    case 'UNSET_COMMUNITY_DAILY_AVERAGES':
+      return [
+        {
+          averageDistance: 0,
+          averageTime: 0,
+          averageSpeed: 0,
+          averagePace: 0,
+        },
+      ];
     default:
       return state;
   }
@@ -39,6 +48,12 @@ const communityWeeklyDistanceAverage = (
   switch (action.type) {
     case 'SET_COMMUNITY_WEEKLY_DISTANCE_AVERAGE':
       return action.payload;
+    case 'UNSET_COMMUNITY_WEEKLY_DISTANCE_AVERAGE':
+      return [
+        {
+          averageDistance: 0,
+        },
+      ];
     default:
       return state;
   }

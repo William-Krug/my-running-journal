@@ -401,7 +401,7 @@ function AdminPage({ verbose }) {
         <Grid container>
           <Grid item xs={4}>
             <Box p={10}>
-              <Typography variant="h4" component="h2" gutterBottom>
+              <Typography variant="h4" component="h2">
                 Community Metrics
               </Typography>
             </Box>

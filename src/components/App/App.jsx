@@ -8,6 +8,8 @@ import {
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {} from '@material-ui/core/colors';
 
 /* Import Components */
 import Nav from '../Nav/Nav';
@@ -28,6 +30,19 @@ import './App.css';
 */
 const verbose = false;
 
+// const customTheme = createMuiTheme({
+//   // Themes Settings
+//   palette: {
+//     // type: 'dark',
+//     primary: '#193655',
+//     secondary: '#EE6216',
+//     error: '#1C141D',
+//     warning: '#F7F1CA',
+//     info: '#193655',
+//     success: '#57887B',
+//   },
+// });
+
 function App() {
   const dispatch = useDispatch();
 
@@ -36,87 +51,89 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
-      <CssBaseline />
-      <div>
-        <Nav />
-        <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
+    <ThemeProvider /*theme={customTheme}*/>
+      <Router>
+        <CssBaseline />
+        <div>
+          <Nav />
+          <Switch>
+            {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+            <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:3000/admin will show the admin page. */}
-          <ProtectedRoute
-            // shows <AdminPage> if user's authLevel >= 2
-            exact
-            path="/admin"
-          >
-            <AdminPage verbose={verbose} />
-          </ProtectedRoute>
+            {/* Visiting localhost:3000/admin will show the admin page. */}
+            <ProtectedRoute
+              // shows <AdminPage> if user's authLevel >= 2
+              exact
+              path="/admin"
+            >
+              <AdminPage verbose={verbose} />
+            </ProtectedRoute>
 
-          {/* For protected routes, the view could show one of several things on the same route.
+            {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage verbose={verbose} />
-          </ProtectedRoute>
+            <ProtectedRoute
+              // logged in shows UserPage else shows LoginPage
+              exact
+              path="/user"
+            >
+              <UserPage verbose={verbose} />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows ProfilePage else shows LoginPage
-            exact
-            path="/profile"
-          >
-            <ProfilePage verbose={verbose} />
-          </ProtectedRoute>
+            <ProtectedRoute
+              // logged in shows ProfilePage else shows LoginPage
+              exact
+              path="/profile"
+            >
+              <ProfilePage verbose={verbose} />
+            </ProtectedRoute>
 
-          {/* When a value is supplied for the authRedirect prop the user will
+            {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
             be taken to the component and path supplied. */}
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows LoginPage at /login
-            exact
-            path="/login"
-            authRedirect="/user"
-          >
-            <LoginPage verbose={verbose} />
-          </ProtectedRoute>
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LoginPage at /login
+              exact
+              path="/login"
+              authRedirect="/user"
+            >
+              <LoginPage verbose={verbose} />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows RegisterPage at "/registration"
-            exact
-            path="/registration"
-            authRedirect="/user"
-          >
-            <RegisterPage verbose={verbose} />
-          </ProtectedRoute>
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows RegisterPage at "/registration"
+              exact
+              path="/registration"
+              authRedirect="/user"
+            >
+              <RegisterPage verbose={verbose} />
+            </ProtectedRoute>
 
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows LandingPage at "/home"
-            exact
-            path="/home"
-            authRedirect="/user"
-          >
-            <LandingPage verbose={verbose} />
-          </ProtectedRoute>
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/home"
+              authRedirect="/user"
+            >
+              <LandingPage verbose={verbose} />
+            </ProtectedRoute>
 
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </Router>
+            {/* If none of the other routes matched, we will show a 404. */}
+            <Route>
+              <h1>404</h1>
+            </Route>
+          </Switch>
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
