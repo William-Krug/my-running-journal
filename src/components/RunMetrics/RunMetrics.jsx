@@ -31,6 +31,13 @@ function RunMetrics({
   return (
     <div>
       <Grid container justify="center">
+        <Grid container justify="center">
+          <Grid item>
+            <Typography variant="h5" component="h3">
+              <strong>Averages</strong>
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid item>
           <TableContainer>
             <Table>

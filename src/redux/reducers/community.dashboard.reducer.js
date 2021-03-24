@@ -9,14 +9,46 @@ import { combineReducers } from 'redux';
 const ageBreakdown = (
   state = [
     {
-      label: 'female',
-      data: 40.12,
+      label: '<= 14',
+      data: 1.96,
+    },
+    {
+      label: '15-19',
+      data: 5.88,
+    },
+    {
+      label: '20-29',
+      data: 11.76,
+    },
+    {
+      label: '30-39',
+      data: 11.76,
+    },
+    {
+      label: '40-49',
+      data: 16.67,
+    },
+    {
+      label: '50-59',
+      data: 15.69,
+    },
+    {
+      label: '60-69',
+      data: 19.61,
+    },
+    {
+      label: '70-79',
+      data: 13.73,
+    },
+    {
+      label: '80+',
+      data: 2.94,
     },
   ],
   action
 ) => {
   switch (action.type) {
-    case 'SET_COMMUNITY_GENDER_BREAKDOWN':
+    case 'SET_COMMUNITY_AGE_BREAKDOWN':
       return action.payload;
     default:
       return state;

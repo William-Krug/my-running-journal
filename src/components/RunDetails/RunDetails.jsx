@@ -31,7 +31,7 @@ function RunDetails({ verbose, title, runDetails }) {
       <Grid container justify="center">
         <Grid item>
           <Typography variant="h5" component="h3" gutterBottom>
-            {title}
+            <strong>{title}</strong>
           </Typography>
         </Grid>
       </Grid>
