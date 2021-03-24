@@ -1,7 +1,16 @@
 /* Import Libraries */
 import moment from 'moment';
 const momentDurationFormatSetup = require('moment-duration-format'); // Needed to easily format milliseconds into hh:mm:ss with Moment.js
-import { Typography } from '@material-ui/core';
+import {
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from '@material-ui/core';
 
 function RunMetrics({
   verbose,
@@ -20,81 +29,139 @@ function RunMetrics({
   }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Mileage</th>
-          <th>Time</th>
-          <th>Speed</th>
-          <th>Pace</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Daily</th>
-          <td>{Number(dailyAverages[0].averageDistance).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(dailyAverages[0].averageTime, 'milliseconds')
-              .format()}
-          </td>
-          <td>{Number(dailyAverages[0].averageSpeed).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(dailyAverages[0].averagePace, 'milliseconds')
-              .format()}
-          </td>
-        </tr>
-        <tr>
-          <th>Weekly</th>
-          <td>{Number(weeklyAverages[0].weeklyDistanceAverage).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(weeklyAverages[0].weeklyTimeAverage, 'milliseconds')
-              .format()}
-          </td>
-          <td>{Number(weeklyAverages[0].weeklySpeedAverage).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(weeklyAverages[0].weeklyPaceAverage, 'milliseconds')
-              .format()}
-          </td>
-        </tr>
-        <tr>
-          <th>Monthly</th>
-          <td>
-            {Number(monthlyAverages[0].monthlyDistanceAverage).toFixed(2)}
-          </td>
-          <td>
-            {moment
-              .duration(monthlyAverages[0].monthlyTimeAverage, 'milliseconds')
-              .format()}
-          </td>
-          <td>{Number(monthlyAverages[0].monthlySpeedAverage).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(monthlyAverages[0].monthlyPaceAverage, 'milliseconds')
-              .format()}
-          </td>
-        </tr>
-        <tr>
-          <th>Yearly</th>
-          <td>{Number(yearlyAverages[0].yearlyDistanceAverage).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(yearlyAverages[0].yearlyTimeAverage, 'milliseconds')
-              .format()}
-          </td>
-          <td>{Number(yearlyAverages[0].yearlySpeedAverage).toFixed(2)}</td>
-          <td>
-            {moment
-              .duration(yearlyAverages[0].yearlyPaceAverage, 'milliseconds')
-              .format()}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <Grid container justify="center">
+        <Grid item>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell></TableCell>
+                  <TableCell align="center">
+                    <strong>Distance</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    <strong>Time</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    <strong>Speed (MPH)</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    <strong>Pace (min/mile)</strong>
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell align="right">
+                    <strong>Daily</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(dailyAverages[0].averageDistance).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(dailyAverages[0].averageTime, 'milliseconds')
+                      .format()}
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(dailyAverages[0].averageSpeed).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(dailyAverages[0].averagePace, 'milliseconds')
+                      .format()}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="right">
+                    <strong>Weekly</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(weeklyAverages[0].weeklyDistanceAverage).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        weeklyAverages[0].weeklyTimeAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(weeklyAverages[0].weeklySpeedAverage).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        weeklyAverages[0].weeklyPaceAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="right">
+                    <strong>Monthly</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(monthlyAverages[0].monthlyDistanceAverage).toFixed(
+                      2
+                    )}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        monthlyAverages[0].monthlyTimeAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(monthlyAverages[0].monthlySpeedAverage).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        monthlyAverages[0].monthlyPaceAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="right">
+                    <strong>Yearly</strong>
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(yearlyAverages[0].yearlyDistanceAverage).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        yearlyAverages[0].yearlyTimeAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                  <TableCell align="center">
+                    {Number(yearlyAverages[0].yearlySpeedAverage).toFixed(2)}
+                  </TableCell>
+                  <TableCell align="center">
+                    {moment
+                      .duration(
+                        yearlyAverages[0].yearlyPaceAverage,
+                        'milliseconds'
+                      )
+                      .format()}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
+    </div>
   );
 }
 

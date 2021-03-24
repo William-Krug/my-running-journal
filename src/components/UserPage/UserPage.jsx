@@ -294,7 +294,7 @@ function UserPage({ verbose }) {
         <Grid container justify="center">
           <Grid item>
             <Typography variant="h3" component="h1">
-              {user.username}'s Running Log
+              <strong>{user.username}'s Running Log</strong>
             </Typography>
           </Grid>
         </Grid>
@@ -315,7 +315,7 @@ function UserPage({ verbose }) {
               <Grid item>
                 <Box pb={5} pt={5}>
                   <Typography variant="h4" component="h2">
-                    Dashboard
+                    <strong>Dashboard</strong>
                   </Typography>
                 </Box>
               </Grid>
@@ -380,7 +380,7 @@ function UserPage({ verbose }) {
             <Grid item xs={2}>
               <Box pb={5} pt={5}>
                 <Typography variant="h4" component="h2">
-                  Metrics
+                  <strong>Metrics</strong>
                 </Typography>
               </Box>
             </Grid>
@@ -388,7 +388,7 @@ function UserPage({ verbose }) {
 
           {/* Table */}
           <Grid container justify="center" alignItems="center" xs={12}>
-            <Grid item xs={5}>
+            <Grid item xs={8}>
               <Card variant="elevation" elevation="5">
                 <Box p={3}>
                   <RunMetrics
