@@ -427,7 +427,10 @@ function AdminPage({ verbose }) {
       </Box>
 
       {/* User Authorization Levels */}
-      <section></section>
+      {/* <Box mb={3}>
+        <Grid container></Grid>
+        <Grid item></Grid>
+      </Box> */}
     </div>
   );
 }

@@ -9,7 +9,6 @@ import {
 import { useDispatch } from 'react-redux';
 import { CssBaseline } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import {} from '@material-ui/core/colors';
 
 /* Import Components */
 import Nav from '../Nav/Nav';
@@ -24,24 +23,72 @@ import AdminPage from '../AdminPage/AdminPage';
 
 /* Import CSS */
 import './App.css';
+import { mcgpalette0400 as primaryLight } from './colorTheme';
+import { mcgpalette0500 as primary } from './colorTheme';
+import { mcgpalette0600 as primaryDark } from './colorTheme';
+import { mcgpalette2300 as secondaryLight } from './colorTheme';
+import { mcgpalette2500 as secondary } from './colorTheme';
+import { mcgpalette2700 as secondaryDark } from './colorTheme';
+import { mcgpalette4300 as errorLight } from './colorTheme';
+import { mcgpalette4500 as error } from './colorTheme';
+import { mcgpalette4700 as errorDark } from './colorTheme';
+import { mcgpalette2700 as warningLight } from './colorTheme';
+import { mcgpalette2800 as warning } from './colorTheme';
+import { mcgpalette2900 as warningDark } from './colorTheme';
+import { mcgpalette3400 as infoLight } from './colorTheme';
+import { mcgpalette3500 as info } from './colorTheme';
+import { mcgpalette3600 as infoDark } from './colorTheme';
+import { mcgpalette3A200 as successLight } from './colorTheme';
+import { mcgpalette3A400 as success } from './colorTheme';
+import { mcgpalette3A700 as successDark } from './colorTheme';
 
 /*
   Global value used for testing during app build
 */
 const verbose = false;
 
-// const customTheme = createMuiTheme({
-//   // Themes Settings
-//   palette: {
-//     // type: 'dark',
-//     primary: '#193655',
-//     secondary: '#EE6216',
-//     error: '#1C141D',
-//     warning: '#F7F1CA',
-//     info: '#193655',
-//     success: '#57887B',
-//   },
-// });
+const customTheme = createMuiTheme({
+  // Themes Settings
+  palette: {
+    // type: 'dark',
+    primary: {
+      light: primaryLight,
+      main: primary,
+      dark: primaryDark,
+      contrastText: '#f2f2f2',
+    },
+    secondary: {
+      light: secondaryLight,
+      main: secondary,
+      dark: secondaryDark,
+      contrastText: '#1C141D',
+    },
+    error: {
+      light: errorLight,
+      main: error,
+      dark: errorDark,
+      contrastText: '#f2f2f2',
+    },
+    warning: {
+      light: warningLight,
+      main: warning,
+      dark: warningDark,
+      contrastText: '#1C141D',
+    },
+    info: {
+      light: infoLight,
+      main: info,
+      dark: infoDark,
+      contrastText: '#f2f2f2',
+    },
+    success: {
+      light: successLight,
+      main: success,
+      dark: successDark,
+      contrastText: '#1C141D',
+    },
+  },
+});
 
 function App() {
   const dispatch = useDispatch();
@@ -51,7 +98,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider /*theme={customTheme}*/>
+    <ThemeProvider theme={customTheme}>
       <Router>
         <CssBaseline />
         <div>

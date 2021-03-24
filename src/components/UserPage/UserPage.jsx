@@ -288,137 +288,139 @@ function UserPage({ verbose }) {
   };
 
   return (
-    <div>
-      {/* Page Title */}
-      <Grid container justify="center">
-        <Grid item>
-          <Typography variant="h3" component="h1">
-            {user.username}'s Running Log
-          </Typography>
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        {/* Page Title */}
+        <Grid container justify="center">
+          <Grid item>
+            <Typography variant="h3" component="h1">
+              {user.username}'s Running Log
+            </Typography>
+          </Grid>
         </Grid>
-      </Grid>
 
-      {/* Log a new run */}
-      <Popup
-        title="Log New Run"
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-      >
-        <LogRunForm verbose={verbose} setOpenPopup={setOpenPopup} />
-      </Popup>
+        {/* Log a new run */}
+        <Popup
+          title="Log New Run"
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+        >
+          <LogRunForm verbose={verbose} setOpenPopup={setOpenPopup} />
+        </Popup>
 
-      {/* Dashboard */}
-      <Box mb={3}>
-        <Grid container justify="space-evenly" alignItems="flex-start">
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item>
-              <Box p={10}>
+        {/* Dashboard */}
+        <Box mb={3}>
+          <Grid container justify="space-evenly" alignItems="flex-start">
+            <Grid container justify="space-between" alignItems="center">
+              <Grid item>
+                <Box pb={5} pt={5}>
+                  <Typography variant="h4" component="h2">
+                    Dashboard
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item>
+                <Box pb={5} pt={5}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setOpenPopup(!openPopup)}
+                  >
+                    <AddIcon />
+                    Add Run
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+
+            {/* Most Recent Run */}
+            <Grid item xs={3}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Most Recent Run'}
+                    runDetails={mostRecentRun}
+                  />
+                </Box>
+              </Card>
+            </Grid>
+
+            {/* Longest Run */}
+            <Grid item xs={3}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Longest Run'}
+                    runDetails={longestRun}
+                  />
+                </Box>
+              </Card>
+            </Grid>
+
+            {/* Fastest Run */}
+            <Grid item xs={3}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Fastest Run'}
+                    runDetails={fastestRun}
+                  />
+                </Box>
+              </Card>
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Metrics */}
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={2}>
+              <Box pb={5} pt={5}>
                 <Typography variant="h4" component="h2">
-                  Dashboard
+                  Metrics
                 </Typography>
               </Box>
             </Grid>
-            <Grid item>
-              <Box p={10}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setOpenPopup(!openPopup)}
-                >
-                  <AddIcon />
-                  Add Run
-                </Button>
-              </Box>
+          </Grid>
+
+          {/* Table */}
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={5}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunMetrics
+                    verbose={verbose}
+                    dailyAverages={dailyAverages}
+                    weeklyAverages={weeklyAverages}
+                    monthlyAverages={monthlyAverages}
+                    yearlyAverages={yearlyAverages}
+                  />
+                </Box>
+              </Card>
             </Grid>
           </Grid>
-
-          {/* Most Recent Run */}
-          <Grid item xs={3}>
-            <Card variant="elevation" elevation="5">
-              <Box p={3}>
-                <RunDetails
-                  verbose={verbose}
-                  title={'Most Recent Run'}
-                  runDetails={mostRecentRun}
-                />
-              </Box>
-            </Card>
+        </Box>
+        <Box mb={3} pb={5} pt={5}>
+          <Grid container justify="center" alignItems="center" xs={12}>
+            <Grid item xs={10}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <LineChart
+                    verbose={verbose}
+                    allUsersRuns={allUsersRuns}
+                    label={'Distance'}
+                    title={'Run History'}
+                  />
+                </Box>
+              </Card>
+            </Grid>
           </Grid>
-
-          {/* Longest Run */}
-          <Grid item xs={3}>
-            <Card variant="elevation" elevation="5">
-              <Box p={3}>
-                <RunDetails
-                  verbose={verbose}
-                  title={'Longest Run'}
-                  runDetails={longestRun}
-                />
-              </Box>
-            </Card>
-          </Grid>
-
-          {/* Fastest Run */}
-          <Grid item xs={3}>
-            <Card variant="elevation" elevation="5">
-              <Box p={3}>
-                <RunDetails
-                  verbose={verbose}
-                  title={'Fastest Run'}
-                  runDetails={fastestRun}
-                />
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
-
-      {/* Metrics */}
-      <Box mb={3}>
-        <Grid container>
-          <Grid item xs={2}>
-            <Box p={10}>
-              <Typography variant="h4" component="h2">
-                Metrics
-              </Typography>
-            </Box>
-          </Grid>
-        </Grid>
-
-        {/* Table */}
-        <Grid container justify="center" alignItems="center" xs={12}>
-          <Grid item xs={5}>
-            <Card variant="elevation" elevation="5">
-              <Box p={3}>
-                <RunMetrics
-                  verbose={verbose}
-                  dailyAverages={dailyAverages}
-                  weeklyAverages={weeklyAverages}
-                  monthlyAverages={monthlyAverages}
-                  yearlyAverages={yearlyAverages}
-                />
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
-      <Box mb={3}>
-        <Grid container justify="center" alignItems="center" xs={12}>
-          <Grid item xs={9}>
-            <Card variant="elevation" elevation="5">
-              <Box p={3}>
-                <LineChart
-                  verbose={verbose}
-                  allUsersRuns={allUsersRuns}
-                  label={'Distance'}
-                  title={'Run History'}
-                />
-              </Box>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
 
