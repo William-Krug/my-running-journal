@@ -182,14 +182,13 @@ function RegisterForm({ verbose }) {
       <Box mb={3}>
         {user.id !== 0 ? (
           <Typography variant="h4" component="h2" gutterBottom>
-            Update User
+            <strong>Update User</strong>
           </Typography>
         ) : (
           <Typography variant="h4" component="h2" gutterBottom>
-            Register User
+            <strong>Register User</strong>
           </Typography>
         )}
-        {/* {user.id !== 0 ? <h2>Update User</h2> : <h2>Register User</h2>} */}
         {errors.registrationMessage && (
           <Typography variant="h5" component="h3" gutterBottom>
             {errors.registrationMessage}

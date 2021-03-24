@@ -1,6 +1,13 @@
 /* Import Libraries */
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from '@material-ui/core';
 import moment from 'moment';
 
 function ProfileDetails({ verbose, user }) {
@@ -138,46 +145,66 @@ function ProfileDetails({ verbose, user }) {
   };
 
   return (
-    <table>
-      <tbody>
-        <tr>
-          <td>First Name:</td>
-          <td>{user.first_name}</td>
-        </tr>
-        <tr>
-          <td>Last Name:</td>
-          <td>{user.last_name}</td>
-        </tr>
-        <tr>
-          <td>Birth Date:</td>
-          <td>{moment(user.birthdate).format('MM/DD/YYYY')}</td>
-        </tr>
-        <tr>
-          <td>Gender:</td>
-          <td>{gender()}</td>
-        </tr>
-        <tr>
-          <td>City:</td>
-          <td>{user.city}</td>
-        </tr>
-        <tr>
-          <td>State:</td>
-          <td>{state()}</td>
-        </tr>
-        <tr>
-          <td>Country:</td>
-          <td>{user.country}</td>
-        </tr>
-        <tr>
-          <td>Username:</td>
-          <td>{user.username}</td>
-        </tr>
-        <tr>
-          <td>Password:</td>
-          <td>*********</td>
-        </tr>
-      </tbody>
-    </table>
+    <TableContainer>
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableCell align="right">
+              <strong>First Name</strong>
+            </TableCell>
+            <TableCell>{user.first_name}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Last Name</strong>
+            </TableCell>
+            <TableCell>{user.last_name}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Birth Date</strong>
+            </TableCell>
+            <TableCell>{moment(user.birthdate).format('MM/DD/YYYY')}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Gender</strong>
+            </TableCell>
+            <TableCell>{gender()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>City</strong>
+            </TableCell>
+            <TableCell>{user.city}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>State</strong>
+            </TableCell>
+            <TableCell>{state()}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Country</strong>
+            </TableCell>
+            <TableCell>{user.country}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Username</strong>
+            </TableCell>
+            <TableCell>{user.username}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell align="right">
+              <strong>Password</strong>
+            </TableCell>
+            <TableCell>*********</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
 

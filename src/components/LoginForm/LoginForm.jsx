@@ -67,7 +67,7 @@ function LoginForm({ verbose }) {
     <form className="formPanel" onSubmit={login}>
       <Box mb={3}>
         <Typography variant="h4" component="h2" gutterBottom>
-          Login
+          <strong>Login</strong>
         </Typography>
 
         {/* Alert user to incorrect username/password combination */}
@@ -115,7 +115,7 @@ function LoginForm({ verbose }) {
 
       <Box mb={3}>
         <Button type="submit" variant="contained" color="primary">
-          Log In
+          Login
         </Button>
       </Box>
     </form>
