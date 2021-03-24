@@ -20,21 +20,15 @@ function Popup(props) {
 
   return (
     <Dialog open={openPopup} maxWidth="md">
-      <DialogTitle style={{ paddingRight: '0px' }}>
-        <Grid
-          container
-          justify="space-between"
-          alignItems="center"
-          // style={{ display: 'flex' }}
-        >
-          <Grid item style={{ flexGrow: 1 }}>
-            <Typography variant="h4" component="h2" gutterBottom>
-              {title}
+      <DialogTitle>
+        <Grid container justify="space-between" alignItems="center">
+          <Grid item>
+            <Typography variant="h4" component="h2">
+              <strong>{title}</strong>
             </Typography>
           </Grid>
           <Grid item>
             <Button
-              // variant="contained"
               color="secondary"
               onClick={() => {
                 setOpenPopup(false);
