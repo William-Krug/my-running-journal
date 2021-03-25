@@ -47,6 +47,9 @@ import { mcgpalette3A700 as successDark } from './colorTheme';
 */
 const verbose = false;
 
+/*
+  Generate own Material-UI theme color palette
+*/
 const customTheme = createMuiTheme({
   // Themes Settings
   palette: {
@@ -108,11 +111,8 @@ function App() {
             <Redirect exact from="/" to="/home" />
 
             {/* Visiting localhost:3000/admin will show the admin page. */}
-            <ProtectedRoute
-              // shows <AdminPage> if user's authLevel >= 2
-              exact
-              path="/admin"
-            >
+            {/* Shows <AdminPage /> if user's `authLevel` >= 2 */}
+            <ProtectedRoute exact path="/admin">
               <AdminPage verbose={verbose} />
             </ProtectedRoute>
 
