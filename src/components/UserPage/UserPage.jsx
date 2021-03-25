@@ -41,7 +41,7 @@ function UserPage({ verbose }) {
     getYearlyAverages();
   }, []);
 
-  // List of all user's runs (objects) from "activities" table
+  // Dynamic state variables held in Redux store
   const user = useSelector((store) => store.user);
   const [openPopup, setOpenPopup] = useState(false);
   const allUsersRuns = useSelector((store) => store.activities.usersRuns);
@@ -312,6 +312,7 @@ function UserPage({ verbose }) {
         <Box mb={3}>
           <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid container justify="space-between" alignItems="center">
+              {/* Title */}
               <Grid item>
                 <Box pb={5} pt={5}>
                   <Typography variant="h4" component="h2">
@@ -319,6 +320,8 @@ function UserPage({ verbose }) {
                   </Typography>
                 </Box>
               </Grid>
+
+              {/* Add Run Button */}
               <Grid item>
                 <Box pb={5} pt={5}>
                   <Button
@@ -403,6 +406,8 @@ function UserPage({ verbose }) {
             </Grid>
           </Grid>
         </Box>
+
+        {/* Graphical Representation */}
         <Box mb={3} pb={5} pt={5}>
           <Grid container justify="center" alignItems="center" xs={12}>
             <Grid item xs={10}>
