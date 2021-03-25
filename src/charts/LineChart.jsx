@@ -1,6 +1,6 @@
 /* Import Libraries */
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Grid, Typography } from '@material-ui/core';
 import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
@@ -60,6 +60,7 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
     // Assign the clicked on run for passing as props
     singleRun = allUsersRuns[element[0]._index];
 
+    // Open `<Popup />` component
     setOpenPopup(true);
   };
 
@@ -74,8 +75,8 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
         label: label,
         data: yValues,
         fill: false,
-        backgroundColor: '#ed2939',
-        borderColor: '#ed2939',
+        backgroundColor: '#EE6216',
+        borderColor: '#EE6216',
         showLine: false,
       },
     ],
@@ -117,9 +118,13 @@ function LineChart({ verbose, allUsersRuns, label, title }) {
   return (
     <section>
       {/* Chart Title */}
-      <div className="header">
-        <h3 className="title">{title}</h3>
-      </div>
+      <Grid container justify="center">
+        <Grid item>
+          <Typography variant="h5" component="h3">
+            <strong>{title}</strong>
+          </Typography>
+        </Grid>
+      </Grid>
 
       {/* Render Line Chart */}
       <Line data={data} options={options} getElementAtEvent={viewRunDetails} />
