@@ -2,8 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
-  /* background-color: #f7f1ca; */
-  background-color: #57887b;
+  background-color: #f7f1ca;
+  /* background-color: #57887b; */
 }
 
 body {
@@ -57,7 +57,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #57887b;
   text-decoration: none;
 }
 
@@ -69,7 +69,7 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #1c141d;
 }
 
 .btn_asLink:hover {

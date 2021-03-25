@@ -103,7 +103,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
         {/* Run Date */}
         <Box mb={3}>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <InputLabel id="date">Date</InputLabel>
               <TextField
                 type="date"
@@ -120,7 +120,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
         {/* Route Name */}
         <Box mb={3}>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <InputLabel id="routeName">Route Name</InputLabel>
               <TextField
                 labelId="routName"
@@ -135,7 +135,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
         {/* Distance */}
         <Box mb={3}>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <InputLabel id="distance">Distance</InputLabel>
               <TextField
                 labelId="distance"
@@ -150,9 +150,9 @@ function LogRunForm({ verbose, setOpenPopup }) {
 
         {/* Time */}
         <Box mb={3}>
-          <Grid container>
+          <Grid container justify="space-between">
             {/* Hours */}
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <InputLabel id="hours">Hours</InputLabel>
               <TextField
                 labelID="hours"
@@ -162,7 +162,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
               />
             </Grid>
             {/* Minutes */}
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <InputLabel id="minutes">Minutes</InputLabel>
               <TextField
                 labelId="minutes"
@@ -172,7 +172,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
               />
             </Grid>
             {/* Seconds */}
-            <Grid item xs={2}>
+            <Grid item xs={3}>
               <InputLabel id="seconds">Seconds</InputLabel>
               <TextField
                 labelId="seconds"
@@ -187,7 +187,7 @@ function LogRunForm({ verbose, setOpenPopup }) {
         {/* Notes */}
         <Box mb={3}>
           <Grid container>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
               <InputLabel id="notes">Notes</InputLabel>
               <TextField
                 labelId="notes"

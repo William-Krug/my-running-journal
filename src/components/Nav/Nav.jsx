@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-import { Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -20,11 +20,13 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link className="navLink" to="/home">
-        <Typography variant="h2" component="h1" gutterBottom>
-          My Running Journal
-        </Typography>
-      </Link>
+      <Box ml={5}>
+        <Link className="navLink" to="/home">
+          <Typography variant="h2" component="h1" gutterBottom>
+            <strong>My Running Journal</strong>
+          </Typography>
+        </Link>
+      </Box>
       <div>
         <Link className="navLink" to={loginLinkData.path}>
           <Typography variant="body1" component="body1" gutterBottom>

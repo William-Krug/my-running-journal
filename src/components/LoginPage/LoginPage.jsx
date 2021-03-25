@@ -1,6 +1,7 @@
 /* Import Libraries */
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 /* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
@@ -22,23 +23,25 @@ function LoginPage({ verbose }) {
   const history = useHistory();
 
   return (
-    <div>
-      {/* Display login form */}
-      <LoginForm />
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        {/* Display login form */}
+        <LoginForm />
 
-      {/* Button to switch to register page */}
-      <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
-          Register
-        </button>
-      </center>
-    </div>
+        {/* Button to switch to register page */}
+        <center>
+          <button
+            type="button"
+            className="btn btn_asLink"
+            onClick={() => {
+              history.push('/registration');
+            }}
+          >
+            Register
+          </button>
+        </center>
+      </Grid>
+    </Grid>
   );
 }
 
