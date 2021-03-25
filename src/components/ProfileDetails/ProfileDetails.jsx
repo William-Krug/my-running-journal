@@ -10,6 +10,17 @@ import {
 } from '@material-ui/core';
 import moment from 'moment';
 
+/**
+ * Component display's the logged in user's profile details (from the
+ * "users" table) in a table format for easy viewing
+ *
+ * Any db values that are references to other tables are converted into
+ * strings for user consumption
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @param {object} user logged in user's information from the "users" table
+ * @returns {jsx} renders the user's profile details
+ */
 function ProfileDetails({ verbose, user }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
@@ -148,54 +159,71 @@ function ProfileDetails({ verbose, user }) {
     <TableContainer>
       <Table>
         <TableBody>
+          {/* First Name */}
           <TableRow>
             <TableCell align="right">
               <strong>First Name</strong>
             </TableCell>
             <TableCell>{user.first_name}</TableCell>
           </TableRow>
+
+          {/* Last Name */}
           <TableRow>
             <TableCell align="right">
               <strong>Last Name</strong>
             </TableCell>
             <TableCell>{user.last_name}</TableCell>
           </TableRow>
+
+          {/* Birth Date */}
           <TableRow>
             <TableCell align="right">
               <strong>Birth Date</strong>
             </TableCell>
             <TableCell>{moment(user.birthdate).format('MM/DD/YYYY')}</TableCell>
           </TableRow>
+
+          {/* Gender */}
           <TableRow>
             <TableCell align="right">
               <strong>Gender</strong>
             </TableCell>
             <TableCell>{gender()}</TableCell>
           </TableRow>
+
+          {/* City */}
           <TableRow>
             <TableCell align="right">
               <strong>City</strong>
             </TableCell>
             <TableCell>{user.city}</TableCell>
           </TableRow>
+
+          {/* State */}
           <TableRow>
             <TableCell align="right">
               <strong>State</strong>
             </TableCell>
             <TableCell>{state()}</TableCell>
           </TableRow>
+
+          {/* Country */}
           <TableRow>
             <TableCell align="right">
               <strong>Country</strong>
             </TableCell>
             <TableCell>{user.country}</TableCell>
           </TableRow>
+
+          {/* Username */}
           <TableRow>
             <TableCell align="right">
               <strong>Username</strong>
             </TableCell>
             <TableCell>{user.username}</TableCell>
           </TableRow>
+
+          {/* Password */}
           <TableRow>
             <TableCell align="right">
               <strong>Password</strong>
