@@ -34,7 +34,7 @@ function AdminPage({ verbose }) {
     getCommunityYearlyAverages();
   }, []);
 
-  // Dynamic variables kept in the Redux store
+  // State variables kept in the Redux store
   const ageBreakdown = useSelector(
     (store) => store.communityDashboard.ageBreakdown
   );
@@ -100,13 +100,6 @@ function AdminPage({ verbose }) {
   );
 
   // Local variables used to pass as props
-  let genderLabels = [];
-  let genderPercentages = [];
-  for (let i = 0; i < genderBreakdown.length; i++) {
-    genderLabels.push(genderBreakdown.gender);
-    genderPercentages.push(genderBreakdown['?column?']);
-  }
-
   const weeklyAverages = [
     {
       weeklyDistanceAverage: weeklyDistanceAverage[0].avg,
@@ -150,20 +143,37 @@ function AdminPage({ verbose }) {
     }
 
     // GET Age Breakdown
+    dispatch({
+      type: 'FETCH_AGE_BREAKDOWN',
+    });
     // GET Gender Breakdown
     dispatch({
       type: 'FETCH_GENDER_BREAKDOWN',
     });
-
     // GET State Breakdown
     dispatch({
       type: 'FETCH_STATE_BREAKDOWN',
     });
     // GET Country Breakdown
+    dispatch({
+      type: 'FETCH_COUNTRY_BREAKDOWN',
+    });
     // GET Distance Breakdown
+    dispatch({
+      type: 'FETCH_DISTANCE_BREAKDOWN',
+    });
     // GET Time Breakdown
+    dispatch({
+      type: 'FETCH_TIME_BREAKDOWN',
+    });
     // GET Speed Breakdown
+    dispatch({
+      type: 'FETCH_SPEED_BREAKDOWN',
+    });
     // GET Pace Breakdown
+    dispatch({
+      type: 'FETCH_PACE_BREAKDOWN',
+    });
   };
 
   /*
@@ -226,7 +236,7 @@ function AdminPage({ verbose }) {
       console.log('*** <AdminPage /> -> getCommunityMonthlyAverages() ***');
     }
 
-    // GET weekly averages from "activities" table
+    // GET monthly averages from "activities" table
     dispatch({
       type: 'FETCH_COMMUNITY_MONTHLY_DISTANCE_AVERAGE',
     });
@@ -254,7 +264,7 @@ function AdminPage({ verbose }) {
       console.log('*** <AdminPage /> -> getCommunityYearlyAverages() ***');
     }
 
-    // GET weekly averages from "activities" table
+    // GET yearly averages from "activities" table
     dispatch({
       type: 'FETCH_COMMUNITY_YEARLY_DISTANCE_AVERAGE',
     });
@@ -281,6 +291,7 @@ function AdminPage({ verbose }) {
           </Grid>
         </Grid>
 
+        {/* Dashboard Section */}
         <Box mb={3}>
           <Grid
             container
@@ -404,7 +415,7 @@ function AdminPage({ verbose }) {
           </Grid>
         </Box>
 
-        {/* Metrics */}
+        {/* Metrics Section */}
         <Box mb={3}>
           <Grid container>
             <Grid item>
