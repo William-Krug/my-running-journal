@@ -9,6 +9,11 @@ import swal from 'sweetalert';
 import ProfileDetails from '../ProfileDetails/ProfileDetails';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
+/**
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @returns {jsx} renders container page for `<ProfileDetails />` and `<RegisterForm />` components
+ */
 function ProfilePage({ verbose }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
@@ -92,6 +97,7 @@ function ProfilePage({ verbose }) {
     <Grid container justify="center">
       <Grid item xs={8}>
         <Grid container justify="center">
+          {/* Page Heading*/}
           <Grid item>
             <Typography variant="h3" component="h1">
               <strong>{user.username}'s Profile</strong>
@@ -100,6 +106,7 @@ function ProfilePage({ verbose }) {
         </Grid>
         <Box mb={3} mt={5}>
           <Grid container justify="center">
+            {/* Display <ProfileDetails /> until "Edit" button is clicked */}
             <Grid item xs={4}>
               {editButtonClicked ? (
                 <Card variant="elevation" elevation="5">
@@ -115,7 +122,6 @@ function ProfilePage({ verbose }) {
         </Box>
 
         {/* Buttons to edit/cancel / delete */}
-        {/* <Box mb={3}> */}
         <Grid container justify="center">
           <Grid item>
             <Box mr={3}>
@@ -146,7 +152,6 @@ function ProfilePage({ verbose }) {
             </Box>
           </Grid>
         </Grid>
-        {/* </Box> */}
       </Grid>
     </Grid>
   );
