@@ -27,7 +27,7 @@ function Nav() {
           </Typography>
         </Link>
       </Box>
-      <div>
+      <Box pr={5}>
         <Link className="navLink" to={loginLinkData.path}>
           <Typography variant="body1" component="body1" gutterBottom>
             {loginLinkData.text}
@@ -54,7 +54,7 @@ function Nav() {
             <LogOutButton className="navLink" />
           </>
         )}
-      </div>
+      </Box>
     </div>
   );
 }

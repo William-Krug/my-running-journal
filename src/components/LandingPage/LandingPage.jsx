@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Button, Grid, Typography } from '@material-ui/core';
 
-import './LandingPage.css';
-
 /* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
 import img from '../images/runners3.jpg';
@@ -45,6 +43,7 @@ function LandingPage({ verbose }) {
   return (
     <Grid container justify="center">
       <Grid item xs={8}>
+        {/* Welcome message */}
         <Box mb={3}>
           <Grid container justify="center">
             <Grid item>
