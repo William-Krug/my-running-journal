@@ -171,13 +171,13 @@ const userDailyAverages = (
   switch (action.type) {
     case 'SET_USER_DAILY_AVERAGES':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageDistance: 0,
-        averageTime: 0,
-        averageSpeed: 0,
-        averagePace: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageDistance: 0,
+    //     averageTime: 0,
+    //     averageSpeed: 0,
+    //     averagePace: 0,
+    //   };
     default:
       return state;
   }
@@ -197,10 +197,10 @@ const userWeeklyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_DISTANCE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageDistance: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageDistance: 0,
+    //   };
     default:
       return state;
   }
@@ -220,10 +220,10 @@ const userWeeklyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_TIME_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageTime: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageTime: 0,
+    //   };
     default:
       return state;
   }
@@ -243,10 +243,10 @@ const userWeeklySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_SPEED_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageSpeed: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageSpeed: 0,
+    //   };
     default:
       return state;
   }
@@ -266,10 +266,10 @@ const userWeeklyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_PACE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averagePace: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averagePace: 0,
+    //   };
     default:
       return state;
   }
@@ -289,10 +289,10 @@ const userMonthlyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_DISTANCE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageDistance: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageDistance: 0,
+    //   };
     default:
       return state;
   }
@@ -312,10 +312,10 @@ const userMonthlyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_TIME_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageTime: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageTime: 0,
+    //   };
     default:
       return state;
   }
@@ -335,10 +335,10 @@ const userMonthlySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_SPEED_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageSpeed: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageSpeed: 0,
+    //   };
     default:
       return state;
   }
@@ -358,10 +358,10 @@ const userMonthlyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_PACE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averagePace: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averagePace: 0,
+    //   };
     default:
       return state;
   }
@@ -381,10 +381,10 @@ const userYearlyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_DISTANCE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageDistance: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageDistance: 0,
+    //   };
     default:
       return state;
   }
@@ -404,10 +404,10 @@ const userYearlyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_TIME_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageTime: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averageTime: 0,
+    //   };
     default:
       return state;
   }
@@ -427,10 +427,10 @@ const userYearlySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_SPEED_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averageSpeed: 0,
-      };
+    // case 'UNSET_ALL':
+    // return {
+    //   averageSpeed: 0,
+    // };
     default:
       return state;
   }
@@ -450,10 +450,10 @@ const userYearlyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_PACE_AVERAGE':
       return action.payload;
-    case 'UNSET_ALL':
-      return {
-        averagePace: 0,
-      };
+    // case 'UNSET_ALL':
+    //   return {
+    //     averagePace: 0,
+    //   };
     default:
       return state;
   }
