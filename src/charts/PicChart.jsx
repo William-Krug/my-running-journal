@@ -1,7 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Grid, Typography } from '@material-ui/core';
 import { Pie } from 'react-chartjs-2';
 
+/**
+ * Component renders a graphical breakdown of
+ * community demographics
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @param {string} title title of the chart
+ * @param {array} values array of demographics to be displayed
+ * @returns {jsx} renders a pie chart showing a specific community breakdown
+ */
 function PieChart({ verbose, title, values }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
@@ -20,6 +29,10 @@ function PieChart({ verbose, title, values }) {
     dataIn.push(Number(values[i].data).toFixed(2));
   }
 
+  /*
+    Determines graph data necessary to render
+    the chart
+  */
   const data = {
     labels: labelsIn,
     datasets: [
@@ -44,9 +57,13 @@ function PieChart({ verbose, title, values }) {
 
   return (
     <>
-      <div className="header">
-        <h3 className="title">{title}</h3>
-      </div>
+      <Grid container justify="center">
+        <Grid item>
+          <Typography variant="h5" component="h3">
+            <strong>{title}</strong>
+          </Typography>
+        </Grid>
+      </Grid>
       <Pie data={data} />
     </>
   );
