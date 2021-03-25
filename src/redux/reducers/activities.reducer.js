@@ -1,5 +1,6 @@
 /* Import Libraries */
 import { combineReducers } from 'redux';
+import moment from 'moment';
 
 /* Redux Store Reducers */
 
@@ -25,6 +26,18 @@ const usersRuns = (
   switch (action.type) {
     case 'SET_USERS_RUNS':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        id: 0,
+        user_id: 0,
+        date: 0,
+        route: '',
+        distance: 0,
+        time: 0,
+        speed: 0,
+        pace: 0,
+        notes: '',
+      };
     default:
       return state;
   }
@@ -50,6 +63,18 @@ const fastestRun = (
   switch (action.type) {
     case 'SET_FASTEST_RUN':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        id: 0,
+        user_id: 0,
+        date: 0,
+        route: '',
+        distance: 0,
+        time: 0,
+        speed: 0,
+        pace: 0,
+        notes: '',
+      };
     default:
       return state;
   }
@@ -75,6 +100,18 @@ const longestRun = (
   switch (action.type) {
     case 'SET_LONGEST_RUN':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        id: 0,
+        user_id: 0,
+        date: 0,
+        route: '',
+        distance: 0,
+        time: 0,
+        speed: 0,
+        pace: 0,
+        notes: '',
+      };
     default:
       return state;
   }
@@ -100,6 +137,18 @@ const mostRecentRun = (
   switch (action.type) {
     case 'SET_MOST_RECENT_RUN':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        id: 0,
+        user_id: 0,
+        date: 0,
+        route: '',
+        distance: 0,
+        time: 0,
+        speed: 0,
+        pace: 0,
+        notes: '',
+      };
     default:
       return state;
   }
@@ -122,6 +171,13 @@ const userDailyAverages = (
   switch (action.type) {
     case 'SET_USER_DAILY_AVERAGES':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageDistance: 0,
+        averageTime: 0,
+        averageSpeed: 0,
+        averagePace: 0,
+      };
     default:
       return state;
   }
@@ -141,6 +197,10 @@ const userWeeklyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_DISTANCE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageDistance: 0,
+      };
     default:
       return state;
   }
@@ -160,6 +220,10 @@ const userWeeklyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_TIME_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageTime: 0,
+      };
     default:
       return state;
   }
@@ -179,6 +243,10 @@ const userWeeklySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_SPEED_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageSpeed: 0,
+      };
     default:
       return state;
   }
@@ -198,6 +266,10 @@ const userWeeklyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_WEEKLY_PACE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averagePace: 0,
+      };
     default:
       return state;
   }
@@ -217,6 +289,10 @@ const userMonthlyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_DISTANCE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageDistance: 0,
+      };
     default:
       return state;
   }
@@ -236,6 +312,10 @@ const userMonthlyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_TIME_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageTime: 0,
+      };
     default:
       return state;
   }
@@ -255,6 +335,10 @@ const userMonthlySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_SPEED_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageSpeed: 0,
+      };
     default:
       return state;
   }
@@ -274,6 +358,10 @@ const userMonthlyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_MONTHLY_PACE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averagePace: 0,
+      };
     default:
       return state;
   }
@@ -293,6 +381,10 @@ const userYearlyDistanceAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_DISTANCE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageDistance: 0,
+      };
     default:
       return state;
   }
@@ -312,6 +404,10 @@ const userYearlyTimeAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_TIME_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageTime: 0,
+      };
     default:
       return state;
   }
@@ -331,6 +427,10 @@ const userYearlySpeedAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_SPEED_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averageSpeed: 0,
+      };
     default:
       return state;
   }
@@ -350,6 +450,10 @@ const userYearlyPaceAverage = (
   switch (action.type) {
     case 'SET_USER_YEARLY_PACE_AVERAGE':
       return action.payload;
+    case 'UNSET_ALL':
+      return {
+        averagePace: 0,
+      };
     default:
       return state;
   }
