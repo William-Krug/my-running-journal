@@ -37,11 +37,6 @@ function LogRunForm({ verbose, setOpenPopup }) {
     // Keep page from refreshing
     event.preventDefault();
 
-    // Local variables used for speed and pace calculations
-    let totalMilliseconds = 0;
-    let speed = 0;
-    let pace = 0;
-
     // Breadcrumbs for testing and debugging
     if (verbose) {
       console.log('*** <LogRunForm /> -> logRun() ***');
@@ -50,6 +45,11 @@ function LogRunForm({ verbose, setOpenPopup }) {
       console.log('\tnewMinute:', newMinute);
       console.log('\tnewSecond:', newSecond);
     }
+
+    // Local variables used for speed and pace calculations
+    let totalMilliseconds = 0;
+    let speed = 0;
+    let pace = 0;
 
     // Calculate the total run time in milliseconds
     totalMilliseconds =
