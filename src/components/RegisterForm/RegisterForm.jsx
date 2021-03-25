@@ -178,7 +178,7 @@ function RegisterForm({ verbose }) {
         username: username,
         password: password,
         onComplete: () => {
-          history.push('/user'); // send user page to <UserPage /> after updating profile
+          history.push('/home'); // send user page to <UserPage /> after updating profile
         },
       },
     });

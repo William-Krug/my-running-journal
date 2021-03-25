@@ -45,8 +45,10 @@ function* updateUserProfile(action) {
       action.payload
     );
 
+    console.log(updatedUser.data);
+
     yield put({
-      type: 'SET_USER',
+      type: 'FETCH_USER',
       payload: updatedUser.data,
     });
 
