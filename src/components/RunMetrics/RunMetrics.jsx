@@ -12,6 +12,17 @@ import {
   Typography,
 } from '@material-ui/core';
 
+/**
+ * Component displays a table breaking down the Daily, Weekly, Monthly and Yearly
+ * averages for Distance, Time, Speed, and Pace
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @param {array} dailyAverages contains the daily breakdowns on distance, time, speed, and pace
+ * @param {array} weeklyAverages contains the weekly breakdowns on distance, time, speed, and pace
+ * @param {array} monthlyAverages contains the monthly breakdowns on distance, time, speed, and pace
+ * @param {array} yearlyAverages contains the yearly breakdowns on distance, time, speed, and pace
+ * @returns {jsx} renders tabular breakdown on averages
+ */
 function RunMetrics({
   verbose,
   dailyAverages,
@@ -32,6 +43,7 @@ function RunMetrics({
     <div>
       <Grid container justify="center">
         <Grid container justify="center">
+          {/* Table Heading */}
           <Grid item>
             <Typography variant="h5" component="h3">
               <strong>Averages</strong>
@@ -41,6 +53,7 @@ function RunMetrics({
         <Grid item>
           <TableContainer>
             <Table>
+              {/* Heading Row */}
               <TableHead>
                 <TableRow>
                   <TableCell></TableCell>
@@ -59,6 +72,7 @@ function RunMetrics({
                 </TableRow>
               </TableHead>
               <TableBody>
+                {/* Daily Values */}
                 <TableRow>
                   <TableCell align="right">
                     <strong>Daily</strong>
@@ -80,6 +94,8 @@ function RunMetrics({
                       .format()}
                   </TableCell>
                 </TableRow>
+
+                {/* Weekly Values */}
                 <TableRow>
                   <TableCell align="right">
                     <strong>Weekly</strong>
@@ -107,6 +123,8 @@ function RunMetrics({
                       .format()}
                   </TableCell>
                 </TableRow>
+
+                {/* Monthly Values */}
                 <TableRow>
                   <TableCell align="right">
                     <strong>Monthly</strong>
@@ -136,6 +154,8 @@ function RunMetrics({
                       .format()}
                   </TableCell>
                 </TableRow>
+
+                {/* Yearly Values */}
                 <TableRow>
                   <TableCell align="right">
                     <strong>Yearly</strong>
