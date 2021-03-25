@@ -5,6 +5,14 @@ import './Nav.css';
 import { useSelector } from 'react-redux';
 import { Box, Typography } from '@material-ui/core';
 
+/**
+ * Component generates the navigation bar and dynamically changes
+ * the available links to a user based on:
+ * - Login status
+ * - Authorization levels
+ *
+ * @returns {jsx} renders the Navigational bar at the top of the screen
+ */
 function Nav() {
   const user = useSelector((store) => store.user);
 
@@ -20,6 +28,7 @@ function Nav() {
 
   return (
     <div className="nav">
+      {/* Company Name / Home link */}
       <Box ml={5}>
         <Link className="navLink" to="/home">
           <Typography variant="h2" component="h1" gutterBottom>
@@ -34,6 +43,7 @@ function Nav() {
           </Typography>
         </Link>
 
+        {/* Link to Admin Page.  Auth Level 2 and below required to access */}
         {user.authLevel <= 2 && user.id > 0 && (
           <>
             <Link className="navLink" to="/admin">
@@ -44,6 +54,7 @@ function Nav() {
           </>
         )}
 
+        {/* Link to Profile page.  Only accessible once logged in */}
         {user.id > 0 && (
           <>
             <Link className="navLink" to="/profile">
