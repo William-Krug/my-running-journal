@@ -29,14 +29,18 @@ function RunDetails({ verbose, title, runDetails }) {
   return (
     <div>
       <Grid container justify="center">
+        {/* Page Heading */}
         <Grid item>
           <Typography variant="h5" component="h3" gutterBottom>
             <strong>{title}</strong>
           </Typography>
         </Grid>
       </Grid>
+
+      {/* Display Run Details */}
       <TableContainer>
         <Table>
+          {/* Date */}
           <TableRow>
             <TableCell align="right">
               <strong>Date</strong>
@@ -45,18 +49,24 @@ function RunDetails({ verbose, title, runDetails }) {
               {moment(runDetails.date).format('MM/DD/YYYY')}
             </TableCell>
           </TableRow>
+
+          {/* Route */}
           <TableRow>
             <TableCell align="right">
               <strong>Route</strong>
             </TableCell>
             <TableCell>{runDetails.route}</TableCell>
           </TableRow>
+
+          {/* Distance */}
           <TableRow>
             <TableCell align="right">
               <strong>Distance</strong>
             </TableCell>
             <TableCell>{Number(runDetails.distance).toFixed(2)}</TableCell>
           </TableRow>
+
+          {/* Time */}
           <TableRow>
             <TableCell align="right">
               <strong>Time</strong>
@@ -65,12 +75,16 @@ function RunDetails({ verbose, title, runDetails }) {
               {moment.duration(runDetails.time, 'milliseconds').format()}
             </TableCell>
           </TableRow>
+
+          {/* Speed */}
           <TableRow>
             <TableCell align="right">
               <strong>Speed (MPH)</strong>
             </TableCell>
             <TableCell>{runDetails.speed}</TableCell>
           </TableRow>
+
+          {/* Pace */}
           <TableRow>
             <TableCell align="right">
               <strong>Pace (min/mile)</strong>
@@ -79,6 +93,8 @@ function RunDetails({ verbose, title, runDetails }) {
               {moment.duration(runDetails.pace, 'milliseconds').format()}
             </TableCell>
           </TableRow>
+
+          {/* Notes */}
           <TableRow>
             <TableCell align="right">
               <strong>Notes</strong>
