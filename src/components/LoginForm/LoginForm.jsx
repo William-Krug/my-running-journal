@@ -7,18 +7,16 @@ import {
   Button,
   IconButton,
   Input,
-  FilledInput,
-  OutlinedInput,
   InputLabel,
   InputAdornment,
-  FormHelperText,
-  FormControl,
   TextField,
   Typography,
 } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 /**
+ * Component renders the login form to allow user's to
+ * access the app
  *
  * @param {boolean} verbose global variable used for testing and debugging
  * @returns {jsx} renders the app's login form
@@ -29,12 +27,20 @@ function LoginForm({ verbose }) {
     console.log('*** in <LoginForm /> ***');
   }
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  // State values held in the Redux store
+  const errors = useSelector((store) => store.errors);
+
+  // Local state values used for login form submission
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // allows toggling between protected and visible password input
+
+  /*
+    Function captures user input and sends to the DB
+    for verification of credentials
+  */
   const login = (event) => {
     event.preventDefault();
 
@@ -57,6 +63,10 @@ function LoginForm({ verbose }) {
     }
   }; // end login
 
+  /*
+    Toggle local state value to allow user's password
+    to be displayed as plain text or encrypted
+  */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -68,8 +78,9 @@ function LoginForm({ verbose }) {
   return (
     <form className="formPanel" onSubmit={login}>
       <Box mb={3}>
+        {/* Page Heading */}
         <Typography variant="h4" component="h2" gutterBottom>
-          Login
+          <strong>Login</strong>
         </Typography>
 
         {/* Alert user to incorrect username/password combination */}
@@ -81,23 +92,25 @@ function LoginForm({ verbose }) {
       </Box>
 
       {/* Capture user input */}
+      {/* Username */}
       <Box mb={3}>
-        {/* Username */}
         <InputLabel id="username">Username</InputLabel>
         <TextField
           labelID="username"
           defaultValue={username}
+          fullWidth
           onChange={(event) => setUsername(event.target.value)}
         />
       </Box>
 
+      {/* Password */}
       <Box mb={3}>
-        {/* Password */}
-        <InputLabel>Password</InputLabel>
+        <InputLabel id="password">Password</InputLabel>
         <Input
           type={showPassword ? 'text' : 'password'}
-          label="Password:"
+          labelId="password"
           defaultValue={password}
+          fullWidth
           onChange={(event) => setPassword(event.target.value)}
           endAdornment={
             <InputAdornment position="end">
@@ -113,30 +126,9 @@ function LoginForm({ verbose }) {
         />
       </Box>
 
-      {/* <FormControl className={clsx(classes.margin, classes.textField)}>
-        <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-        <Input
-          id="standard-adornment-password"
-          type={values.showPassword ? 'text' : 'password'}
-          value={values.password}
-          onChange={handleChange('password')}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-              >
-                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          }
-        />
-      </FormControl> */}
-
       <Box mb={3}>
         <Button type="submit" variant="contained" color="primary">
-          Log In
+          Login
         </Button>
       </Box>
     </form>

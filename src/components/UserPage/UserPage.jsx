@@ -2,13 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, Card, Grid, Paper, Typography } from '@material-ui/core';
+import { Box, Button, Card, Grid, Typography } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 /* Import Components */
 import LogRunForm from '../LogRunForm/LogRunForm';
 import RunDetails from '../RunDetails/RunDetails';
 import RunMetrics from '../RunMetrics/RunMetrics';
 import LineChart from '../../charts/LineChart';
+import Popup from '../Popup/Popup';
 
 /**
  * Component renders the user's personal page allowing them to:
@@ -39,8 +41,9 @@ function UserPage({ verbose }) {
     getYearlyAverages();
   }, []);
 
-  // List of all user's runs (objects) from "activities" table
+  // Dynamic state variables held in Redux store
   const user = useSelector((store) => store.user);
+  const [openPopup, setOpenPopup] = useState(false);
   const allUsersRuns = useSelector((store) => store.activities.usersRuns);
   const fastestRun = useSelector((store) => store.activities.fastestRun);
   const longestRun = useSelector((store) => store.activities.longestRun);
@@ -285,143 +288,144 @@ function UserPage({ verbose }) {
   };
 
   return (
-    <div>
-      <Typography variant="h3" component="h1" gutterBottom>
-        {user.username}'s Running Log
-      </Typography>
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        {/* Page Title */}
+        <Grid container justify="center">
+          <Grid item>
+            <Typography variant="h3" component="h1">
+              <strong>{user.username}'s Running Log</strong>
+            </Typography>
+          </Grid>
+        </Grid>
 
-      {/* <h1>{user.username}'s Running Log</h1> */}
+        {/* Log a new run */}
+        <Popup
+          title="Log New Run"
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+        >
+          <LogRunForm verbose={verbose} setOpenPopup={setOpenPopup} />
+        </Popup>
 
-      {/* Log a new run */}
-      <section>
-        <LogRunForm verbose={verbose} />
-      </section>
-
-      {/* Dashboard */}
-      <section>
-        <Paper variant="elevation">
+        {/* Dashboard */}
+        <Box mb={3}>
           <Grid container justify="space-evenly" alignItems="flex-start">
             <Grid container justify="space-between" alignItems="center">
+              {/* Title */}
               <Grid item>
-                <Typography variant="h4" component="h2" gutterBottom>
-                  Dashboard
-                </Typography>
-
-                {/* <h2>Dashboard</h2> */}
+                <Box pb={5} pt={5}>
+                  <Typography variant="h4" component="h2">
+                    <strong>Dashboard</strong>
+                  </Typography>
+                </Box>
               </Grid>
+
+              {/* Add Run Button */}
               <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => console.log('new button was clicked')}
-                >
-                  Add Run
-                </Button>
+                <Box pb={5} pt={5}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => setOpenPopup(!openPopup)}
+                  >
+                    <AddIcon />
+                    Add Run
+                  </Button>
+                </Box>
               </Grid>
             </Grid>
 
             {/* Most Recent Run */}
             <Grid item xs={3}>
-              <Card variant="outlined">
-                <RunDetails
-                  verbose={verbose}
-                  title={'Most Recent Run'}
-                  runDetails={mostRecentRun}
-                />
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Most Recent Run'}
+                    runDetails={mostRecentRun}
+                  />
+                </Box>
               </Card>
             </Grid>
 
             {/* Longest Run */}
             <Grid item xs={3}>
-              <Card variant="outlined">
-                <RunDetails
-                  verbose={verbose}
-                  title={'Longest Run'}
-                  runDetails={longestRun}
-                />
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Longest Run'}
+                    runDetails={longestRun}
+                  />
+                </Box>
               </Card>
             </Grid>
 
             {/* Fastest Run */}
             <Grid item xs={3}>
-              <Card variant="outlined">
-                <RunDetails
-                  verbose={verbose}
-                  title={'Fastest Run'}
-                  runDetails={fastestRun}
-                />
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunDetails
+                    verbose={verbose}
+                    title={'Fastest Run'}
+                    runDetails={fastestRun}
+                  />
+                </Box>
               </Card>
             </Grid>
           </Grid>
-        </Paper>
+        </Box>
 
-        {/* <h2>Dashboard</h2> */}
+        {/* Metrics */}
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={2}>
+              <Box pb={5} pt={5}>
+                <Typography variant="h4" component="h2">
+                  <strong>Metrics</strong>
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
 
-        {/* Most Recent Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Most Recent Run'}
-            runDetails={mostRecentRun}
-          />
-        </div> */}
-
-        {/* Longest Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Longest Run'}
-            runDetails={longestRun}
-          />
-        </div> */}
-
-        {/* Fastest Run */}
-        {/* <div>
-          <RunDetails
-            verbose={verbose}
-            title={'Fastest Run'}
-            runDetails={fastestRun}
-          />
-        </div> */}
-      </section>
-
-      {/* Metrics */}
-      <section>
-        <Paper variant="elevation">
-          <Typography variant="h4" component="h2" gutterBottom>
-            Metrics
-          </Typography>
-          {/* <h2>Metrics</h2> */}
+          {/* Table */}
           <Grid container justify="center" alignItems="center" xs={12}>
-            <Grid item xs={5}>
-              <Card variant="outlined">
-                <RunMetrics
-                  verbose={verbose}
-                  dailyAverages={dailyAverages}
-                  weeklyAverages={weeklyAverages}
-                  monthlyAverages={monthlyAverages}
-                  yearlyAverages={yearlyAverages}
-                />
+            <Grid item xs={8}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <RunMetrics
+                    verbose={verbose}
+                    dailyAverages={dailyAverages}
+                    weeklyAverages={weeklyAverages}
+                    monthlyAverages={monthlyAverages}
+                    yearlyAverages={yearlyAverages}
+                  />
+                </Box>
               </Card>
             </Grid>
           </Grid>
-        </Paper>
-        <Paper variant="elevation">
+        </Box>
+
+        {/* Graphical Representation */}
+        <Box mb={3} pb={5} pt={5}>
           <Grid container justify="center" alignItems="center" xs={12}>
-            <Grid item xs={9}>
-              <Card variant="outlined">
-                <LineChart
-                  verbose={verbose}
-                  allUsersRuns={allUsersRuns}
-                  label={'Distance'}
-                  title={'Run History'}
-                />
+            <Grid item xs={10}>
+              <Card variant="elevation" elevation="5">
+                <Box p={3}>
+                  <LineChart
+                    verbose={verbose}
+                    allUsersRuns={allUsersRuns}
+                    label={'Distance'}
+                    title={'Run History'}
+                  />
+                </Box>
               </Card>
             </Grid>
           </Grid>
-        </Paper>
-      </section>
-    </div>
+        </Box>
+      </Grid>
+    </Grid>
   );
 }
 

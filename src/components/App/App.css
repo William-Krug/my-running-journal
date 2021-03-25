@@ -2,6 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
+  background-color: #f7f1ca;
+  /* background-color: #57887b; */
 }
 
 body {
@@ -55,7 +57,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #57887b;
   text-decoration: none;
 }
 
@@ -67,7 +69,7 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #1c141d;
 }
 
 .btn_asLink:hover {
@@ -101,7 +103,8 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  /* background-color: #efefef; */
+  background-color: #ffffff;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

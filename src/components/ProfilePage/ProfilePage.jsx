@@ -2,12 +2,18 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Button, Card, Grid, Typography } from '@material-ui/core';
 import swal from 'sweetalert';
 
 /* Import Components */
 import ProfileDetails from '../ProfileDetails/ProfileDetails';
 import RegisterForm from '../RegisterForm/RegisterForm';
 
+/**
+ *
+ * @param {boolean} verbose global variable used for testing and debugging
+ * @returns {jsx} renders container page for `<ProfileDetails />` and `<RegisterForm />` components
+ */
 function ProfilePage({ verbose }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
@@ -88,20 +94,66 @@ function ProfilePage({ verbose }) {
   }
 
   return (
-    <div>
-      <h1>{user.username}'s Profile</h1>
-      {editButtonClicked ? (
-        <ProfileDetails verbose={verbose} user={user} />
-      ) : (
-        <RegisterForm verbose={verbose} />
-      )}
-      {editButtonClicked ? (
-        <button onClick={registerFormToggle}>Edit</button>
-      ) : (
-        <button onClick={registerFormToggle}>Cancel</button>
-      )}
-      <button onClick={deleteUser}>Delete</button>
-    </div>
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        <Grid container justify="center">
+          {/* Page Heading*/}
+          <Grid item>
+            <Typography variant="h3" component="h1">
+              <strong>{user.username}'s Profile</strong>
+            </Typography>
+          </Grid>
+        </Grid>
+        <Box mb={3} mt={5}>
+          <Grid container justify="center">
+            {/* Display <ProfileDetails /> until "Edit" button is clicked */}
+            <Grid item xs={4}>
+              {editButtonClicked ? (
+                <Card variant="elevation" elevation="5">
+                  <Box p={3}>
+                    <ProfileDetails verbose={verbose} user={user} />
+                  </Box>
+                </Card>
+              ) : (
+                <RegisterForm verbose={verbose} />
+              )}
+            </Grid>
+          </Grid>
+        </Box>
+
+        {/* Buttons to edit/cancel / delete */}
+        <Grid container justify="center">
+          <Grid item>
+            <Box mr={3}>
+              {editButtonClicked ? (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={registerFormToggle}
+                >
+                  Edit
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={registerFormToggle}
+                >
+                  Cancel
+                </Button>
+              )}
+            </Box>
+          </Grid>
+          <Grid item>
+            <Box ml={3}>
+              <Button variant="contained" color="primary" onClick={deleteUser}>
+                Delete
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

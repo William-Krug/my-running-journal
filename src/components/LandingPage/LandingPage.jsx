@@ -1,10 +1,7 @@
 /* Import Libraries */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
-/* Import Material-UI components */
-import Button from '@material-ui/core/Button';
-import './LandingPage.css';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
 
 /* Import Components */
 import LoginForm from '../LoginForm/LoginForm';
@@ -44,46 +41,71 @@ function LandingPage({ verbose }) {
   }
 
   return (
-    <section>
-      <h2>Welcome</h2>
+    <Grid container justify="center">
+      <Grid item xs={8}>
+        {/* Welcome message */}
+        <Box mb={3}>
+          <Grid container justify="center">
+            <Grid item>
+              <Typography variant="h3" component="h1">
+                Welcome
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
 
-      {/* About MRJ */}
-      <div>
-        <p>
-          At MRJ, we believe that everyone can achieve anything they put their
-          mind to. We simply quantify your dreams.
-        </p>
-      </div>
+        {/* About MRJ */}
+        <Box mb={3}>
+          <Grid container justify="center">
+            <Grid item xs={4}>
+              <Typography variant="h6" component="p">
+                At MRJ, we believe that everyone can achieve anything they put
+                their mind to. We simply quantify your dreams.
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
 
-      {/* Toggle between home page image and login form */}
-      <div>
-        {loginButtonClicked ? (
-          <LoginForm verbose={verbose} />
-        ) : (
-          <img
-            src={img}
-            // src="https://www.focusfitness.net/stock-photos/wp-content/uploads/edd/2017/06/81-man-woman-running-vector.jpg"
-            alt="silhouette of two runners"
-          />
-        )}
-      </div>
+        {/* Toggle between home page image and login form */}
+        <Box mb={3}>
+          <Grid container justify="center">
+            <Grid item xs={6}>
+              {loginButtonClicked ? (
+                <LoginForm verbose={verbose} />
+              ) : (
+                <img src={img} alt="silhouette of two runners" />
+              )}
+            </Grid>
+          </Grid>
+        </Box>
 
-      {/* Buttons to login / register */}
-      <div>
-        <Button variant="contained" color="primary" onClick={loginFormToggle}>
-          Login
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => history.push('/registration')}
-        >
-          Register
-        </Button>
-        {/* <button onClick={loginFormToggle}>Login</button>
-        <button onClick={() => history.push('/registration')}>Register</button> */}
-      </div>
-    </section>
+        {/* Buttons to login / register */}
+        <Grid container justify="center">
+          <Grid item>
+            <Box mr={3}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={loginFormToggle}
+              >
+                Login
+              </Button>
+            </Box>
+          </Grid>
+          <Grid item>
+            <Box ml={3}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => history.push('/registration')}
+              >
+                Register
+              </Button>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

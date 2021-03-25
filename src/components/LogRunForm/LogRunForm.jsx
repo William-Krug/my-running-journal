@@ -1,21 +1,17 @@
 /* Import Libraries */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, TextField } from '@material-ui/core';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import MomentUtils from '@date-io/moment';
+import { Box, Button, Grid, InputLabel, TextField } from '@material-ui/core';
 
 /**
  * Component captures user's run information to be stored
  * in the "activities" table in DB
  *
  * @param {boolean} verbose global variable used for testing and debugging
+ * @param {function} setOpenPopup function that sets the state of `openPopup` to close popup after logging new run
  * @returns {jsx} renders app's log run form
  */
-function LogRunForm({ verbose }) {
+function LogRunForm({ verbose, setOpenPopup }) {
   // Breadcrumbs for testing and debugging
   if (verbose) {
     console.log('*** in <LogRunForm /> ***');
@@ -41,11 +37,6 @@ function LogRunForm({ verbose }) {
     // Keep page from refreshing
     event.preventDefault();
 
-    // Local variables used for speed and pace calculations
-    let totalMilliseconds = 0;
-    let speed = 0;
-    let pace = 0;
-
     // Breadcrumbs for testing and debugging
     if (verbose) {
       console.log('*** <LogRunForm /> -> logRun() ***');
@@ -54,6 +45,11 @@ function LogRunForm({ verbose }) {
       console.log('\tnewMinute:', newMinute);
       console.log('\tnewSecond:', newSecond);
     }
+
+    // Local variables used for speed and pace calculations
+    let totalMilliseconds = 0;
+    let speed = 0;
+    let pace = 0;
 
     // Calculate the total run time in milliseconds
     totalMilliseconds =
@@ -91,179 +87,124 @@ function LogRunForm({ verbose }) {
     // Clear inputs
     setNewDate('');
     setNewRoute('');
-    setNewDistance(0);
+    setNewDistance('');
     setNewHour('');
     setNewMinute('');
     setNewSecond('');
     setNewNotes('');
+
+    // Close Popup component
+    setOpenPopup(false);
   }
 
   return (
     <div>
       <form onSubmit={logRun}>
         {/* Run Date */}
-        <div>
-          {/* <MuiPickersUtilsProvider utils={MomentUtils}>
-            <KeyboardDatePicker
-              disableToolbar
-              variant="inline"
-              format="MM/dd/yyyy"
-              margin="normal"
-              id="date-picker-inline"
-              label="Run Date:"
-              value={newDate}
-              onChange={(event) => setNewDate(event.target.value)}
-              KeyboardButtonProps={{
-                'aria-label': 'change date',
-              }}
-            />
-          </MuiPickersUtilsProvider> */}
-          <label htmlFor="newDate">
-            Run Date:
-            <input
-              type="date"
-              name="newDate"
-              value={newDate}
-              required
-              onChange={(event) => setNewDate(event.target.value)}
-            />
-          </label>
-        </div>
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={12}>
+              <InputLabel id="date">Date</InputLabel>
+              <TextField
+                type="date"
+                labelId="date"
+                value={newDate}
+                required
+                fullWidth
+                onChange={(event) => setNewDate(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
 
         {/* Route Name */}
-        <div>
-          <TextField
-            label="Route Name:"
-            variant="outlined"
-            value={newRoute}
-            placeholder="Secret Path"
-            required
-            onChange={(event) => setNewRoute(event.target.value)}
-          />
-          {/* <label htmlFor="newRoute">
-            Route Name:
-            <input
-              type="text"
-              name="newRoute"
-              value={newRoute}
-              placeholder="Secret Path"
-              onChange={(event) => setNewRoute(event.target.value)}
-            />
-          </label> */}
-        </div>
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={12}>
+              <InputLabel id="routeName">Route Name</InputLabel>
+              <TextField
+                labelId="routName"
+                value={newRoute}
+                fullWidth
+                onChange={(event) => setNewRoute(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
 
         {/* Distance */}
-        <div>
-          <TextField
-            label="Distance:"
-            variant="filled"
-            value={newDistance}
-            placeholder="5.34"
-            required
-            onChange={(event) => setNewDistance(event.target.value)}
-          />
-          {/* <label htmlFor="newDistance">
-            Distance:
-            <input
-              type="number"
-              name="newDistance"
-              value={newDistance}
-              placeholder="5.34"
-              step="0.01"
-              min="0"
-              required
-              onChange={(event) => setNewDistance(event.target.value)}
-            />
-          </label> */}
-        </div>
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={12}>
+              <InputLabel id="distance">Distance</InputLabel>
+              <TextField
+                labelId="distance"
+                value={newDistance}
+                required
+                fullWidth
+                onChange={(event) => setNewDistance(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
 
         {/* Time */}
-        <div>
-          <TextField
-            label="hours"
-            value={newHour}
-            placeholder="hh"
-            required
-            onChange={(event) => setNewHour(event.target.value)}
-          />
-          {/* <label htmlFor="newTime">
-          </div>
-            Time: */}
-          {/* Hours */}
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newHour}
-              placeholder="hh"
-              required
-              min="0"
-              onChange={(event) => setNewHour(event.target.value)}
-            /> */}
-          {/* Minutes */}
-          <TextField
-            label="minutes"
-            value={newMinute}
-            placeholder="mm"
-            required
-            onChange={(event) => setNewMinute(event.target.value)}
-          />
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newMinute}
-              placeholder="mm"
-              required
-              min="0"
-              onChange={(event) => setNewMinute(event.target.value)}
-            /> */}
-          {/* Seconds */}
-          <TextField
-            label="seconds"
-            value={newSecond}
-            placeholder="ss"
-            required
-            onChange={(event) => setNewSecond(event.target.value)}
-          />
-          {/* <input
-              type="number"
-              name="newTime"
-              value={newSecond}
-              placeholder="ss"
-              min="0"
-              required
-              onChange={(event) => setNewSecond(event.target.value)}
-            />
-          </label> */}
-        </div>
+        <Box mb={3}>
+          <Grid container justify="space-between">
+            {/* Hours */}
+            <Grid item xs={3}>
+              <InputLabel id="hours">Hours</InputLabel>
+              <TextField
+                labelID="hours"
+                value={newHour}
+                required
+                onChange={(event) => setNewHour(event.target.value)}
+              />
+            </Grid>
+            {/* Minutes */}
+            <Grid item xs={3}>
+              <InputLabel id="minutes">Minutes</InputLabel>
+              <TextField
+                labelId="minutes"
+                value={newMinute}
+                required
+                onChange={(event) => setNewMinute(event.target.value)}
+              />
+            </Grid>
+            {/* Seconds */}
+            <Grid item xs={3}>
+              <InputLabel id="seconds">Seconds</InputLabel>
+              <TextField
+                labelId="seconds"
+                value={newSecond}
+                required
+                onChange={(event) => setNewSecond(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
 
         {/* Notes */}
-        <div>
-          <TextField
-            label="Notes:"
-            value={newNotes}
-            placeholder="Watch out for ice"
-            multiline
-            rows={5}
-            required
-            onChange={(event) => setNewNotes(event.target.value)}
-          />
-          {/* <label htmlFor="newNotes">
-            Notes:
-            <input
-              type="text"
-              name="newNotes"
-              value={newNotes}
-              placeholder="Watch out for ice"
-              onChange={(event) => setNewNotes(event.target.value)}
-            />
-          </label> */}
-        </div>
-        <div>
+        <Box mb={3}>
+          <Grid container>
+            <Grid item xs={12}>
+              <InputLabel id="notes">Notes</InputLabel>
+              <TextField
+                labelId="notes"
+                value={newNotes}
+                multiline
+                rows={5}
+                fullWidth
+                onChange={(event) => setNewNotes(event.target.value)}
+              />
+            </Grid>
+          </Grid>
+        </Box>
+        <Box mb={3}>
           <Button type="submit" variant="contained" color="primary">
-            Add Run
+            Log Run
           </Button>
-          {/* <button>Add Run</button> */}
-        </div>
+        </Box>
       </form>
     </div>
   );
