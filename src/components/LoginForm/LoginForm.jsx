@@ -27,12 +27,20 @@ function LoginForm({ verbose }) {
     console.log('*** in <LoginForm /> ***');
   }
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  // State values held in the Redux store
+  const errors = useSelector((store) => store.errors);
+
+  // Local state values used for login form submission
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // allows toggling between protected and visible password input
+
+  /*
+    Function captures user input and sends to the DB
+    for verification of credentials
+  */
   const login = (event) => {
     event.preventDefault();
 
@@ -55,6 +63,10 @@ function LoginForm({ verbose }) {
     }
   }; // end login
 
+  /*
+    Toggle local state value to allow user's password
+    to be displayed as plain text or encrypted
+  */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -66,6 +78,7 @@ function LoginForm({ verbose }) {
   return (
     <form className="formPanel" onSubmit={login}>
       <Box mb={3}>
+        {/* Page Heading */}
         <Typography variant="h4" component="h2" gutterBottom>
           <strong>Login</strong>
         </Typography>
