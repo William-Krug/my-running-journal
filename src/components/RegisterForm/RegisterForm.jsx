@@ -40,7 +40,7 @@ function RegisterForm({ verbose }) {
     fetchAllStates();
   }, []);
 
-  // Data stored in reducers that will update with changes to DB
+  // State data stored in reducers that will dynamically update with changes to DB
   const errors = useSelector((store) => store.errors);
   const user = useSelector((store) => store.user);
   const allGenders = useSelector((store) => store.registration.allGenders);
@@ -61,8 +61,6 @@ function RegisterForm({ verbose }) {
   const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
-
-  const showFields = user.id !== 0 ? true : false;
 
   /*
     Function gets the list of all available gender options
@@ -96,6 +94,12 @@ function RegisterForm({ verbose }) {
     });
   };
 
+  /**
+   * Function determines form submission path (GET vs PUT)
+   * based on user.id
+   *
+   * @param {object} event handles button click / form submission
+   */
   const registerOrUpdateUser = (event) => {
     // Keep page from reloading
     event.preventDefault();
@@ -115,6 +119,10 @@ function RegisterForm({ verbose }) {
     }
   };
 
+  /*
+    Toggle local state value to allow user's password
+    to be displayed as plain text or encrypted
+  */
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -170,15 +178,15 @@ function RegisterForm({ verbose }) {
         username: username,
         password: password,
         onComplete: () => {
-          history.push('/user');
+          history.push('/user'); // send user page to <UserPage /> after updating profile
         },
       },
     });
   }; // end registerUser
 
   return (
-    // {showFields &&
     <form className="formPanel" onSubmit={registerOrUpdateUser}>
+      {/* Display proper Form Header */}
       <Box mb={3}>
         {user.id !== 0 ? (
           <Typography variant="h4" component="h2" gutterBottom>
@@ -344,7 +352,7 @@ function RegisterForm({ verbose }) {
         />
       </Box>
 
-      {/* Button */}
+      {/* Button Display */}
       <Box mb={3}>
         {user.id !== 0 ? (
           <Button type="submit" variant="contained" color="primary">
