@@ -27,7 +27,7 @@ function* fetchFastestRun(action) {
     });
   } catch (error) {
     swal(
-      'My Running Journal',
+      'My Running Journal: Fastest Run',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
@@ -59,7 +59,7 @@ function* fetchLongestRun(action) {
     });
   } catch (error) {
     swal(
-      'My Running Journal',
+      'My Running Journal: Longest Run',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
@@ -91,7 +91,7 @@ function* fetchMostRecentRun(action) {
     });
   } catch (error) {
     swal(
-      'My Running Journal',
+      'My Running Journal: Most Recent Run',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
@@ -121,7 +121,7 @@ function* fetchUsersRuns(action) {
     });
   } catch (error) {
     swal(
-      'My Running Journal',
+      'My Running Journal: User Runs',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
@@ -152,7 +152,7 @@ function* fetchUserDailyAverages(action) {
     });
   } catch (error) {
     swal(
-      'My Running Journal',
+      'My Running Journal: Daily Averages',
       'An ERROR occurred during request.  Please try again later',
       'error'
     );
