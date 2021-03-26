@@ -31,7 +31,12 @@ function Nav() {
       {/* Company Name / Home link */}
       <Box ml={5}>
         <Link className="navLink" to="/home">
-          <Typography variant="h2" component="h1" gutterBottom>
+          <Typography
+            className="appName"
+            variant="h2"
+            component="h1"
+            gutterBottom
+          >
             <strong>My Running Journal</strong>
           </Typography>
         </Link>

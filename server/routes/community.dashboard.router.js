@@ -20,21 +20,19 @@ router.get('/genderBreakdown', rejectUnauthenticated, (req, res) => {
   //   '### community.dashboard.router -> GET /api/communityDashboard/genderBreakdown ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT "genders".gender as "label", count("users".gender) * 100.0 / sum(count("users".gender)) over() as "data"
-    FROM "users"
-    JOIN "genders" ON "genders".id = "users".gender
-    GROUP BY "genders".gender
-    ORDER BY "genders".gender ASC;
-    `;
   }
+
+  const sqlQuery = `
+  SELECT "genders".gender as "label", count("users".gender) * 100.0 / sum(count("users".gender)) over() as "data"
+  FROM "users"
+  JOIN "genders" ON "genders".id = "users".gender
+  GROUP BY "genders".gender
+  ORDER BY "genders".gender ASC;
+  `;
 
   // Ping DB
   pool
@@ -66,21 +64,19 @@ router.get('/stateBreakdown', rejectUnauthenticated, (req, res) => {
   //   '### community.dashboard.router -> GET /api/communityDashboard/stateBreakdown ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT "states".state as "label", count("users".state) * 100.0 / sum(count("users".state)) over() as "data"
-    FROM "users"
-    JOIN "states" ON "states".id = "users".state
-    GROUP BY "states".state
-    ORDER BY "states".state ASC;
-    `;
   }
+
+  const sqlQuery = `
+  SELECT "states".state as "label", count("users".state) * 100.0 / sum(count("users".state)) over() as "data"
+  FROM "users"
+  JOIN "states" ON "states".id = "users".state
+  GROUP BY "states".state
+  ORDER BY "states".state ASC;
+  `;
 
   // Ping DB
   pool

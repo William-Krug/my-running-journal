@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Typography } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 /* Import Components */
@@ -23,24 +23,6 @@ import AdminPage from '../AdminPage/AdminPage';
 
 /* Import CSS */
 import './App.css';
-import { mcgpalette0400 as primaryLight } from './colorTheme';
-import { mcgpalette0500 as primary } from './colorTheme';
-import { mcgpalette0600 as primaryDark } from './colorTheme';
-import { mcgpalette2300 as secondaryLight } from './colorTheme';
-import { mcgpalette2500 as secondary } from './colorTheme';
-import { mcgpalette2700 as secondaryDark } from './colorTheme';
-import { mcgpalette4300 as errorLight } from './colorTheme';
-import { mcgpalette4500 as error } from './colorTheme';
-import { mcgpalette4700 as errorDark } from './colorTheme';
-import { mcgpalette2700 as warningLight } from './colorTheme';
-import { mcgpalette2800 as warning } from './colorTheme';
-import { mcgpalette2900 as warningDark } from './colorTheme';
-import { mcgpalette3400 as infoLight } from './colorTheme';
-import { mcgpalette3500 as info } from './colorTheme';
-import { mcgpalette3600 as infoDark } from './colorTheme';
-import { mcgpalette3A200 as successLight } from './colorTheme';
-import { mcgpalette3A400 as success } from './colorTheme';
-import { mcgpalette3A700 as successDark } from './colorTheme';
 
 /*
   Global value used for testing during app build
@@ -55,41 +37,36 @@ const customTheme = createMuiTheme({
   palette: {
     // type: 'dark',
     primary: {
-      light: primaryLight,
-      main: primary,
-      dark: primaryDark,
+      main: '#193655',
       contrastText: '#f2f2f2',
     },
     secondary: {
-      light: secondaryLight,
-      main: secondary,
-      dark: secondaryDark,
+      main: '#ee6216',
       contrastText: '#1C141D',
     },
     error: {
-      light: errorLight,
-      main: error,
-      dark: errorDark,
+      main: '#1c141d',
       contrastText: '#f2f2f2',
     },
     warning: {
-      light: warningLight,
-      main: warning,
-      dark: warningDark,
+      main: '#e7460c',
       contrastText: '#1C141D',
     },
     info: {
-      light: infoLight,
-      main: info,
-      dark: infoDark,
+      main: '#57887b',
       contrastText: '#f2f2f2',
     },
     success: {
-      light: successLight,
-      main: success,
-      dark: successDark,
+      main: '#3cffc4',
       contrastText: '#1C141D',
     },
+  },
+  typography: {
+    h2: {
+      // fontFamily: 'Architects Daughter',
+      fontFamily: 'Merienda',
+    },
+    fontFamily: 'Raleway',
   },
 });
 
@@ -174,7 +151,9 @@ function App() {
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>
-              <h1>404</h1>
+              <Typography variant="h1" component="h1" gutterBottom>
+                *** 404 - Error on page load ***
+              </Typography>
             </Route>
           </Switch>
           <Footer />

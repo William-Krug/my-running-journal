@@ -21,22 +21,20 @@ router.get('/dailyAverages', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/dailyAverages ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT
-      AVG("distance") as "averageDistance",
-      AVG("time") as "averageTime",
-      AVG("speed") as "averageSpeed",
-      AVG("pace") as "averagePace"
-    FROM "activities";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT
+    AVG("distance") as "averageDistance",
+    AVG("time") as "averageTime",
+    AVG("speed") as "averageSpeed",
+    AVG("pace") as "averagePace"
+  FROM "activities";
+  `;
 
   // Ping DB
   pool
@@ -65,24 +63,22 @@ router.get('/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyDistanceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageDistance")
-    FROM
-      (SELECT SUM(DISTANCE) as "averageDistance"
-    FROM
-      (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
-    GROUP BY "week") as "weeklyAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageDistance")
+  FROM
+    (SELECT SUM(DISTANCE) as "averageDistance"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".distance
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".distance) as "weeklyDistance"
+  GROUP BY "week") as "weeklyAverage";
+  `;
 
   // Ping DB
   pool
@@ -114,24 +110,22 @@ router.get('/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyTimeAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageTime")
-    FROM
-      (SELECT SUM(TIME) as "averageTime"
-    FROM
-      (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
-    GROUP BY "week") as "weeklyAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageTime")
+  FROM
+    (SELECT SUM(TIME) as "averageTime"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".time
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".time) as "weeklyDistance"
+  GROUP BY "week") as "weeklyAverage";
+  `;
 
   // Ping DB
   pool
@@ -163,24 +157,22 @@ router.get('/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageSpeed")
-    FROM
-      (SELECT AVG(SPEED) as "averageSpeed"
-    FROM
-      (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".speed
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".speed) as "weeklyDistance"
-    GROUP BY "week") as "weeklyAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageSpeed")
+  FROM
+    (SELECT AVG(SPEED) as "averageSpeed"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".speed
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".speed) as "weeklyDistance"
+  GROUP BY "week") as "weeklyAverage";
+  `;
 
   // Ping DB
   pool
@@ -212,24 +204,22 @@ router.get('/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyPaceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averagePace")
-    FROM
-      (SELECT AVG(PACE) as "averagePace"
-    FROM
-      (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".pace
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".pace) as "weeklyDistance"
-    GROUP BY "week") as "weeklyAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averagePace")
+  FROM
+    (SELECT AVG(PACE) as "averagePace"
+  FROM
+    (SELECT EXTRACT(WEEK FROM "activities".date) as "week", "activities".user_id, "activities".pace
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".pace) as "weeklyDistance"
+  GROUP BY "week") as "weeklyAverage";
+  `;
 
   // Ping DB
   pool
@@ -261,24 +251,22 @@ router.get('/monthlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyDistanceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageDistance")
-    FROM
-      (SELECT SUM(DISTANCE) as "averageDistance"
-    FROM
-      (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".distance
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".distance) as "monthlyDistance"
-    GROUP BY "month") as "monthlyDistanceAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageDistance")
+  FROM
+    (SELECT SUM(DISTANCE) as "averageDistance"
+  FROM
+    (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".distance
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".distance) as "monthlyDistance"
+  GROUP BY "month") as "monthlyDistanceAverage";
+  `;
 
   // Ping DB
   pool
@@ -312,24 +300,22 @@ router.get('/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyTimeAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageTime")
-    FROM
-      (SELECT SUM(TIME) as "averageTime"
-    FROM
-      (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".time
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".time) as "monthlyDistance"
-    GROUP BY "month") as "monthlyTimeAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageTime")
+  FROM
+    (SELECT SUM(TIME) as "averageTime"
+  FROM
+    (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".time
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".time) as "monthlyDistance"
+  GROUP BY "month") as "monthlyTimeAverage";
+  `;
 
   // Ping DB
   pool
@@ -361,24 +347,22 @@ router.get('/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlySpeedAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageSpeed")
-    FROM
-      (SELECT AVG(SPEED) as "averageSpeed"
-    FROM
-      (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".speed
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".speed) as "monthlyDistance"
-    GROUP BY "month") as "monthlySpeedAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageSpeed")
+  FROM
+    (SELECT AVG(SPEED) as "averageSpeed"
+  FROM
+    (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".speed
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".speed) as "monthlyDistance"
+  GROUP BY "month") as "monthlySpeedAverage";
+  `;
 
   // Ping DB
   pool
@@ -410,24 +394,22 @@ router.get('/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyPaceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averagePace")
-    FROM
-      (SELECT AVG(PACE) as "averagePace"
-    FROM
-      (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".pace
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".pace) as "monthlyDistance"
-    GROUP BY "month") as "monthlyPaceAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averagePace")
+  FROM
+    (SELECT AVG(PACE) as "averagePace"
+  FROM
+    (SELECT EXTRACT(MONTH FROM "activities".date) as "month", "activities".user_id, "activities".pace
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".pace) as "monthlyDistance"
+  GROUP BY "month") as "monthlyPaceAverage";
+  `;
 
   // Ping DB
   pool
@@ -459,24 +441,22 @@ router.get('/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyDistanceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageDistance")
-    FROM
-      (SELECT SUM(DISTANCE) as "averageDistance"
-    FROM
-      (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".distance
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".distance) as "yearlyDistance"
-    GROUP BY "year") as "yearlyDistanceAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageDistance")
+  FROM
+    (SELECT SUM(DISTANCE) as "averageDistance"
+  FROM
+    (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".distance
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".distance) as "yearlyDistance"
+  GROUP BY "year") as "yearlyDistanceAverage";
+  `;
 
   // Ping DB
   pool
@@ -508,24 +488,22 @@ router.get('/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyTimeAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageTime")
-    FROM
-      (SELECT SUM(TIME) as "averageTime"
-    FROM
-      (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".time
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".time) as "yearlyDistance"
-    GROUP BY "year") as "yearlyTimeAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageTime")
+  FROM
+    (SELECT SUM(TIME) as "averageTime"
+  FROM
+    (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".time
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".time) as "yearlyDistance"
+  GROUP BY "year") as "yearlyTimeAverage";
+  `;
 
   // Ping DB
   pool
@@ -557,24 +535,22 @@ router.get('/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlySpeedAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averageSpeed")
-    FROM
-      (SELECT AVG(SPEED) as "averageSpeed"
-    FROM
-      (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".speed
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".speed) as "yearlyDistance"
-    GROUP BY "year") as "yearlySpeedAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averageSpeed")
+  FROM
+    (SELECT AVG(SPEED) as "averageSpeed"
+  FROM
+    (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".speed
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".speed) as "yearlyDistance"
+  GROUP BY "year") as "yearlySpeedAverage";
+  `;
 
   // Ping DB
   pool
@@ -606,24 +582,22 @@ router.get('/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyPaceAverage ###'
   // );
 
-  let sqlQuery = '';
-
   // SQL query and authorization check
   if (req.user.authLevel > 2) {
     res.sendStatus(404);
     return;
-  } else {
-    sqlQuery = `
-    SELECT AVG("averagePace")
-    FROM
-      (SELECT AVG(PACE) as "averagePace"
-    FROM
-      (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".pace
-      FROM "activities"
-      GROUP BY "activities".date, "activities".user_id, "activities".pace) as "yearlyDistance"
-    GROUP BY "year") as "yearlyPaceAverage";
-    `;
   }
+
+  const sqlQuery = `
+  SELECT AVG("averagePace")
+  FROM
+    (SELECT AVG(PACE) as "averagePace"
+  FROM
+    (SELECT EXTRACT(YEAR FROM "activities".date) as "year", "activities".user_id, "activities".pace
+    FROM "activities"
+    GROUP BY "activities".date, "activities".user_id, "activities".pace) as "yearlyDistance"
+  GROUP BY "year") as "yearlyPaceAverage";
+  `;
 
   // Ping DB
   pool
