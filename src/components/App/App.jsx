@@ -20,6 +20,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import AdminPage from '../AdminPage/AdminPage';
+import BuiltWith from '../BuiltWith/BuiltWith';
 
 /* Import CSS */
 import './App.css';
@@ -67,6 +68,13 @@ const customTheme = createMuiTheme({
       fontFamily: 'Merienda',
     },
     fontFamily: 'Raleway',
+  },
+  overrides: {
+    MuiCard: {
+      root: {
+        // backgroundColor: '#f2f2f2',
+      },
+    },
   },
 });
 
@@ -148,6 +156,11 @@ function App() {
             >
               <LandingPage verbose={verbose} />
             </ProtectedRoute>
+
+            {/* Built With page for presentation */}
+            <Route exact path="/builtWith">
+              <BuiltWith />
+            </Route>
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route>

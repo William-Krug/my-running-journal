@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 // This is one of our simplest components
@@ -7,7 +8,13 @@ import './Footer.css';
 // or even care what the redux state is, so it doesn't need 'connect()'
 
 function Footer() {
-  return <footer>&copy; 2021 My Running Journal</footer>;
+  return (
+    <footer>
+      <Link className="link" to="/builtWith">
+        &copy; 2021 My Running Journal
+      </Link>
+    </footer>
+  );
 }
 
 export default Footer;
