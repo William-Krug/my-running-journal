@@ -40,3 +40,7 @@
 .navLink:hover {
   background-color: #122944;
 }
+
+.appName {
+  font-family: 'Architects Daughter', cursive;
+}

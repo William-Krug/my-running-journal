@@ -393,7 +393,7 @@ function AdminPage({ verbose }) {
                 <Box p={1}>
                   <PieChart
                     verbose={verbose}
-                    title={'Speed Breakdown'}
+                    title={'Speed Breakdown (MPH)'}
                     values={speedBreakdown}
                   />
                 </Box>

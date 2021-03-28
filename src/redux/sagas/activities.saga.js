@@ -19,6 +19,11 @@ function* fetchFastestRun(action) {
   try {
     const fastestRun = yield axios.get('/api/activities/user/fastest');
 
+    // first time users won't have any runs to get
+    if (fastestRun.data.length === 0) {
+      return;
+    }
+
     yield put({
       type: 'SET_FASTEST_RUN',
       // Last row (index) in sql query meets both fastest
@@ -51,6 +56,11 @@ function* fetchLongestRun(action) {
   try {
     const longestRun = yield axios.get('/api/activities/user/longest');
 
+    // first time users won't have any runs to get
+    if (longestRun.data.length === 0) {
+      return;
+    }
+
     yield put({
       type: 'SET_LONGEST_RUN',
       // Last row (index) in sql query meets both longest
@@ -82,6 +92,11 @@ function* fetchMostRecentRun(action) {
 
   try {
     const mostRecent = yield axios.get('/api/activities/user/mostRecent');
+
+    // first time users won't have any runs to get
+    if (mostRecent.data.length === 0) {
+      return;
+    }
 
     yield put({
       type: 'SET_MOST_RECENT_RUN',

@@ -21,7 +21,12 @@ router.get('/dailyAverages', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/dailyAverages ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT
     AVG("distance") as "averageDistance",
@@ -58,7 +63,12 @@ router.get('/weeklyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyDistanceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
@@ -100,7 +110,12 @@ router.get('/weeklyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyTimeAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageTime")
   FROM
@@ -142,7 +157,12 @@ router.get('/weeklySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklySpeedAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageSpeed")
   FROM
@@ -184,7 +204,12 @@ router.get('/weeklyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/weeklyPaceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averagePace")
   FROM
@@ -226,7 +251,12 @@ router.get('/monthlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyDistanceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
@@ -270,7 +300,12 @@ router.get('/monthlyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyTimeAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageTime")
   FROM
@@ -312,7 +347,12 @@ router.get('/monthlySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlySpeedAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageSpeed")
   FROM
@@ -354,7 +394,12 @@ router.get('/monthlyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/monthlyPaceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averagePace")
   FROM
@@ -396,7 +441,12 @@ router.get('/yearlyDistanceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyDistanceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageDistance")
   FROM
@@ -438,7 +488,12 @@ router.get('/yearlyTimeAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyTimeAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageTime")
   FROM
@@ -480,7 +535,12 @@ router.get('/yearlySpeedAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlySpeedAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averageSpeed")
   FROM
@@ -522,7 +582,12 @@ router.get('/yearlyPaceAverage', rejectUnauthenticated, (req, res) => {
   //   '### community.metrics.router -> GET /api/communityMetrics/yearlyPaceAverage ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT AVG("averagePace")
   FROM

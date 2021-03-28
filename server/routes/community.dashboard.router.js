@@ -20,7 +20,12 @@ router.get('/genderBreakdown', rejectUnauthenticated, (req, res) => {
   //   '### community.dashboard.router -> GET /api/communityDashboard/genderBreakdown ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT "genders".gender as "label", count("users".gender) * 100.0 / sum(count("users".gender)) over() as "data"
   FROM "users"
@@ -59,7 +64,12 @@ router.get('/stateBreakdown', rejectUnauthenticated, (req, res) => {
   //   '### community.dashboard.router -> GET /api/communityDashboard/stateBreakdown ###'
   // );
 
-  // SQL query
+  // SQL query and authorization check
+  if (req.user.authLevel > 2) {
+    res.sendStatus(404);
+    return;
+  }
+
   const sqlQuery = `
   SELECT "states".state as "label", count("users".state) * 100.0 / sum(count("users".state)) over() as "data"
   FROM "users"
