@@ -64,17 +64,9 @@ const customTheme = createMuiTheme({
   },
   typography: {
     h2: {
-      // fontFamily: 'Architects Daughter',
       fontFamily: 'Merienda',
     },
     fontFamily: 'Raleway',
-  },
-  overrides: {
-    MuiCard: {
-      root: {
-        // backgroundColor: '#f2f2f2',
-      },
-    },
   },
 });
 

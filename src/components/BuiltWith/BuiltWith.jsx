@@ -2,6 +2,8 @@
 import React from 'react';
 import { Box, Card, Grid, Typography } from '@material-ui/core';
 
+import './BuiltWith.css';
+
 /* Import Images */
 import js from '../images/JavaScript.png';
 import reAct from '../images/react.png';
@@ -31,32 +33,74 @@ function BuiltWith() {
     momEnt,
     chartJS,
   ];
+  const array1 = [js, reAct, reDux];
+  const array2 = [exPress, noDe, mui];
+  const array3 = [postGres, momEnt, chartJS];
 
   return (
-    <Grid container justify="center">
-      <Grid item xs={10}>
-        <Grid container justify="center">
-          <Box mb={3}>
-            <Grid item>
-              <Typography variant="h1" component="h1">
-                <strong>Built With</strong>
-              </Typography>
-            </Grid>
-          </Box>
-        </Grid>
-        <Grid container spacing={3}>
-          {logoArray.map((logo, i) => {
-            return (
-              <Grid item key={i} xs={3}>
-                <Card m={3}>
-                  <img src={logo} />
-                </Card>
+    <>
+      <Grid container justify="center">
+        <Grid item xs={10}>
+          <Grid container justify="center">
+            <Box mb={3}>
+              <Grid item>
+                <Typography variant="h1" component="h1">
+                  <strong>Built With</strong>
+                </Typography>
               </Grid>
-            );
-          })}
+            </Box>
+          </Grid>
+          {/* <Grid container spacing={3}> */}
+          {/* <div className="logos">
+            {logoArray.map((logo, i) => {
+              return (
+                <Box m={3}>
+                  <Grid item key={i} xs={3}>
+                    <Card>
+                      <img src={logo} />
+                    </Card>
+                  </Grid>
+                </Box>
+              );
+            })}
+          </div> */}
+          {/* </Grid> */}
         </Grid>
       </Grid>
-    </Grid>
+      <div className="logos bun">
+        {array1.map((logo, i) => {
+          return (
+            <div className="logo">
+              <Card key={i}>
+                <img src={logo} height="200" />
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+      <div className="logos">
+        {array2.map((logo, i) => {
+          return (
+            <div className="logo">
+              <Card key={i}>
+                <img src={logo} height="200" />
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+      <div className="logos bun">
+        {array3.map((logo, i) => {
+          return (
+            <div className="logo">
+              <Card key={i}>
+                <img src={logo} height="200" />
+              </Card>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

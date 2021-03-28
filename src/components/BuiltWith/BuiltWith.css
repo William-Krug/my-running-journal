@@ -1,0 +1,15 @@
+.logos {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.logo {
+  margin: 10px;
+}
+
+.bun {
+  justify-content: space-around;
+}
