@@ -1,56 +1,3 @@
-## Production Build
-
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
-
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
-
-## Lay of the Land
-
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
-
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
-
-Directory Structure:
-
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
-
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
-
-## Deployment
-
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
-
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
-
-(View Raw will give you the markdown that you can copy to your repos!)
-
 ![MIT LICENSE](https://img.shields.io/github/license/William-Krug/my-running-journal.svg?style=flat-square)
 ![REPO SIZE](https://img.shields.io/github/repo-size/William-Krug/my-running-journal.svg?style=flat-square)
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/William-Krug/my-running-journal.svg?style=flat-square)
@@ -62,17 +9,15 @@ Customize this ReadMe and the code comments in this project to read less like a 
 
 _Duration: 2 Week Sprint_
 
-Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it?
+My Running Journal was created to digitally track user runs, and provide metrics on user progress so runner feel more confident and able to tackle their next race.  This full stack app was built with React-Redux front end and a Node.js / Exress.js server.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in faucibus. Etiam volutpat, risus non mollis convallis, velit nisi pulvinar mi, eu faucibus orci nisi eget nibh. Integer a velit pretium, volutpat arcu eleifend, fringilla elit. Cras erat sapien, convallis venenatis tellus vitae, feugiat dictum felis.
-
-Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
-
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: [My Running Journal](https://my-running-journal.herokuapp.com/#/home)
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+![Landing Page](https://github.com/William-Krug/my-running-journal/blob/master/src/components/images/my_running_journal_home.png)
+![Log Run](https://github.com/William-Krug/my-running-journal/blob/master/src/components/images/my_running_journal_logRun.png)
+![Metrics](https://github.com/William-Krug/my-running-journal/blob/master/src/components/images/my_running_journal_metrics.png)
 
 ### Prerequisites
 
@@ -99,14 +44,25 @@ Include one or two screen shots of your project here (optional). Remove if unuse
 
 ## Usage
 
-How does someone use this application? Tell a user story here.
-
-1. xxx
-2. xxx
-3. xxx
-4. xxx
-5. xxx
-6. xxx
+1. Current Users use the **Login** functionality from the laning page to access the app.
+2. New Users use the **Register** functionality from the landing page to sign up for use.
+3. On the User's personal page, a user can:
+  - Log a run.
+  - View their dashboard of Most Recent Run, Longest Run, and Fastest Run.
+  - Review average metrics (broken down daily, weekly, monthly and yearly) on distance, time, speed and pacing.
+  - View a timeline chart of all logged runs.  Any plot on the chart can be clicked on to see the details for that specific run.
+4. Users have the ability to review and edit their profile by cliking the **Profile** link in the navigation bar.
+5. Users also have the ability to delete their account, and all associated runs, upon their discretion from the **Profile** link.
+6. Employee and Admin users can access the Admin Page from the **Admin** link in the navigation bar.
+7. Inside the Admin Page, community demographics are broken down in pie chart form showing:
+  - Age breakdown
+  - Gender breakdown
+  - State breakdown
+  - Distance
+  - Time
+  - Speed
+  - Pace
+8. The Admin Page also provides average metrics (broken down daily, weekly, monthly and yearly) on distance, time, speed and pacing for the entire user base.
 
 ## Built With
 
